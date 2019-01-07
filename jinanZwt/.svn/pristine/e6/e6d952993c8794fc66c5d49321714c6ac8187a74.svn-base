@@ -1,0 +1,97 @@
+package com.zt.capacity.jinan_zwt.fragment;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.ImageView;
+
+import com.umeng.analytics.MobclickAgent;
+import com.zt.capacity.common.base.BaseApplication;
+import com.zt.capacity.common.base.BaseWebViewFragment;
+import com.zt.capacity.common.util.ActivityJumpUtil;
+import com.zt.capacity.jinan_zwt.R;
+import com.zt.capacity.jinan_zwt.activity.PreviewActivity;
+import com.zt.capacity.jinan_zwt.activity.VoiceMaskActivity;
+import com.zt.capacity.jinan_zwt.util.JavaScriptinterface;
+
+/**
+ * 济南首页页面
+ */
+public class MainHomeFragment extends BaseWebViewFragment implements View.OnClickListener {
+    public WebView webView;
+    private View view;
+
+    private String url;
+
+    //控件
+    private ImageView sweep_jn;//扫一扫
+
+    private ImageView voice_jn;//语音
+
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.jn_zwt_web_view, null);
+
+        webView = view.findViewById(R.id.myweb);
+
+        init();
+
+        if (getArguments() != null) {
+            url = getArguments().getString("url");
+        }
+
+//        Web.getUser().getUnloadingId()
+        webViewCreat(url, webView, new JavaScriptinterface(getActivity()));
+
+        return view;
+    }
+
+    private void init() {
+        sweep_jn = view.findViewById(R.id.sweep_jn);
+        sweep_jn.setOnClickListener(this);
+        voice_jn = view.findViewById(R.id.voice_jn);//语音
+        voice_jn.setOnClickListener(this);
+    }
+
+    public static MainHomeFragment newInstance(String url) {
+
+        Bundle args = new Bundle();
+        args.putString("url", url);
+        MainHomeFragment fragment = new MainHomeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.sweep_jn) {
+            MobclickAgent.onEvent(BaseApplication.getContext(), "JNSaoMiao");
+            ActivityJumpUtil.jumpActivity(getActivity(), PreviewActivity.class);
+//                ActivityJumpUtil.jumpActivity(getActivity(), CaptureActivity.class);
+
+        } else if (i == R.id.voice_jn) {//语音
+            MobclickAgent.onEvent(BaseApplication.getContext(), "JNYuYin");
+            ActivityJumpUtil.jumpActivity(getActivity(), VoiceMaskActivity.class);
+
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("JNShouYeYeMian"); //统计页面，"MainScreen"为页面名称，可自定义
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("JNShouYeYeMian");
+    }
+}

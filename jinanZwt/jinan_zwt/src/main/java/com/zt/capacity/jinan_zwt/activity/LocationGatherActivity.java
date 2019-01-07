@@ -1,0 +1,190 @@
+package com.zt.capacity.jinan_zwt.activity;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.umeng.analytics.MobclickAgent;
+import com.zt.capacity.common.base.BaseActivity;
+import com.zt.capacity.common.data.listener.OnNetResultListener;
+import com.zt.capacity.common.util.RouteUtils;
+import com.zt.capacity.common.util.UIUtils;
+import com.zt.capacity.jinan_zwt.R;
+import com.zt.capacity.jinan_zwt.adapter.JNGatherListAdapter;
+import com.zt.capacity.jinan_zwt.bean.ConsappVo;
+import com.zt.capacity.jinan_zwt.request.consapp.ConsappManager;
+import com.zt.capacity.jinan_zwt.request.consapp.IConsappManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 位置采集主界面
+ */
+public class LocationGatherActivity extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener {
+    //头布局
+    private ImageView title_img;
+    private TextView title_name;
+
+    private ListView gather_list_view;//数据展示
+    private EditText gather_cosapp_name_edi;//查询框
+    private ImageView iv333,iv222;//搜索图片
+
+    //数据
+    private List<ConsappVo> consappVos = new ArrayList<>();//工地信息
+
+
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.jn_zwt_activity_location_gather);
+
+        //数据请求
+        getData();
+        //初始化
+        init();
+    }
+
+    //数据请求
+    private void getData() {
+        //请求工地信息
+        UIUtils.showLoadingProgressDialog(this, R.string.loading_process_tip, false);
+        getConsappData();
+    }
+
+    private void init() {
+        //头
+        title_img = findViewById(R.id.title_img);
+        title_img.setOnClickListener(this);
+        title_name = findViewById(R.id.title_name);
+        title_name.setText("位置采集");
+
+        iv333=findViewById(R.id.iv333);//搜索图片
+        iv222=findViewById(R.id.iv222);
+        gather_list_view = findViewById(R.id.gather_list_view);//数据展示
+        gather_cosapp_name_edi = findViewById(R.id.gather_cosapp_name_edi);//查询框
+        gather_cosapp_name_edi.setOnEditorActionListener(this);
+        gather_cosapp_name_edi.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    //获得焦点
+                    iv333.setVisibility(View.GONE);
+                    iv222.setVisibility(View.GONE);
+                }else{
+                    //失去焦点且无内容
+                    if("".equals(gather_cosapp_name_edi.getText().toString())){
+                        iv333.setVisibility(View.VISIBLE);
+                        iv222.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
+
+    }
+
+    private void getConsappData() {
+        IConsappManager consappManager = ConsappManager.getInterface(1);
+        consappManager.getGatherListConsapp(3000,new OnNetResultListener() {
+            @Override
+            public void onResult(int state, String msg, Object body) {
+                Message message = new Message();
+                message.what = state;
+                if(state==0){
+                    if (body != null) {
+                        consappVos = (List<ConsappVo>) body;
+                    }
+                }else{
+                    message.what = 1;
+                }
+                handler.sendMessage(message);
+            }
+        });
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    //工地信息请求成功
+                    UIUtils.cancelProgressDialog();
+                    setAdapterData(consappVos);
+                    break;
+                case 1:
+                    //通用失败处理
+                    UIUtils.cancelProgressDialog();
+                    UIUtils.showToast(LocationGatherActivity.this, msg.obj+"");
+                    break;
+            }
+        }
+    };
+
+    //工地lsit数据写入
+    private void setAdapterData(List<ConsappVo> consappVos) {
+        JNGatherListAdapter gatherListAdapter = new JNGatherListAdapter(this, consappVos);
+        gather_list_view.setAdapter(gatherListAdapter);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.title_img) {
+            finish();
+
+        }
+    }
+
+    //软键盘搜索
+    @Override
+    public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        if (i == EditorInfo.IME_ACTION_SEARCH) {
+            //搜索
+            String ediStr = gather_cosapp_name_edi.getText().toString();
+            if ("".equals(ediStr)) {
+                //搜索值为空
+                setAdapterData(consappVos);
+            } else {
+                List<ConsappVo> consappVos1 = new ArrayList<>();
+                if (consappVos.size() > 0) {
+                    for (ConsappVo consappVo : consappVos) {
+                        if (consappVo.getProName().matches(".*" + ediStr + ".*")) {
+                            //工程中存在查询值
+                            consappVos1.add(consappVo);
+                        }
+                    }
+                }
+                setAdapterData(consappVos1);
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("JNZWTWeiZhiCaiJiZhu"); //统计页面(仅有Activity的应用中SDK自动调用，不需要单独写。"SplashScreen"为页面名称，可自定义)
+        MobclickAgent.onResume(this);          //统计时长
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("JNZWTWeiZhiCaiJiZhu"); // （仅有Activity的应用中SDK自动调用，不需要单独写）保证 onPageEnd 在onPause 之前调用,因为 onPause 中会保存信息。"SplashScreen"为页面名称，可自定义
+        MobclickAgent.onPause(this);
+    }
+
+}

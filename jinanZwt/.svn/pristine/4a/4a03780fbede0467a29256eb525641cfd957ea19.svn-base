@@ -1,0 +1,136 @@
+package com.zt.capacity.jinan_zwt.activity;
+
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.model.LatLng;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.zt.capacity.common.base.BaseActivity;
+import com.zt.capacity.common.data.Web;
+import com.zt.capacity.common.data.listener.OnNetResultListener;
+import com.zt.capacity.common.util.UIUtils;
+import com.zt.capacity.common.util.map.MapOperation;
+import com.zt.capacity.common.util.map.TransformationUtil;
+import com.zt.capacity.jinan_zwt.R;
+import com.zt.capacity.jinan_zwt.bean.ConsappVo;
+import com.zt.capacity.jinan_zwt.request.consapp.ConsappManager;
+import com.zt.capacity.jinan_zwt.request.consapp.IConsappManager;
+
+/**
+ * 位置采集
+ */
+public class LocationGatherMapActivity extends BaseActivity implements View.OnClickListener {
+    // 头布局
+    private ImageView title_img;
+    private TextView title_name;
+
+    private BaiduMap mBaiduMap;
+
+    private TextView gather_map_proname;//工程名称
+    private MapView map_view;//地图
+    private TextView gather_map_submit;//确定
+    private TextView gather_map_back;//返回按钮
+
+    //数据
+    private ConsappVo consappVo;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.jn_zwt_activity_location_gather_map);
+
+        consappVo = (ConsappVo) getIntent().getSerializableExtra("consappVo");
+
+        //初始化控件
+        init();
+    }
+
+    private void init() {
+        map_view = findViewById(R.id.map_view);//地图
+        mBaiduMap = map_view.getMap();
+        //隐藏百度图标
+        MapOperation.hideBaiDuIcon(map_view);
+        //设置中心点
+        MapOperation.setCenterPosition(mBaiduMap, Web.getPoint());
+        MapOperation.addMarker(mBaiduMap, Web.getPoint(), null, BitmapFactory.decodeResource(getResources(), R.drawable.jn_zwt_maker_panorama_tagging));
+
+        //头
+        title_img = findViewById(R.id.title_img);
+        title_img.setOnClickListener(this);
+        title_name = findViewById(R.id.title_name);
+        title_name.setText("位置采集");
+
+        gather_map_proname = findViewById(R.id.gather_map_proname);//工程名称
+        gather_map_proname.setText(consappVo.getProName().toString());
+        gather_map_submit = findViewById(R.id.gather_map_submit);//确定
+        gather_map_submit.setOnClickListener(this);
+        gather_map_back = findViewById(R.id.gather_map_back);//返回按钮
+        gather_map_back.setOnClickListener(this);
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    UIUtils.cancelProgressDialog();
+                    if ("0".equals(msg.obj.toString())) {
+                        UIUtils.showToast(LocationGatherMapActivity.this, "提交成功");
+                        finish();
+                    } else
+                        UIUtils.showToast(LocationGatherMapActivity.this, "提交失败");
+                    break;
+                case 1:
+                    //失败
+                    UIUtils.cancelProgressDialog();
+                    UIUtils.showToast(LocationGatherMapActivity.this, msg.obj + "");
+            }
+        }
+    };
+    Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+
+    //提交信息
+    private void inputData() {
+        if (consappVo == null) {
+            return;
+        }
+        LatLng latLng = Web.getPoint();
+        latLng = TransformationUtil.baiduToGps(latLng);
+        UIUtils.showLoadingProgressDialog(this, R.string.loading_process_tip, false);
+        IConsappManager consappManager = ConsappManager.getInterface(2);
+        consappManager.inputGatherData(consappVo.getGpsPos().getCityId() + "", consappVo.getConsappId() + "", consappVo.getLicNumber(), latLng.longitude + "", latLng.latitude + "", new OnNetResultListener() {
+            @Override
+            public void onResult(int state, String msg, Object body) {
+                Message message = new Message();
+                message.what = state;
+                message.obj = body;
+                handler.sendMessage(message);
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.title_img) {
+            finish();
+
+        } else if (i == R.id.gather_map_submit) {
+            inputData();
+
+        } else if (i == R.id.gather_map_back) {
+            finish();
+
+        }
+    }
+}

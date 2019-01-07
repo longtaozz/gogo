@@ -1,0 +1,30 @@
+package com.zt.capacity.jinan_zwt;
+
+
+import com.zt.capacity.common.base.BaseApplication;
+import com.zt.capacity.common.util.CrashHandler;
+
+import cn.jpush.android.api.JPushInterface;
+
+
+public class MyApplication extends BaseApplication {
+
+    @Override
+    public void onCreate() {
+
+
+
+        //极光初始化
+
+        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);            // 初始化 JPush
+
+
+        //打包时候收集报错信息
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
+
+        super.onCreate();
+    }
+
+}

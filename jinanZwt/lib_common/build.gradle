@@ -1,0 +1,74 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion build_versions.compile_sdk
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 10
+        versionName "1.2.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true//分包
+
+//        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11 -frtti -fexceptions"
+                abiFilters 'armeabi'
+//                , 'armeabi-v7a','arm64-v8a','x86'
+            }
+        }
+
+
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false//使变小。启用混淆器
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
+
+
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    //    api fileTree(include: ['*.aar'], dir: 'libs')
+    //    implementation(name: 'base-2.6.1.301', ext: 'aar')
+    configurations {
+        all*.exclude group: 'com.google.code.gson'
+    }
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
+    api deps.support.compat
+    api deps.support.picker_view
+    testImplementation deps.support.test_junit
+    api deps.support.bar_compat
+    androidTestImplementation deps.support.test_runner
+    androidTestImplementation deps.support.test_espresso_core
+    api deps.support.constraint
+    //    api deps.support.lombokcompile
+    //    api 'javax.annotation:javax.annotation-api:1.2'
+    //    api 'org.projectlombok:lombok:1.18.2'
+    //华为
+    implementation project(path: ':openCVLibrary342')
+    api 'me.weyye.hipermission:library:1.0.7'
+}

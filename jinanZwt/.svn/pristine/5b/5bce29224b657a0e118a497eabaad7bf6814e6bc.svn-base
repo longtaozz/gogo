@@ -1,0 +1,198 @@
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:240
+-keep class android.support.v4.content.FileProvider { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_alert_dialog_material.xml:41
+-keep class android.support.v4.widget.NestedScrollView { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_select_dialog_material.xml:23
+-keep class android.support.v7.app.AlertController$RecycleListView { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_action_menu_item_layout.xml:17
+-keep class android.support.v7.view.menu.ActionMenuItemView { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_expanded_menu_layout.xml:17
+-keep class android.support.v7.view.menu.ExpandedMenuView { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_cascading_menu_item_layout.xml:20
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_list_menu_item_layout.xml:17
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_popup_menu_item_layout.xml:17
+-keep class android.support.v7.view.menu.ListMenuItemView { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout-v26\abc_screen_toolbar.xml:27
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_toolbar.xml:27
+-keep class android.support.v7.widget.ActionBarContainer { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout-v26\abc_screen_toolbar.xml:44
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_action_mode_bar.xml:19
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_toolbar.xml:43
+-keep class android.support.v7.widget.ActionBarContextView { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout-v26\abc_screen_toolbar.xml:17
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_toolbar.xml:17
+-keep class android.support.v7.widget.ActionBarOverlayLayout { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_action_menu_layout.xml:17
+-keep class android.support.v7.widget.ActionMenuView { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_activity_chooser_view.xml:19
+-keep class android.support.v7.widget.ActivityChooserView$InnerLayout { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_alert_dialog_material.xml:18
+-keep class android.support.v7.widget.AlertDialogLayout { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout-watch-v20\abc_alert_dialog_button_bar_material.xml:18
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_alert_dialog_button_bar_material.xml:26
+-keep class android.support.v7.widget.ButtonBarLayout { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_content_include.xml:19
+-keep class android.support.v7.widget.ContentFrameLayout { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout-watch-v20\abc_alert_dialog_title_material.xml:44
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_alert_dialog_title_material.xml:45
+-keep class android.support.v7.widget.DialogTitle { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_simple_overlay_action_mode.xml:23
+-keep class android.support.v7.widget.FitWindowsFrameLayout { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_dialog_title_material.xml:22
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_simple.xml:17
+-keep class android.support.v7.widget.FitWindowsLinearLayout { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_search_view.xml:75
+-keep class android.support.v7.widget.SearchView$SearchAutoComplete { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout-v26\abc_screen_toolbar.xml:37
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_toolbar.xml:36
+-keep class android.support.v7.widget.Toolbar { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_simple.xml:25
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_screen_simple_overlay_action_mode.xml:32
+-keep class android.support.v7.widget.ViewStubCompat { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout-watch-v20\abc_alert_dialog_title_material.xml:53
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_alert_dialog_button_bar_material.xml:43
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_alert_dialog_material.xml:52
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_alert_dialog_material.xml:66
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\res\layout\abc_alert_dialog_title_material.xml:56
+-keep class android.widget.Space { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:218
+-keep class cn.jpush.android.service.AlarmReceiver { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:184
+-keep class cn.jpush.android.service.DaemonService { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:178
+-keep class cn.jpush.android.service.DataProvider { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:194
+-keep class cn.jpush.android.service.DownloadProvider { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:198
+-keep class cn.jpush.android.service.PushReceiver { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:167
+-keep class cn.jpush.android.service.PushService { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:154
+-keep class cn.jpush.android.ui.PushActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\lib_common\build\intermediates\packaged_res\release\layout\baidupano_photoalbum_container.xml:24
+-keep class com.baidu.lbsapi.panodemo.indoor.AlbumContainer { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\lib_common\build\intermediates\packaged_res\release\layout\baidupano_singlephoto_layout.xml:17
+-keep class com.baidu.lbsapi.panodemo.indoor.view.AsyncImageView { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\lib_common\build\intermediates\packaged_res\release\layout\baidupano_photoalbum_container.xml:32
+-keep class com.baidu.lbsapi.panodemo.indoor.view.FloorsTabView { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\lib_common\build\intermediates\packaged_res\release\layout\baidupano_photoalbum_container.xml:42
+-keep class com.baidu.lbsapi.panodemo.indoor.view.PhotoAlbumView { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\lib_common\build\intermediates\packaged_res\release\layout\baidupano_singlephoto_layout.xml:1
+-keep class com.baidu.lbsapi.panodemo.indoor.view.SinglePhotoLayout { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\lib_common\build\intermediates\packaged_res\release\layout\activity_panorama.xml:10
+-keep class com.baidu.lbsapi.panoramaview.PanoramaView { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\jn_zwt_activity_car_history.xml:112
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\jn_zwt_activity_doubtful_point.xml:119
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\jn_zwt_activity_location.xml:93
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\jn_zwt_activity_location_gather_map.xml:37
+-keep class com.baidu.mapapi.map.MapView { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:258
+-keep class com.baidu.speech.VoiceRecognitionService { <init>(...); }
+
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_options.xml:19
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_options.xml:25
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_options.xml:31
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_time.xml:19
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_time.xml:25
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_time.xml:32
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_time.xml:38
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_time.xml:44
+# Referenced at C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\res\layout\pickerview_time.xml:50
+-keep class com.bigkoo.pickerview.lib.WheelView { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:107
+-keep class com.debug.LoginActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:95
+-keep class com.debug.WelcomeActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\jn_zwt_activity_preview.xml:23
+-keep class com.qrcode.view.CaptureView { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:261
+-keep class com.zt.capacity.common.base.PanoramaActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:264
+-keep class com.zt.capacity.common.base.WebViewActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:221
+-keep class com.zt.capacity.common.jpush.MyReceiver { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\lib_common\build\intermediates\packaged_res\release\layout\text_bubble.xml:10
+-keep class com.zt.capacity.common.map.clusterutil.ui.RotationLayout { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\jn_zwt_dialog_doubtpoint_input.xml:39
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\jn_zwt_web_view.xml:28
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\login\layout\jn_zwt_activity_login.xml:74
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\login\layout\jn_zwt_activity_login.xml:109
+# Referenced at F:\androidStudio\newApp\jiananZWT\lib_common\build\intermediates\packaged_res\release\layout\alertdialog.xml:14
+-keep class com.zt.capacity.common.view.LastEditText { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\src\main\res\layout\jn_zwt_activity_preview.xml:15
+-keep class com.zt.capacity.common.view.PlateRecognizerView { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:79
+-keep class com.zt.capacity.jinan_zwt.MyApplication { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:116
+-keep class com.zt.capacity.jinan_zwt.activity.CarHistoryActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:120
+-keep class com.zt.capacity.jinan_zwt.activity.DoubtfulPointActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:124
+-keep class com.zt.capacity.jinan_zwt.activity.JNInstructionActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:128
+-keep class com.zt.capacity.jinan_zwt.activity.LocationActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:140
+-keep class com.zt.capacity.jinan_zwt.activity.LocationGatherActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:144
+-keep class com.zt.capacity.jinan_zwt.activity.LocationGatherMapActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:112
+-keep class com.zt.capacity.jinan_zwt.activity.MainActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:132
+-keep class com.zt.capacity.jinan_zwt.activity.PreviewActivity { <init>(...); }
+
+# Referenced at F:\androidStudio\newApp\jiananZWT\jinan_zwt\build\intermediates\manifests\full\release\AndroidManifest.xml:136
+-keep class com.zt.capacity.jinan_zwt.activity.VoiceMaskActivity { <init>(...); }
+

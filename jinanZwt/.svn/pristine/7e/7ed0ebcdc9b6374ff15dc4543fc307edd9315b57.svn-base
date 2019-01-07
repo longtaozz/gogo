@@ -1,0 +1,19 @@
+# ninja log v5
+4	30344	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/Pipeline.cpp.o	69d7b39372abdbc9
+2	30347	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/Recognizer.cpp.o	c0adf83533daabb4
+3	30348	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/CNNRecognizer.cpp.o	597705b9097a59f7
+5	30352	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/PlateDetection.cpp.o	ab0237c5315c4803
+5	30361	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/PlateRecognition.cpp.o	40dd9331c5c7b0ec
+1	30385	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/PlateSegmentation.cpp.o	e761004a6cd5094
+30347	32699	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/FastDeskew.cpp.o	68b467a241bdf3de
+30345	33088	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/FineMapping.cpp.o	a0d583ce4183cc86
+33088	35226	0	../../../../build/intermediates/cmake/release/obj/armeabi/libhyper_lpr.so	3901dfaf065bc739
+8	9333	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/CNNRecognizer.cpp.o	597705b9097a59f7
+7	9596	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/Recognizer.cpp.o	c0adf83533daabb4
+11	9624	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/PlateDetection.cpp.o	ab0237c5315c4803
+10	9647	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/PlateRecognition.cpp.o	40dd9331c5c7b0ec
+5	9659	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/PlateSegmentation.cpp.o	e761004a6cd5094
+8	9710	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/Pipeline.cpp.o	69d7b39372abdbc9
+9333	12264	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/FineMapping.cpp.o	a0d583ce4183cc86
+9596	12560	0	src/main/cpp/CMakeFiles/hyper_lpr.dir/src/FastDeskew.cpp.o	68b467a241bdf3de
+12560	13036	0	../../../../build/intermediates/cmake/release/obj/armeabi/libhyper_lpr.so	3901dfaf065bc739

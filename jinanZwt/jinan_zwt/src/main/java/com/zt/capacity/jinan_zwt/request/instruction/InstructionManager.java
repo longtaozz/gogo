@@ -1,0 +1,127 @@
+package com.zt.capacity.jinan_zwt.request.instruction;
+
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.zt.capacity.common.data.Web;
+import com.zt.capacity.common.data.listener.MyNetCall;
+import com.zt.capacity.common.data.listener.OnNetResultListener;
+import com.zt.capacity.jinan_zwt.bean.DataActionBeans;
+import com.zt.capacity.jinan_zwt.data.JN_ZWT_Url;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.Call;
+
+/**
+ * 指令信息请求
+ */
+
+public class InstructionManager extends Web implements IInstructionManager {
+    Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+
+    public static IInstructionManager getInterface(Integer state) {
+        InstructionManager instructionManager = null;
+        if (state == 1) {
+            //查询指令历史记录
+            instructionManager = new InstructionManager(JN_ZWT_Url.FINDACTIONLIS);
+        }
+        if (state == 2) {
+            //下发指令
+            instructionManager = new InstructionManager(JN_ZWT_Url.SENDACTION);
+        }
+        return (IInstructionManager) instructionManager;
+    }
+
+    /**
+     * code为1链接接有参数拦截，2没有参数拦截，3不拦截
+     *
+     * @param
+     * @param
+     */
+    protected InstructionManager(String url) {
+        super(url, 3);
+    }
+
+    @Override
+    public void getHistoryInstruction(String carNumber, final OnNetResultListener listener) {
+        Log.e("histort.>>>>>>>>>>>>>>.", "开始请求111");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("carNumber", carNumber);
+        map.put("current", 1);
+        map.put("size", 100);
+        postQueryJson(map, new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+
+
+                if (code == 0) {
+                    Log.e("baseBean", data.toString());
+                    DataActionBeans dataActionss = null;
+                    try {
+                        dataActionss = gson.fromJson(data.toString(), DataActionBeans.class);
+                    } catch (Exception ex) {
+                        Log.e("myerr...", ex.toString());
+                        listener.onResult(1, "失败", null);
+                    }
+                    ;
+//                    CarHistoryBeans carHistoryBean =
+//                            gson.fromJson(data.toString(),
+//                                    CarHistoryBeans.class);
+                    listener.onResult(0, message, dataActionss.getRecords());
+                } else {
+
+                    listener.onResult(1, message, null);
+                }
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.d("exe", "失败");
+                listener.onResult(1, "失败", null);
+            }
+        });
+    }
+
+    /**
+     * 下发指令
+     *
+     * @param carPassPhoneNumber：车牌加SIM卡号（湘A1233,32342342）多个用;隔开
+     * @param actionType：指令类型
+     * @param actionValue：下发值
+     * @param sendRemark：备注
+     * @param listener
+     */
+    @Override
+    public void sendInstruction(String carPassPhoneNumber, Integer actionType, Integer actionValue, String sendRemark, final OnNetResultListener listener) {
+        Map<String, Object> page = new HashMap<String, Object>();
+        page.put("carPassPhoneNumber", carPassPhoneNumber);
+        page.put("actionType", actionType);
+        page.put("actionValue", actionValue);
+        page.put("sendRemark", sendRemark);
+        postQueryJson(page, new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                Log.e("data", jData);
+                if (code == 0) {
+                    listener.onResult(code, message, jData);//后续是用字符串处理，所以不用处理数据异常
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.e("err", e.toString());
+                listener.onResult(1, "服务器错误", null);
+            }
+        });
+
+    }
+
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_16"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/notification_left_default"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:layout_marginRight="@dimen/dp_17"
+                android:layout_marginBottom="@dimen/dp_7"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/notification_item_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_17"
+                    android:textColor="@color/color_484848"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:text="紧急重要通知"/>
+                <TextView
+                    android:id="@+id/notification_item_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_9b9b9b"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:textSize="@dimen/text_12"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/dp_5"
+                    android:text="我的大大阿发女的爱的啊是的爱迪生啊是的啊是sadsad的啊是的暗示的阿斯达啊是打是的阿斯达阿斯达啊是的啊的暗示的暗示的啊"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_7">
+                    <TextView
+                        android:id="@+id/notification_item_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_11"
+                        android:textColor="@color/color_9b9b9b"
+                        android:text="2018-11-13 16:31"/>
+                    <View
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/notification_item_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_9b9b9b"
+                        android:textSize="@dimen/text_12"
+                        android:text="未读"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

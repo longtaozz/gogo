@@ -1,0 +1,221 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zt.capacity.jinan_zwt">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/home"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/home"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!--适配全面屏-->
+        <meta-data android:name="android.max_aspect"
+            android:value="2.1"/>
+
+        <!--地图key-->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="BmZL5iewCe8WGUTUzf9NCOtu3pf8959Z" />
+
+        <!--欢迎-->
+        <activity
+            android:name="com.debug.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--登录界面-->
+        <activity
+            android:name="com.debug.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+
+
+        <!--主界面-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--历史轨迹-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.CarHistoryActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--疑点查车-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.DoubtfulPointActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--指令下发-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.JNInstructionActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--实时位置-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--监控-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationFActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--语音-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.VoiceMaskActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--位置采集信息界面-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationGatherActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--位置采集-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationGatherMapActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--扫车牌详情-->
+        <activity
+            android:name=".activity.RichScanCarActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--扫二维码详情-->
+        <activity
+            android:name=".activity.RichScanQRCodeActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--我的-->
+        <activity
+            android:name=".activity.MainMyActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--消息-->
+        <activity
+            android:name=".activity.NotificationActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--消息详情-->
+        <activity
+            android:name=".activity.NotificationNoticeActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--通用web界面-->
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <!--扫一扫-->
+        <activity
+            android:name=".activity.PreviewCodeActivity"
+            android:screenOrientation="portrait"></activity>
+
+
+        <!--文字提示-->
+        <activity
+            android:name=".activity.TextHintActivity"
+            android:screenOrientation="portrait"></activity>
+
+
+        <!--....................................................极光..................................-->
+        <!-- Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:exported="false"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <!-- since 3.0.9 Required SDK 核心功能-->
+        <provider
+            android:name="cn.jpush.android.service.DataProvider"
+            android:authorities="${applicationId}.DataProvider"
+            android:exported="false"
+            android:process=":pushcore" />
+
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+
+        </service>
+        <!-- since 3.1.0 Required SDK 核心功能-->
+        <provider
+            android:name="cn.jpush.android.service.DownloadProvider"
+            android:authorities="${applicationId}.DownloadProvider"
+            android:exported="true" />
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <receiver
+            android:name=".push.MyReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="04f49bc76f845581898633f5" /> <!--  </>值来自开发者平台取得的AppKey-->
+
+
+    </application>
+
+
+</manifest>

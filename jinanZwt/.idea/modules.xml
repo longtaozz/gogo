@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jinanZwt.iml" filepath="$PROJECT_DIR$/jinanZwt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jinan_zwt/jinan_zwt.iml" filepath="$PROJECT_DIR$/jinan_zwt/jinan_zwt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_common/lib_common.iml" filepath="$PROJECT_DIR$/lib_common/lib_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openCVLibrary342/openCVLibrary342.iml" filepath="$PROJECT_DIR$/openCVLibrary342/openCVLibrary342.iml" />
+    </modules>
+  </component>
+</project>

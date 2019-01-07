@@ -1,0 +1,378 @@
+package com.zt.capacity.jinan_zwt.request.realtimeposition;
+
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.zt.capacity.common.data.Web;
+import com.zt.capacity.common.data.listener.MyNetCall;
+import com.zt.capacity.common.data.listener.OnNetResultListener;
+import com.zt.capacity.jinan_zwt.bean.Car;
+import com.zt.capacity.jinan_zwt.bean.CarRuntime;
+import com.zt.capacity.jinan_zwt.bean.CarRuntimes;
+import com.zt.capacity.jinan_zwt.bean.Certificates;
+import com.zt.capacity.jinan_zwt.bean.StatisticsInfo;
+import com.zt.capacity.jinan_zwt.data.JN_ZWT_Url;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.Call;
+
+/**
+ * Created by Administrator on 2018/4/17.
+ */
+
+public class RealTimePosition extends Web implements IRealTimePosition {
+    private static RealTimePosition mRealTimePositionCarRuntime = null;
+    private static RealTimePosition mRealTimePositionNunberByCarRuntime = null;
+    private static RealTimePosition mRealTimePositionCar = null;
+    Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+
+    /**
+     * code为1链接接有参数拦截，2没有参数拦截，3不拦截
+     *
+     * @param url
+     */
+    protected RealTimePosition(String url) {
+        super(url, 3);
+    }
+
+
+    public static IRealTimePosition LonginManager(Integer state) {
+        if (state == 1) {
+            mRealTimePositionCarRuntime = new RealTimePosition(JN_ZWT_Url.SELECTALLMYCAR);
+            return (IRealTimePosition) mRealTimePositionCarRuntime;
+        }
+        if (state == 2) {
+            mRealTimePositionNunberByCarRuntime = new RealTimePosition(JN_ZWT_Url.SELECTALLMYCAR);
+            return (IRealTimePosition) mRealTimePositionNunberByCarRuntime;
+        }
+        if (state == 3) {
+            mRealTimePositionCar = new RealTimePosition(JN_ZWT_Url.CARS);
+            return (IRealTimePosition) mRealTimePositionCar;
+        }
+        if (state == 8) {
+            //实时位置统计
+            mRealTimePositionCar = new RealTimePosition(JN_ZWT_Url.STATISTICSINFOTOTAL);
+            return (IRealTimePosition) mRealTimePositionCar;
+        }
+        if (state == 9) {
+            //济南实时位置离线车辆查询
+            mRealTimePositionCar = new RealTimePosition(JN_ZWT_Url.CARRUNTIMEALL);
+            return (IRealTimePosition) mRealTimePositionCar;
+        }
+        return null;
+    }
+
+
+    @Override
+    public void getCarRuntime(final OnNetResultListener listener) {
+
+        //分页信息
+        Map<String, Object> page = new HashMap<String, Object>();
+        page.put("current", 1);
+        page.put("size", 5000);
+        page.put("isOnline", "1");
+
+        postQueryJson(page, new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                Log.d("dataxxxxxxxxxxxxx", jData);
+                if (code == 0) {
+                    try {
+                        CarRuntimes carRuntimes = (CarRuntimes) gson.fromJson(jData, CarRuntimes.class);
+                        listener.onResult(code, message, carRuntimes.getRecords());
+                    } catch (Exception e) {
+                        Log.e("msg", "解析错误");
+                        listener.onResult(1, "解析错误", null);
+                    }
+
+
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.e("err", e.toString());
+                listener.onResult(1, "服务器错误", "");
+            }
+        });
+
+
+    }
+
+    /**
+     * 按车牌号查询车辆实时位置
+     *
+     * @param carNumber
+     * @param listener
+     */
+    @Override
+    public void carRuntimeByCarNumber(String carNumber, final OnNetResultListener listener) {
+        Map<String, Object> body = new HashMap<String, Object>();
+        body.put("carNumber", carNumber);
+        body.put("current", 1);
+        body.put("size", 5000);
+        body.put("isOnline", "0");
+        postQueryJson(body, new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                Log.e("dataxxxxxxxxxxxxx", jData);
+                if (code == 0) {
+//                    try {
+                    CarRuntimes carRuntimes = (CarRuntimes) gson.fromJson(jData, CarRuntimes.class);
+                    listener.onResult(code, message, carRuntimes.getRecords());
+//                    } catch (Exception e) {
+//                        Log.e("msg", e.toString());
+//                        listener.onResult(1, "解析错误", null);
+//                    }
+
+
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                listener.onResult(1, "服务器错误", "");
+            }
+        });
+    }
+
+    @Override
+    public void carsByCarNumber(String carNumber, final OnNetResultListener listener) {
+
+        //测试数据
+//        listener.onResult(200, "成功", new Car(1,"湘AZ9230","123311111","432222","打算","dwqdqw","dadqwd",new Factory(1,"我的我的"),new Equipment(1,"防护未婚夫")));
+
+        Map<String, String> body = new HashMap<String, String>();
+        body.put("carNumber", carNumber);
+        postQueryJson(body, new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                Log.d("dataxxxxxxxxxxxxx", jData);
+                if (code == 0) {
+                    try {
+                        Car car = (Car) gson.fromJson(jData, Car.class);
+                        listener.onResult(code, message, car);
+                    } catch (Exception e) {
+                        Log.e("msg", "解析错误");
+                        listener.onResult(1, "解析错误", null);
+                    }
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.e("err", e.toString());
+                listener.onResult(1, "服务器错误", "");
+            }
+        });
+    }
+
+    @Override
+    public void paramByCarNumber(String carNumber, Integer geshu, final OnNetResultListener listener) {
+        Map<String, Object> body = new HashMap<String, Object>();
+        body.put("current", 1);
+        body.put("size", geshu);
+        body.put("carNumber", carNumber);
+        body.put("isValid", "1");
+        postQueryJson(body, new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                Log.d("dataxxxxxxxxxxxxx", jData);
+                if (code == 0) {
+                    try {
+                        Certificates certificates = (Certificates) gson.fromJson(jData, Certificates.class);
+
+                        listener.onResult(code, message, certificates.getRecords());
+
+                    } catch (Exception e) {
+                        Log.e("msg", "解析错误");
+                        listener.onResult(1, "解析错误", null);
+                    }
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.e("fragment2", e.toString());
+
+                String jData = "{\n" +
+                        "\t\"offset\": 0,\n" +
+                        "\t\"limit\": 2147483647,\n" +
+                        "\t\"total\": 1,\n" +
+                        "\t\"size\": 10,\n" +
+                        "\t\"pages\": 1,\n" +
+                        "\t\"current\": 1,\n" +
+                        "\t\"searchCount\": true,\n" +
+                        "\t\"openSort\": true,\n" +
+                        "\t\"ascs\": null,\n" +
+                        "\t\"descs\": null,\n" +
+                        "\t\"orderByField\": null,\n" +
+                        "\t\"records\": [{\n" +
+                        "\t\t\"proName\": \"黄土岭、砂子塘站附属结构土方\",\n" +
+                        "\t\t\"constructionAddress\": \"黄土岭\",\n" +
+                        "\t\t\"enterpriseName\": \"湖南安运达渣土运输有限公司\",\n" +
+                        "\t\t\"plateNumber\": \"湘AZ8708\",\n" +
+                        "\t\t\"startTime\": \"2018-05-07\",\n" +
+                        "\t\t\"endTime\": \"2018-05-14\",\n" +
+                        "\t\t\"licStartTime\": \"22\",\n" +
+                        "\t\t\"licEndTime\": \"04\",\n" +
+                        "\t\t\"gpsroadId\": \"101410,101590,101591\",\n" +
+                        "\t\t\"xiaoNaFenceId\": \"100355,100750\",\n" +
+                        "\t\t\"gongFenceId\": \"101409\",\n" +
+                        "\t\t\"unloadingName\": \"雨花区城际轨道交通网等重点工程配套项目（延期）,地铁4号线粟塘站\",\n" +
+                        "\t\t\"gongGpsfence\": \"112.980025,28.163709;112.979998,28.163327;112.982535,28.163375;112.982535,28.163566;112.983414,28.163652;112.983827,28.163791;112.984939,28.164431;112.985586,28.164885;112.986231,28.165274;112.986537,28.165477;112.986949,28.165678;112.987236,28.165753;112.987650,28.165779;112.987811,28.165777;112.987847,28.166287;112.986555,28.166305;112.986053,28.166232;112.986088,28.165435;112.986160,28.165259;112.985065,28.164509;112.984329,28.164088;112.983737,28.163744;112.983396,28.163653;112.982535,28.163566;112.982464,28.163743;112.980061,28.163717;112.980061,28.163717;112.980025,28.163709\",\n" +
+                        "\t\t\"luXianList\": [{\n" +
+                        "\t\t\t\"fenceId\": 101591,\n" +
+                        "\t\t\t\"cityId\": 360100,\n" +
+                        "\t\t\t\"fenceName\": \"韶山中路-韶山南路-中意一路-时代阳光大道-雨花区城际轨道交通网等重点工程配套项目（延期）\",\n" +
+                        "\t\t\t\"fencePos\": \"112.984268,28.164180;112.984509,28.163791;113.013370,28.181286;112.985286,28.165267;112.987286,28.166250;112.989055,28.166001;112.989067,28.161994;112.988988,28.159424;112.988938,28.158227;112.988748,28.156500;112.988659,28.155275;112.988601,28.154086;112.988610,28.153526;112.988796,28.149308;112.989194,28.147457;112.989971,28.145999;112.991734,28.144164;112.993623,28.142514;112.994836,28.141165;112.995770,28.139387;112.996437,28.137345;112.996764,28.136432;112.997888,28.134732;112.998908,28.133451;112.999420,28.132310;112.999558,28.131107;112.999812,28.129402;113.000764,28.127783;113.001642,28.126233;113.002073,28.124646;113.002501,28.123307;113.003584,28.121557;113.004356,28.120836;113.006841,28.118744;113.008721,28.117112;113.009515,28.115430;113.009672,28.113898;113.009763,28.112875;113.009893,28.111464;113.010052,28.109610;113.010114,28.108736;113.010022,28.107079;113.009736,28.105861;113.008765,28.103403;113.008642,28.103128;113.009371,28.102769;113.011966,28.101240;113.013979,28.100437;113.015551,28.100183;113.017393,28.099980;113.019648,28.099835;113.022630,28.099747;113.024316,28.099703;113.026040,28.099648;113.030881,28.099536;113.032564,28.099452;113.037108,28.099381;113.039100,28.099327;113.041252,28.099231;113.042469,28.098936;113.045463,28.097480;113.047949,28.097126;113.051041,28.096807;113.055350,28.097385;113.059108,28.097686;113.063012,28.096916;113.067622,28.096851;113.071947,28.096847;113.072931,28.095776;113.073903,28.095377;113.075044,28.094810;113.077804,28.094382;113.078355,28.093248;113.078682,28.092602;113.079122,28.090062;113.080835,28.086705;113.080549,28.084614;113.080461,28.082706;113.081183,28.082168;113.082803,28.081610;113.083784,28.081934;113.085339,28.081730;113.085746,28.081955;113.085963,28.081557;113.086180,28.081159;113.085510,28.080790;113.083865,28.081007;113.082790,28.080650;113.080751,28.081354;113.079535,28.082257;113.079647,28.084688;113.079899,28.086537;113.078254,28.089762;113.077814,28.092303;113.077543,28.092836;113.077193,28.093557;113.074759,28.093932;113.073522,28.094547;113.072397,28.095008;113.071542,28.095939;113.067601,28.095942;113.062904,28.096008;113.059043,28.096769;113.055435,28.096480;113.051044,28.095891;113.047831,28.096223;113.045191,28.096600;113.042159,28.098075;113.041121,28.098326;113.039067,28.098419;113.037089,28.098473;113.032539,28.098544;113.030853,28.098628;113.026025,28.098741;113.024300,28.098795;113.022617,28.098839;113.019621,28.098927;113.017330,28.099073;113.015446,28.099281;113.013749,28.099556;113.011577,28.100424;113.008951,28.101970;113.007452,28.102708;113.007924,28.103770;113.008866,28.106148;113.009117,28.107227;113.009204,28.108749;113.009146,28.109556;113.008986,28.111402;113.008857,28.112811;113.008768,28.113830;113.008627,28.115198;113.007984,28.116559;113.006258,28.118058;113.003760,28.120160;113.002879,28.120983;113.001670,28.122939;113.001201,28.124404;113.000795,28.125898;112.999979,28.127341;112.998939,28.129108;112.998655,28.131005;112.998533,28.132082;112.998127,28.132984;112.997155,28.134207;112.995947,28.136034;112.995577,28.137063;112.994929,28.139045;112.994088,28.140651;112.992990,28.141869;112.991112,28.143510;112.989230,28.145466;112.988333,28.147152;112.987893,28.149204;112.987703,28.153512;112.987692,28.154113;112.987752,28.155343;112.987843,28.156596;112.988031,28.158308;112.988081,28.159470;112.988158,28.162019;112.988149,28.165212;112.987448,28.165311;112.985721,28.164464;112.953739,28.145509;112.984028,28.164569;112.984268,28.164180\",\n" +
+                        "\t\t\t\"fenceType\": 1,\n" +
+                        "\t\t\t\"guidFence\": \"2018041102032293566\"\n" +
+                        "\t\t}],\n" +
+                        "\t\t\"unloadingArea\": [{\n" +
+                        "\t\t\t\"fenceId\": 100750,\n" +
+                        "\t\t\t\"cityId\": 360100,\n" +
+                        "\t\t\t\"fenceName\": \"地铁4号线粟塘站\",\n" +
+                        "\t\t\t\"fencePos\": \"113.047859,28.161042;113.047837,28.160780;113.046090,28.160863;113.046054,28.161146;113.047841,28.161050;113.047859,28.161042\",\n" +
+                        "\t\t\t\"fenceType\": 7,\n" +
+                        "\t\t\t\"guidFence\": \"201709271555577014\"\n" +
+                        "\t\t}]\n" +
+                        "\t}, {\n" +
+                        "\t\t\"proName\": \"黄土岭、砂子塘站附属结构土方\",\n" +
+                        "\t\t\"constructionAddress\": \"黄土岭\",\n" +
+                        "\t\t\"enterpriseName\": \"湖南安运达渣土运输有限公司\",\n" +
+                        "\t\t\"plateNumber\": \"湘Ax8709\",\n" +
+                        "\t\t\"startTime\": \"2018-05-07\",\n" +
+                        "\t\t\"endTime\": \"2018-05-14\",\n" +
+                        "\t\t\"licStartTime\": \"22\",\n" +
+                        "\t\t\"licEndTime\": \"04\",\n" +
+                        "\t\t\"gpsroadId\": \"101410,101590,101591\",\n" +
+                        "\t\t\"xiaoNaFenceId\": \"100355,100750\",\n" +
+                        "\t\t\"gongFenceId\": \"101409\",\n" +
+                        "\t\t\"unloadingName\": \"雨花区城际轨道交通网等重点工程配套项目（延期）,地铁4号线粟塘站\",\n" +
+                        "\t\t\"gongGpsfence\": \"112.980025,28.163709;112.979998,28.163327;112.982535,28.163375;112.982535,28.163566;112.983414,28.163652;112.983827,28.163791;112.984939,28.164431;112.985586,28.164885;112.986231,28.165274;112.986537,28.165477;112.986949,28.165678;112.987236,28.165753;112.987650,28.165779;112.987811,28.165777;112.987847,28.166287;112.986555,28.166305;112.986053,28.166232;112.986088,28.165435;112.986160,28.165259;112.985065,28.164509;112.984329,28.164088;112.983737,28.163744;112.983396,28.163653;112.982535,28.163566;112.982464,28.163743;112.980061,28.163717;112.980061,28.163717;112.980025,28.163709\",\n" +
+                        "\t\t\"luXianList\": [{\n" +
+                        "\t\t\t\"fenceId\": 101591,\n" +
+                        "\t\t\t\"cityId\": 360100,\n" +
+                        "\t\t\t\"fenceName\": \"韶山中路-韶山南路-中意一路-时代阳光大道-雨花区城际轨道交通网等重点工程配套项目（延期）\",\n" +
+                        "\t\t\t\"fencePos\": \"112.984268,28.164180;112.984509,28.163791;113.013370,28.181286;112.985286,28.165267;112.987286,28.166250;112.989055,28.166001;112.989067,28.161994;112.988988,28.159424;112.988938,28.158227;112.988748,28.156500;112.988659,28.155275;112.988601,28.154086;112.988610,28.153526;112.988796,28.149308;112.989194,28.147457;112.989971,28.145999;112.991734,28.144164;112.993623,28.142514;112.994836,28.141165;112.995770,28.139387;112.996437,28.137345;112.996764,28.136432;112.997888,28.134732;112.998908,28.133451;112.999420,28.132310;112.999558,28.131107;112.999812,28.129402;113.000764,28.127783;113.001642,28.126233;113.002073,28.124646;113.002501,28.123307;113.003584,28.121557;113.004356,28.120836;113.006841,28.118744;113.008721,28.117112;113.009515,28.115430;113.009672,28.113898;113.009763,28.112875;113.009893,28.111464;113.010052,28.109610;113.010114,28.108736;113.010022,28.107079;113.009736,28.105861;113.008765,28.103403;113.008642,28.103128;113.009371,28.102769;113.011966,28.101240;113.013979,28.100437;113.015551,28.100183;113.017393,28.099980;113.019648,28.099835;113.022630,28.099747;113.024316,28.099703;113.026040,28.099648;113.030881,28.099536;113.032564,28.099452;113.037108,28.099381;113.039100,28.099327;113.041252,28.099231;113.042469,28.098936;113.045463,28.097480;113.047949,28.097126;113.051041,28.096807;113.055350,28.097385;113.059108,28.097686;113.063012,28.096916;113.067622,28.096851;113.071947,28.096847;113.072931,28.095776;113.073903,28.095377;113.075044,28.094810;113.077804,28.094382;113.078355,28.093248;113.078682,28.092602;113.079122,28.090062;113.080835,28.086705;113.080549,28.084614;113.080461,28.082706;113.081183,28.082168;113.082803,28.081610;113.083784,28.081934;113.085339,28.081730;113.085746,28.081955;113.085963,28.081557;113.086180,28.081159;113.085510,28.080790;113.083865,28.081007;113.082790,28.080650;113.080751,28.081354;113.079535,28.082257;113.079647,28.084688;113.079899,28.086537;113.078254,28.089762;113.077814,28.092303;113.077543,28.092836;113.077193,28.093557;113.074759,28.093932;113.073522,28.094547;113.072397,28.095008;113.071542,28.095939;113.067601,28.095942;113.062904,28.096008;113.059043,28.096769;113.055435,28.096480;113.051044,28.095891;113.047831,28.096223;113.045191,28.096600;113.042159,28.098075;113.041121,28.098326;113.039067,28.098419;113.037089,28.098473;113.032539,28.098544;113.030853,28.098628;113.026025,28.098741;113.024300,28.098795;113.022617,28.098839;113.019621,28.098927;113.017330,28.099073;113.015446,28.099281;113.013749,28.099556;113.011577,28.100424;113.008951,28.101970;113.007452,28.102708;113.007924,28.103770;113.008866,28.106148;113.009117,28.107227;113.009204,28.108749;113.009146,28.109556;113.008986,28.111402;113.008857,28.112811;113.008768,28.113830;113.008627,28.115198;113.007984,28.116559;113.006258,28.118058;113.003760,28.120160;113.002879,28.120983;113.001670,28.122939;113.001201,28.124404;113.000795,28.125898;112.999979,28.127341;112.998939,28.129108;112.998655,28.131005;112.998533,28.132082;112.998127,28.132984;112.997155,28.134207;112.995947,28.136034;112.995577,28.137063;112.994929,28.139045;112.994088,28.140651;112.992990,28.141869;112.991112,28.143510;112.989230,28.145466;112.988333,28.147152;112.987893,28.149204;112.987703,28.153512;112.987692,28.154113;112.987752,28.155343;112.987843,28.156596;112.988031,28.158308;112.988081,28.159470;112.988158,28.162019;112.988149,28.165212;112.987448,28.165311;112.985721,28.164464;112.953739,28.145509;112.984028,28.164569;112.984268,28.164180\",\n" +
+                        "\t\t\t\"fenceType\": 1,\n" +
+                        "\t\t\t\"guidFence\": \"2018041102032293566\"\n" +
+                        "\t\t}],\n" +
+                        "\t\t\"unloadingArea\": [{\n" +
+                        "\t\t\t\"fenceId\": 100750,\n" +
+                        "\t\t\t\"cityId\": 360100,\n" +
+                        "\t\t\t\"fenceName\": \"地铁4号线粟塘站\",\n" +
+                        "\t\t\t\"fencePos\": \"113.047859,28.161042;113.047837,28.160780;113.046090,28.160863;113.046054,28.161146;113.047841,28.161050;113.047859,28.161042\",\n" +
+                        "\t\t\t\"fenceType\": 7,\n" +
+                        "\t\t\t\"guidFence\": \"201709271555577014\"\n" +
+                        "\t\t}]\n" +
+                        "\t}],\n" +
+                        "\t\"condition\": null,\n" +
+                        "\t\"asc\": true\n" +
+                        "}";
+
+                Certificates certificates = (Certificates) gson.fromJson(jData, Certificates.class);
+                if (certificates.getRecords().size() > 0) {
+                    listener.onResult(0, "ok", certificates.getRecords());
+                } else {
+                    listener.onResult(0, "ok", certificates.getRecords());
+                }
+                listener.onResult(1, "服务器错误", "");
+            }
+        });
+    }
+
+
+
+
+
+    //统计信息
+    @Override
+    public void getStatisticsJN(final OnNetResultListener listener) {
+
+        getQuery(new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                Log.d("dataxxxxxxxxxxxxx", jData);
+                if (code == 0) {
+                    try {
+                        StatisticsInfo statisticsInfo = gson.fromJson(jData, StatisticsInfo.class);
+                        listener.onResult(code, message, statisticsInfo);
+                    } catch (Exception e) {
+                        Log.e("msg", "解析错误");
+                        listener.onResult(1, "解析错误", null);
+                    }
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.e("err", e.toString());
+                listener.onResult(1, "服务器错误", "");
+            }
+        });
+    }
+
+    @Override
+    public void getOfflineCarRuntime(final OnNetResultListener listener) {
+        //分页信息
+
+        getQuery(new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                Log.d("dataxxxxxxxxxxxxx", jData);
+                if (code == 0) {
+//                    try {
+                        List<CarRuntime> carRuntimes = gson.fromJson(jData, new TypeToken<List<CarRuntime>>() {
+                        }.getType());
+                        listener.onResult(code, message, carRuntimes);
+//                    } catch (Exception e) {
+//                        Log.e("msg", "解析错误");
+//                        listener.onResult(1, "解析错误", null);
+//                    }
+
+
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.e("err", e.toString());
+                listener.onResult(1, "服务器错误", "");
+            }
+        });
+    }
+}

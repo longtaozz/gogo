@@ -1,0 +1,143 @@
+apply plugin: 'com.android.application'
+
+//获取当前时间
+def getCurrentTime() {
+    return new Date().format("yyyyMMddHHmm")
+}
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    defaultConfig {
+        applicationId "com.zt.capacity.jinan_zwt"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 12
+        versionName "1.1.6"
+        flavorDimensions "versionCode"
+
+
+
+
+//        manifestPlaceholders = [
+//                JPUSH_PKGNAME : applicationId,
+//                JPUSH_APPKEY : "90f2d734f4da837d469e9589", //JPush 上注册的包名对应的 Appkey.
+//                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+//        ]
+//        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+    }
+
+    signingConfigs { //gradle assembleRelease
+        /*
+           可以定义多个签名配置项，如下面的myConfig
+         */
+        myConfig {
+            keyAlias 'zt-pig'
+            keyPassword 'ztapp123'
+            storeFile file("./key/ztkey.jks")
+            storePassword 'ztapp123'
+        }
+    }
+
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.myConfig
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "boolean", "USE_CANARY", "true"
+            minifyEnabled false//使变小。启用混淆器
+            // Zipalign优化
+            zipAlignEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            // 前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明，后一个文件是自己的定义混淆文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        debug {
+            signingConfig signingConfigs.myConfig
+//            buildConfigField "boolean", "LOG_DEBUG", "true"
+//            buildConfigField "boolean", "USE_CANARY", "true"
+
+            minifyEnabled false
+            shrinkResources false
+//            zipAlignEnabled true
+
+//            minifyEnabled true//使变小。启用混淆器
+//            // Zipalign优化
+//            zipAlignEnabled true
+//            // 移除无用的resource文件
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+
+    //产品风格配置,可用于多渠道打包(打包发布时打开)
+//    productFlavors {
+//        //百度推广渠道
+//        baidu {
+//            applicationId "com.zt.capacity"
+//            versionCode 1
+//            versionName "1.0"
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+//            manifestPlaceholders = [  APP_NAME  : "app-百度"] //自定义App名称,需要把AndroidManifest.xml里的label改为: android:label="${APP_NAME}"
+//        }
+//        //360推广渠道
+//        qh360 {
+//            applicationId "com.zt.capacity"
+//            versionCode 1
+//            versionName "1.0"
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "qh360"]
+//            manifestPlaceholders = [  APP_NAME  : "app-360"] //自定义App名称,需要把AndroidManifest.xml里的label改为: android:label="${APP_NAME}"
+//        }
+//        //豌豆荚推广渠道
+//        wandoujia {
+//            applicationId "com.zt.capacity"
+//            versionCode 1
+//            versionName "1.0"
+//            manifestPlaceholders = [  APP_NAME  : "app-豌豆荚"] //自定义App名称,需要把AndroidManifest.xml里的label改为: android:label="${APP_NAME}"
+//        }
+//    }
+
+    sourceSets {
+
+        main {
+            res.srcDirs = [
+                    'src/main/res/layout/login',
+                    'src/main/res/layout',
+                    'src/main/res'
+            ]
+        }
+
+
+
+    }
+
+    android.applicationVariants.all { variant ->    //批量修改Apk名字
+        variant.outputs.all { output ->
+            if (!variant.buildType.isDebuggable()) {
+                //获取签名的名字 variant.signingConfig.name
+                //要被替换的源字符串
+//                def sourceFile = "-${variant.flavorName}-${variant.buildType.name}"
+                def sourceFile = ".apk"
+                //替换的字符串 //输出apk名称为：渠道名_版本名_时间.apk
+//                def replaceFile = "${variant.productFlavors[0].name}_V${variant.versionName}_${variant.flavorName}_${variant.buildType.name}"
+                def replaceFile = "-${variant.versionName}_${variant.versionCode}_${getCurrentTime()}.apk"
+                outputFileName = output.outputFile.name.replace(sourceFile, replaceFile)
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    configurations {
+        all*.exclude group: 'com.google.code.gson'
+    }
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation project(':lib_common')
+    implementation project(':openCVLibrary342')
+}
+

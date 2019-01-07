@@ -1,0 +1,87 @@
+package com.zt.capacity.jinan_zwt.util;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.webkit.JavascriptInterface;
+
+import com.zt.capacity.common.base.WebViewActivity;
+import com.zt.capacity.common.data.Web;
+import com.zt.capacity.common.util.ActivityJumpUtil;
+import com.zt.capacity.common.util.BaseJavaScript;
+import com.zt.capacity.jinan_zwt.activity.CarHistoryActivity;
+import com.zt.capacity.jinan_zwt.activity.DoubtfulPointActivity;
+import com.zt.capacity.jinan_zwt.activity.LocationActivity;
+import com.zt.capacity.jinan_zwt.activity.LocationGatherActivity;
+import com.zt.capacity.jinan_zwt.activity.PreviewActivity;
+import com.zt.capacity.jinan_zwt.data.JN_ZWT_Url;
+
+
+/**
+ * Created by Administrator on 2018/4/23.
+ */
+
+public class JavaScriptinterface extends BaseJavaScript {
+
+
+    public JavaScriptinterface(Context c) {
+        super(c);
+    }
+
+
+    /**
+     * 车牌识别
+     */
+    @JavascriptInterface
+    public void distinguishActivity() {
+        ActivityJumpUtil.jumpActivity((Activity) context, PreviewActivity.class);
+    }
+
+
+
+
+
+
+    /**
+     * 位置采集(济南)
+     */
+    @JavascriptInterface
+    public void acquisition() {
+        Activity activity = (Activity) context;
+        ActivityJumpUtil.jumpActivity(activity, LocationGatherActivity.class);
+    }
+
+
+    /**
+     * 轨迹查询(济南)
+     */
+    @JavascriptInterface
+    public void carHistory() {
+        Activity activity = (Activity) context;
+        ActivityJumpUtil.jumpActivity(activity, CarHistoryActivity.class);
+    }
+
+    /**
+     * 实时位置(济南)
+     */
+    @JavascriptInterface
+    public void carLocation() {
+        Activity activity = (Activity) context;
+        ActivityJumpUtil.jumpActivity(activity, LocationActivity.class);
+    }
+
+
+
+    /**
+     * 疑点查车(济南)
+     */
+    @JavascriptInterface
+    public void doubtfulPoint() {
+        Activity activity = (Activity) context;
+        ActivityJumpUtil.jumpActivity(activity, DoubtfulPointActivity.class);
+    }
+
+
+
+
+}

@@ -1,0 +1,485 @@
+package com.zt.capacity.jinan_zwt.activity;
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapPoi;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.Marker;
+import com.baidu.mapapi.model.LatLng;
+import com.umeng.analytics.MobclickAgent;
+import com.zt.capacity.common.base.BaseActivity;
+import com.zt.capacity.common.base.BaseApplication;
+import com.zt.capacity.common.data.Web;
+import com.zt.capacity.common.data.listener.OnNetResultListener;
+import com.zt.capacity.common.util.DateUtil;
+import com.zt.capacity.common.util.IToast;
+import com.zt.capacity.common.util.RouteUtils;
+import com.zt.capacity.common.util.TimePickerView;
+import com.zt.capacity.common.util.UIUtils;
+import com.zt.capacity.common.util.map.MapOperation;
+import com.zt.capacity.common.util.map.TransformationUtil;
+import com.zt.capacity.jinan_zwt.R;
+import com.zt.capacity.jinan_zwt.adapter.DoubtfulAdapter;
+import com.zt.capacity.jinan_zwt.bean.CarHistoryBean;
+import com.zt.capacity.jinan_zwt.request.history.HistoryManager;
+import com.zt.capacity.jinan_zwt.request.history.IHistoryManager;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * 疑点查车
+ */
+public class DoubtfulPointActivity extends BaseActivity implements View.OnClickListener, BaiduMap.OnMapClickListener, BaiduMap.OnMarkerClickListener {
+
+    private MapView my_map;
+    private BaiduMap mBaiduMap;
+
+    //头
+    private LinearLayout title_img;
+
+    private TextView set_range;//设置范围
+    //控件
+    private LinearLayout draw_circular_linear;
+    private ImageView draw_circular;//绘制圆形
+    private Integer draw_circular_state = 0;//绘制状态：1：绘制中
+    private LinearLayout clean_circular;//清除
+    private Double raidus = 1000.0;//半径（米）
+
+    //时间控件
+    private TextView mStartTime;
+    private int mDateInt = 0;// 开始 结束 时间选择判断
+    private TextView mEndTime;
+    private TimePickerView pvTime1;
+    private long mStartTimeLong = 0;
+    private long mEndTimeLong = 0;
+
+
+    //底部控件
+    private LinearLayout bottom_number;//底部控件容器
+    private GridView gridView;//车牌显示控件
+    private TextView text_doubtful;//当前选中的底部车牌号
+    private Marker marker;//当前显示的marker
+
+
+    private List<Marker> markers;//当前显示的所有marker
+
+    //数据
+    private List<CarHistoryBean> mCarHistoryBeanList = new ArrayList<>();//区域内历史车辆数据
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.jn_zwt_activity_doubtful_point);
+        init();
+        //设置地图中心及默认比例
+        MapOperation.setCenterPositionAndZoom(mBaiduMap, Web.jn_point, 15);
+    }
+
+    private void init() {
+        //地图
+        my_map = findViewById(R.id.my_map);
+        mBaiduMap = my_map.getMap();
+        mBaiduMap.setOnMapClickListener(this);
+        mBaiduMap.setOnMarkerClickListener(this);//marker点击事件
+        //去掉百度logo
+        MapOperation.hideBaiDuIcon(my_map);
+
+        title_img = findViewById(R.id.title_img);//返回
+        title_img.setOnClickListener(this);
+        draw_circular = findViewById(R.id.draw_circular);//绘制区域
+        draw_circular_linear = findViewById(R.id.draw_circular_linear);
+        draw_circular_linear.setOnClickListener(this);
+        clean_circular = findViewById(R.id.clean_circular);//清除
+        clean_circular.setOnClickListener(this);
+
+        //时间控件
+        initTimePicker1();//初始化时间选择器
+        mStartTime = findViewById(R.id.start_time);
+        mStartTime.setOnClickListener(this);
+        mEndTime = findViewById(R.id.end_time);
+        mEndTime.setOnClickListener(this);
+        String stro = DateUtil.showDate(DateUtil.DATE_FORMAT_YMDHM, System.currentTimeMillis());
+        mStartTimeLong = DateUtil.birthdayToLong(DateUtil.DATE_FORMAT_YMDHM, stro);
+        String stro2 = DateUtil.timeAddTwoHH();
+        mEndTimeLong = DateUtil.birthdayToLong(DateUtil.DATE_FORMAT_YMDHM, stro2);
+        mStartTime.setText(stro);
+        mEndTime.setText(stro2);
+
+        set_range=findViewById(R.id.set_range);//设置范围
+        set_range.setOnClickListener(this);
+
+        //底部控件
+        bottom_number = findViewById(R.id.bottom_number);//底部控件容器
+        gridView = findViewById(R.id.gridView);//车牌显示控件
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0://请求历史数据成功
+                    if(mCarHistoryBeanList.size()>0){
+                        //绘制所有车辆
+                        for (CarHistoryBean carHistory:mCarHistoryBeanList){
+                            addCarMarker(carHistory);
+                        }
+                    }
+                    //展示
+                    cGridView();
+                    break;
+                case 1://通用错误信息
+                    IToast.show(DoubtfulPointActivity.this, msg.obj.toString());
+                    break;
+            }
+        }
+    };
+
+    //创建底部展示面板
+    private void cGridView() {
+        bottom_number.setVisibility(View.VISIBLE);
+        DoubtfulAdapter doubtfulAdapter = new DoubtfulAdapter(this, mCarHistoryBeanList);
+        gridView.setAdapter(doubtfulAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //改变颜色
+                TextView text_doubtfulx = view.findViewById(R.id.text_doubtful);
+                if (text_doubtful == null) {
+                    text_doubtful = text_doubtfulx;
+                } else {
+                    text_doubtful.setSelected(false);
+                }
+                text_doubtfulx.setSelected(true);
+                text_doubtful = text_doubtfulx;
+
+                if (marker != null) {
+                    marker.remove();
+                }
+                CarHistoryBean carHistory = mCarHistoryBeanList.get(i);
+                //先清除掉所有的maker
+                if(markers.size()>0){
+                    for (int x = 0 ;x<markers.size();x++){
+                        markers.get(x).remove();
+                    }
+                    markers=new ArrayList<>();
+                }
+                //绘制车辆marker
+                addCarMarker(carHistory);
+            }
+
+        });
+    }
+
+    //在地图上添加车辆
+    public void addCarMarker(CarHistoryBean carHistory) {
+        //处理坐标偏
+//        LatLng point = TransformationUtil.gpsToBaiduCoordinate(new LatLng(carHistory.getGpsPosY(), carHistory.getGpsPosX()));
+        LatLng point = new LatLng(carHistory.getGpsPosY(), carHistory.getGpsPosX());
+
+        //计算缩放比例
+        float rai = TransformationUtil.getLevel(raidus);
+        //设置中心位置
+//        MapOperation.setCenterPositionAndZoom(mBaiduMap, point, rai);
+        MapOperation.setCenterPositionAndZoom(mBaiduMap, point, 15);
+
+        Resources res = getResources();
+        Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.jn_zwt_car_bimg);
+
+        //marker数据储存
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("carHistory", carHistory);
+        marker = MapOperation.addMarkerByRotate(mBaiduMap, point, bundle, bitmap, carHistory.getGpsDirect());
+        markers.add(marker);//将marker添加至所有记录中
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.title_img) {
+            finish();
+
+        } else if (i == R.id.draw_circular_linear) {
+            if (draw_circular_state == 1) {//按下之前正在绘制
+                draw_circular.setSelected(false);
+                draw_circular_state = 0;
+            } else {
+                draw_circular.setSelected(true);
+                draw_circular_state = 1;
+            }
+
+        } else if (i == R.id.clean_circular) {
+            mBaiduMap.clear();
+            bottom_number.setVisibility(View.GONE);
+
+        } else if (i == R.id.start_time) {
+            Log.e("mStartTime", mStartTime.getText().toString());
+            // 让软键盘消失
+//                hideKeyboard();
+            mDateInt = 1;
+            pvTime1.show();
+
+        } else if (i == R.id.end_time) {//                mCustomDatePickerTwo.show(DateUtil.DATE_FORMAT_YMD);
+            // 让软键盘消失
+//                hideKeyboard();
+            mDateInt = 2;
+            pvTime1.show();
+
+        } else if (i == R.id.set_range) {//设置范围
+            showDiglogInput();
+            MobclickAgent.onEvent(BaseApplication.getContext(), "JNYiDianChaCheSheZhiFanWei");
+
+        }
+    }
+
+
+
+
+    @Override
+    protected void onDestroy() {
+        /**
+         *  MapView的生命周期与Activity同步，当activity销毁时需调用MapView.destroy()
+         */
+
+        my_map.onDestroy();
+        super.onDestroy();
+    }
+
+//    private void hideKeyboard() {
+//        // 让软键盘消失
+//        InputMethodManager im = (InputMethodManager) this.
+//                getSystemService(Context.INPUT_METHOD_SERVICE);
+//        im.hideSoftInputFromWindow(this.getCurrentFocus()
+//                .getWindowToken(), 0);
+//    }
+
+
+    //地图点击事件
+    @Override
+    public void onMapClick(LatLng latLng) {
+        if (draw_circular_state != 1) {//没有选中绘制
+            return;
+        }
+        //初始化数据
+        markers=new ArrayList<>();
+        marker=null;
+        //区域数据请求
+        if (mStartTimeLong == 0) {
+            IToast.show(this, "请选择开始时间");
+            return;
+        } else if (mEndTimeLong == 0) {
+            IToast.show(this, "请选择结束时间");
+            return;
+        } else if (mEndTimeLong < mStartTimeLong) {
+            IToast.show(this, "开始时间不能大于结束时间");
+            return;
+        } else if ((mEndTimeLong - mStartTimeLong) > 7200000) {
+            Log.e("shijian.....st", mStartTimeLong + "");
+            Log.e("shijian.....en", mEndTimeLong + "");
+            IToast.show(this, "开始结束时间不能大于2小时");
+            return;
+        } else {
+            UIUtils.showLoadingProgressDialog(this, R.string.loading_process_tip, false);
+            getCircularData(latLng);
+        }
+        //绘制一个圆形区域
+        mBaiduMap.clear();
+        MapOperation.drawCircular(mBaiduMap, latLng, (int) Math.ceil(raidus));
+    }
+
+    @Override
+    public boolean onMapPoiClick(MapPoi mapPoi) {
+        return false;
+    }
+
+
+    //区域圆形疑点数据请求
+    private void getCircularData(LatLng latLng) {
+        //先转原始坐标
+        latLng = TransformationUtil.baiduToGps(latLng);
+
+        IHistoryManager historyManager = HistoryManager.getInterface(3);
+        historyManager.circular(mStartTime.getText().toString(), mEndTime.getText().toString(), latLng.longitude, latLng.latitude, raidus, new OnNetResultListener() {
+            @Override
+            public void onResult(int state, String msg, Object body) {
+                UIUtils.cancelProgressDialog();
+                Message message = new Message();
+                message.obj = msg;
+                if (state == 0) {
+                    if (body != null) {
+                        mCarHistoryBeanList = (List<CarHistoryBean>) body;
+                    } else {
+                        mCarHistoryBeanList = new ArrayList<>();
+                    }
+                    message.what = 0;
+                } else {
+                    message.what = 1;
+                }
+                handler.sendMessage(message);
+            }
+        });
+    }
+
+
+    private void initTimePicker1() {//选择出生年月日
+        //控制时间范围(如果不设置范围，则使用默认时间1900-2100年，此段代码可注释)
+        //因为系统Calendar的月份是从0-11的,所以如果是调用Calendar的set方法来设置时间,月份的范围也要是从0-11
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        SimpleDateFormat formatter_year = new SimpleDateFormat("yyyy ");
+        String year_str = formatter_year.format(curDate);
+        int year_int = (int) Double.parseDouble(year_str);
+
+
+        SimpleDateFormat formatter_mouth = new SimpleDateFormat("MM ");
+        String mouth_str = formatter_mouth.format(curDate);
+        int mouth_int = (int) Double.parseDouble(mouth_str);
+
+        SimpleDateFormat formatter_day = new SimpleDateFormat("dd ");
+        String day_str = formatter_day.format(curDate);
+        int day_int = (int) Double.parseDouble(day_str);
+
+
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(2000, 0, 1);
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(year_int, mouth_int - 1, day_int);
+
+        //时间选择器
+        pvTime1 = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                // 这里回调过来的v,就是show()方法里面所添加的 View 参数，如果show的时候没有添加参数，v则为null
+                /*btn_Time.setText(getTime(date));*/
+                if (mDateInt == 1) {
+                    mStartTimeLong = date.getTime();
+                    mStartTime.setText(DateUtil.showDate(DateUtil.DATE_FORMAT_YMDHM, date));
+                } else {
+                    mEndTimeLong = date.getTime();
+                    mEndTime.setText(DateUtil.showDate(DateUtil.DATE_FORMAT_YMDHM, date));
+                }
+            }
+        })
+
+                .setType(new boolean[]{true, true, true, true, true, false}) //年月日时分秒 的显示与否，不设置则默认全部显示
+                .setLabel("", "", "", "", "", "")//默认设置为年月日时分秒
+                .isCenterLabel(false)
+                .setCancelColor(getResources().getColor(R.color.color_1AAD19))
+                .setSubmitColor(getResources().getColor(R.color.color_1AAD19))
+                .setContentSize(16)
+                .setSubCalSize(16)
+//                .setTitleText("选择时间")
+//                .setTitleSize(16)
+                .setTitleBgColor(getResources().getColor(R.color.color_f6f6f6))
+//                .setBgColor(getResources().getColor(R.color.white))
+//                .setTitleColor(getResources().getColor(R.color.white))
+                .setDividerColor(getResources().getColor(R.color.colors_ebebeb))
+                .setTextColorCenter(getResources().getColor(R.color.color_151515))//设置选中项的颜色
+                .setTextColorOut(getResources().getColor(R.color.colors_b7b7b7))//设置没有被选中项的颜色
+                .setContentSize(22)
+                .setDate(selectedDate)
+                .setLineSpacingMultiplier(1.6f)
+                .setTextXOffset(0, 0, 0, 0, 0, 0)//设置X轴倾斜角度[ -90 , 90°]
+                .setRangDate(startDate, endDate)
+//                .setBackgroundId(0x00FFFFFF) //设置外部遮罩颜色
+                .setDecorView(null)
+                .build();
+    }
+
+
+    //marker点击事件
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        CarHistoryBean carHistoryM = (CarHistoryBean) marker.getExtraInfo().getSerializable("carHistory");
+        //历史轨迹
+        Intent i = new Intent(DoubtfulPointActivity.this, CarHistoryActivity.class);
+        i.putExtra("carNumber", carHistoryM.getCarNumber());
+        i.putExtra("startTime", mStartTime.getText().toString());
+        i.putExtra("endTime", mEndTime.getText().toString());
+        Log.e("strtime.....",mStartTime.getText().toString());
+        Log.e("strtime.....",mEndTime.getText().toString());
+        startActivity(i);
+        return true;
+    }
+
+    //带输入框diglog
+    public void showDiglogInput() {
+        LayoutInflater factory = LayoutInflater.from(DoubtfulPointActivity.this);//提示框
+        final View view = factory.inflate(R.layout.jn_zwt_dialog_doubtpoint_input, null);//这里必须是final的
+        final EditText edit = (EditText) view.findViewById(R.id.raidus);//获得输入框对象
+        edit.setText(raidus.toString());
+
+        new AlertDialog.Builder(DoubtfulPointActivity.this)
+                .setView(view)
+                .setPositiveButton("确定",//提示框的两个按钮
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                //事件
+                                if(!"".equals(edit.getText().toString())){
+                                    raidus=Double.parseDouble(edit.getText().toString());
+                                }
+                            }
+                        }).setNegativeButton("取消", null).create().show();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /**
+         *  MapView的生命周期与Activity同步，当activity恢复时需调用MapView.onResume()
+         */
+        my_map.onResume();
+        MobclickAgent.onPageStart("JNYiDianChaChe"); //统计页面(仅有Activity的应用中SDK自动调用，不需要单独写。"SplashScreen"为页面名称，可自定义)
+        MobclickAgent.onResume(this);          //统计时长
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        /**
+         *  MapView的生命周期与Activity同步，当activity挂起时需调用MapView.onPause()
+         */
+        my_map.onPause();
+        MobclickAgent.onPageEnd("JNYiDianChaChe"); // （仅有Activity的应用中SDK自动调用，不需要单独写）保证 onPageEnd 在onPause 之前调用,因为 onPause 中会保存信息。"SplashScreen"为页面名称，可自定义
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+}

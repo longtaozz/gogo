@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f6f6f6"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_head" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        >
+
+        <EditText
+            android:id="@+id/gather_cosapp_name_edi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/jn_zwt_gahter_edit"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:gravity="center"
+            android:hint="请输入工地名称"
+            android:textColor="@color/color_767676"
+            android:textSize="@dimen/text_13" />
+
+        <ImageView
+            android:id="@+id/iv333"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/jn_zwt_gather_search"
+            android:layout_alignLeft="@+id/iv222"
+
+            />
+        <ImageView
+            android:id="@+id/iv222"
+            android:layout_width="@dimen/dp_126"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+              />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/gather_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:divider="#00000000"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        android:dividerHeight="@dimen/dp_4"
+        >
+
+    </ListView>
+
+
+</LinearLayout>
