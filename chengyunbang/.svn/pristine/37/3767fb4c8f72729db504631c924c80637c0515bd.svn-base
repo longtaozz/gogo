@@ -1,0 +1,563 @@
+-- Merging decision tree log ---
+manifest
+ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+MERGED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-262:12
+MERGED from [com.android.support:appcompat-v7:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.contrarywind:Android-PickerView:3.2.7] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\AndroidManifest.xml:2:1-11:12
+MERGED from [com.githang:status-bar-compat:0.7] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\status-bar-compat-0.7.aar\f6204d5b5fbac7f9b1f49a9f114bc62c\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\a9af4aa17d5916d1e90e13662b9e2009\AndroidManifest.xml:2:1-11:12
+MERGED from [com.alibaba:arouter-api:1.2.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\arouter-api-1.2.1.1.aar\442f90284eb5767ee882b813d2a2b80d\AndroidManifest.xml:2:1-10:12
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\a3f4b5eacc48c67267f1e97ed8c65fd9\AndroidManifest.xml:17:1-22:12
+MERGED from [:openCVLibrary330] F:\androidStudio\newApp\capacity\openCVLibrary330\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0-rc02.aar\fd1ded4ba1e2da897aa2e40ffd989794\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0-rc02.aar\84bbde94f8f4202a7e6a3efb3c1e274c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\44d59c20a937f7e65737eab504c5a5aa\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.2.0.aar\14976dcaa1ec97fe24b6cc18d85ac579\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-fragment:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0-rc02.aar\3edb492d6ef1df667f9e3565aae0bb74\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0-rc02.aar\8b88b8332d272bbe1a7db84ef211d5e3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0-rc02.aar\70f07330f4a724bbb01a7b3348335159\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\loader-28.0.0-rc02.aar\6385c25e16ab5859d42586efa89ac4c3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0-rc02.aar\5e0c966e27e1b9d22d2cfc0fdf1b7e8f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0-rc02.aar\83ad10f029e4b3c2111a9c3091ce0f90\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0-rc02.aar\e6b18cdf6d7b5f82254b559f0054fcac\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0-rc02.aar\695aba5f6ef69502c8728ac3bef97606\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\customview-28.0.0-rc02.aar\d042c76ab4ff06dcbc5764361b5bf64f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0-rc02.aar\bd28a7ea8c1811633a0b241cde34667e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0-rc02.aar\0dbfa6e7f3c075766799b2844108fdc4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0-rc02.aar\b249dfd7b19756e0328bbcbbb248c497\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0-rc02.aar\a24b37bc6df3a9c5945ea7b0608c7d00\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0-rc02.aar\1248080c8995b1700006a6775509fc01\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a67808765477259f6972ed5a2e737eb5\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\ade3649633c7160a5e261e1b99cce047\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\4f6641b426c39cb2bc0841d8bb628c4e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0-rc02.aar\27fab23db2eecf465b298fb1c9e9237c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0-rc02.aar\c7db544a89f5fffab8566a86121f11a4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\print-28.0.0-rc02.aar\fcd5e74d93e44acb49c1cdfd00e832fd\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\33c4d13964917dd772d4b75460f5a7cd\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0-rc02.aar\8a1037c08309e199374994718f09298d\AndroidManifest.xml:17:1-22:12
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+	package
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:2:5-30
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:1-40:12
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:1:11-69
+application
+ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:5:5-37:19
+MERGED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:118:5-260:19
+MERGED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:118:5-260:19
+MERGED from [com.githang:status-bar-compat:0.7] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\status-bar-compat-0.7.aar\f6204d5b5fbac7f9b1f49a9f114bc62c\AndroidManifest.xml:12:5-20
+MERGED from [com.githang:status-bar-compat:0.7] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\status-bar-compat-0.7.aar\f6204d5b5fbac7f9b1f49a9f114bc62c\AndroidManifest.xml:12:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\a9af4aa17d5916d1e90e13662b9e2009\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\a9af4aa17d5916d1e90e13662b9e2009\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\44d59c20a937f7e65737eab504c5a5aa\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\44d59c20a937f7e65737eab504c5a5aa\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.2.0.aar\14976dcaa1ec97fe24b6cc18d85ac579\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.2.0.aar\14976dcaa1ec97fe24b6cc18d85ac579\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0-rc02.aar\b249dfd7b19756e0328bbcbbb248c497\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0-rc02.aar\b249dfd7b19756e0328bbcbbb248c497\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0-rc02.aar\a24b37bc6df3a9c5945ea7b0608c7d00\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0-rc02.aar\a24b37bc6df3a9c5945ea7b0608c7d00\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0-rc02.aar\b249dfd7b19756e0328bbcbbb248c497\AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:11:9-35
+	android:label
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:9:9-41
+	android:roundIcon
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:10:9-54
+	android:icon
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:8:9-36
+	android:allowBackup
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:7:9-35
+	android:theme
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:12:9-40
+	android:name
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:6:9-38
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:15:9-17:64
+	android:value
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:17:13-61
+	android:name
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:16:13-52
+activity#com.zt.capacity.WelcomeActivity
+ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:20:9-29:20
+	android:screenOrientation
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:23:13-49
+	android:theme
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:22:13-44
+	android:name
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:21:13-44
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:25:13-28:29
+action#android.intent.action.MAIN
+ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:26:17-69
+	android:name
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:26:25-66
+category#android.intent.category.LAUNCHER
+ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:27:17-77
+	android:name
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:27:27-74
+activity#com.zt.capacity.LoginActivity
+ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:33:9-35:61
+	android:screenOrientation
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:35:13-49
+	android:name
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml:34:13-42
+uses-sdk
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+MERGED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0-rc02.aar\a640de774cea8d671c1c25289a5c7db9\AndroidManifest.xml:20:5-44
+MERGED from [com.contrarywind:Android-PickerView:3.2.7] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\AndroidManifest.xml:7:5-9:41
+MERGED from [com.contrarywind:Android-PickerView:3.2.7] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\Android-PickerView-3.2.7.aar\f64c884d64c9c400eb873b7fb0a901c7\AndroidManifest.xml:7:5-9:41
+MERGED from [com.githang:status-bar-compat:0.7] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\status-bar-compat-0.7.aar\f6204d5b5fbac7f9b1f49a9f114bc62c\AndroidManifest.xml:8:5-10:41
+MERGED from [com.githang:status-bar-compat:0.7] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\status-bar-compat-0.7.aar\f6204d5b5fbac7f9b1f49a9f114bc62c\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\a9af4aa17d5916d1e90e13662b9e2009\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\a9af4aa17d5916d1e90e13662b9e2009\AndroidManifest.xml:5:5-7:41
+MERGED from [com.alibaba:arouter-api:1.2.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\arouter-api-1.2.1.1.aar\442f90284eb5767ee882b813d2a2b80d\AndroidManifest.xml:6:5-8:41
+MERGED from [com.alibaba:arouter-api:1.2.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\arouter-api-1.2.1.1.aar\442f90284eb5767ee882b813d2a2b80d\AndroidManifest.xml:6:5-8:41
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\a3f4b5eacc48c67267f1e97ed8c65fd9\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\a3f4b5eacc48c67267f1e97ed8c65fd9\AndroidManifest.xml:20:5-43
+MERGED from [:openCVLibrary330] F:\androidStudio\newApp\capacity\openCVLibrary330\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:openCVLibrary330] F:\androidStudio\newApp\capacity\openCVLibrary330\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:animated-vector-drawable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0-rc02.aar\fd1ded4ba1e2da897aa2e40ffd989794\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0-rc02.aar\fd1ded4ba1e2da897aa2e40ffd989794\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0-rc02.aar\84bbde94f8f4202a7e6a3efb3c1e274c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0-rc02.aar\84bbde94f8f4202a7e6a3efb3c1e274c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\44d59c20a937f7e65737eab504c5a5aa\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\44d59c20a937f7e65737eab504c5a5aa\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.2.0.aar\14976dcaa1ec97fe24b6cc18d85ac579\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.2.0.aar\14976dcaa1ec97fe24b6cc18d85ac579\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0-rc02.aar\3edb492d6ef1df667f9e3565aae0bb74\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0-rc02.aar\3edb492d6ef1df667f9e3565aae0bb74\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0-rc02.aar\8b88b8332d272bbe1a7db84ef211d5e3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0-rc02.aar\8b88b8332d272bbe1a7db84ef211d5e3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0-rc02.aar\70f07330f4a724bbb01a7b3348335159\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0-rc02.aar\70f07330f4a724bbb01a7b3348335159\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\loader-28.0.0-rc02.aar\6385c25e16ab5859d42586efa89ac4c3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\loader-28.0.0-rc02.aar\6385c25e16ab5859d42586efa89ac4c3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0-rc02.aar\5e0c966e27e1b9d22d2cfc0fdf1b7e8f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0-rc02.aar\5e0c966e27e1b9d22d2cfc0fdf1b7e8f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0-rc02.aar\83ad10f029e4b3c2111a9c3091ce0f90\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0-rc02.aar\83ad10f029e4b3c2111a9c3091ce0f90\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0-rc02.aar\e6b18cdf6d7b5f82254b559f0054fcac\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0-rc02.aar\e6b18cdf6d7b5f82254b559f0054fcac\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0-rc02.aar\695aba5f6ef69502c8728ac3bef97606\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0-rc02.aar\695aba5f6ef69502c8728ac3bef97606\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\customview-28.0.0-rc02.aar\d042c76ab4ff06dcbc5764361b5bf64f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\customview-28.0.0-rc02.aar\d042c76ab4ff06dcbc5764361b5bf64f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0-rc02.aar\bd28a7ea8c1811633a0b241cde34667e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0-rc02.aar\bd28a7ea8c1811633a0b241cde34667e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0-rc02.aar\0dbfa6e7f3c075766799b2844108fdc4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0-rc02.aar\0dbfa6e7f3c075766799b2844108fdc4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0-rc02.aar\b249dfd7b19756e0328bbcbbb248c497\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0-rc02.aar\b249dfd7b19756e0328bbcbbb248c497\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0-rc02.aar\a24b37bc6df3a9c5945ea7b0608c7d00\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0-rc02.aar\a24b37bc6df3a9c5945ea7b0608c7d00\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0-rc02.aar\1248080c8995b1700006a6775509fc01\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0-rc02.aar\1248080c8995b1700006a6775509fc01\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a67808765477259f6972ed5a2e737eb5\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a67808765477259f6972ed5a2e737eb5\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\ade3649633c7160a5e261e1b99cce047\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\ade3649633c7160a5e261e1b99cce047\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\4f6641b426c39cb2bc0841d8bb628c4e\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\4f6641b426c39cb2bc0841d8bb628c4e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0-rc02.aar\27fab23db2eecf465b298fb1c9e9237c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0-rc02.aar\27fab23db2eecf465b298fb1c9e9237c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0-rc02.aar\c7db544a89f5fffab8566a86121f11a4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0-rc02.aar\c7db544a89f5fffab8566a86121f11a4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\print-28.0.0-rc02.aar\fcd5e74d93e44acb49c1cdfd00e832fd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\print-28.0.0-rc02.aar\fcd5e74d93e44acb49c1cdfd00e832fd\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\33c4d13964917dd772d4b75460f5a7cd\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\33c4d13964917dd772d4b75460f5a7cd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0-rc02.aar\8a1037c08309e199374994718f09298d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0-rc02] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0-rc02.aar\8a1037c08309e199374994718f09298d\AndroidManifest.xml:20:5-44
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:25.2.0] C:\Users\lt\.gradle\caches\transforms-1\files-1.1\support-v4-25.2.0.aar\44d59c20a937f7e65737eab504c5a5aa\AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+		ADDED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+		INJECTED from F:\androidStudio\newApp\capacity\app\src\main\AndroidManifest.xml
+permission#com.zt.capacity.permission.JPUSH_MESSAGE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-13:47
+	android:protectionLevel
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:9-44
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:9-64
+uses-permission#com.zt.capacity.permission.JPUSH_MESSAGE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:5-80
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:22-77
+uses-permission#android.permission.RECEIVE_USER_PRESENT
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:18:5-79
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:18:22-76
+uses-permission#android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:5-89
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:22-86
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:22:5-79
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:22:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:24:5-68
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:24:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:26:5-66
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:26:22-63
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:27:5-79
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:27:22-76
+uses-permission#android.permission.INTERNET
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:28:5-67
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:28:22-64
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:29:5-75
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:29:22-72
+supports-screens
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:31:5-36:39
+	android:largeScreens
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:33:9-36
+	android:smallScreens
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:36:9-36
+	android:normalScreens
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:34:9-37
+	android:resizeable
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:35:9-34
+	android:anyDensity
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:32:9-34
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:38:5-81
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:38:22-78
+uses-permission#com.android.launcher.permission.READ_SETTINGS
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:45:5-85
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:45:22-82
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:47:5-76
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:47:22-73
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:51:5-73
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:51:22-70
+uses-permission#android.permission.GET_TASKS
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:53:5-68
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:53:22-65
+uses-permission#android.permission.CAMERA
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:55:5-65
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:55:22-62
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:59:5-81
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:59:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:61:5-79
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:61:22-76
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:65:5-76
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:65:22-73
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:73:5-84
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:73:22-81
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:87:5-80
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:87:22-77
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:94:5-78
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:94:22-75
+uses-permission#android.permission.FLASHLIGHT
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:102:5-69
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:102:22-66
+uses-permission#com.meilapp.meila.permission.MIPUSH_RECEIVE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:103:5-83
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:103:22-80
+uses-feature#android.hardware.camera
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:109:5-60
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:109:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:110:5-70
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:110:19-67
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:113:5-71
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:113:22-68
+uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:116:5-83
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:116:22-80
+meta-data#UMENG_APPKEY
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:119:9-121:56
+	android:value
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:121:13-53
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:120:13-40
+meta-data#UMENG_CHANNEL
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:122:9-124:37
+	android:value
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:124:13-34
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:123:13-41
+activity#cn.jpush.android.ui.PushActivity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:127:9-138:20
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:130:13-37
+	android:configChanges
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:129:13-63
+	android:theme
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:131:13-60
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:128:13-60
+intent-filter#action:name:cn.jpush.android.ui.PushActivity+category:name:android.intent.category.DEFAULT+category:name:com.zt.capacity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:132:13-137:29
+action#cn.jpush.android.ui.PushActivity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:133:17-75
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:133:25-72
+category#android.intent.category.DEFAULT
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:135:17-76
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:135:27-73
+category#com.zt.capacity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:136:17-60
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:136:27-57
+service#cn.jpush.android.service.PushService
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:142:9-152:19
+	android:process
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:145:13-40
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:144:13-37
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:143:13-64
+intent-filter#action:name:cn.jpush.android.intent.PUSH_TIME+action:name:cn.jpush.android.intent.PushService+action:name:cn.jpush.android.intent.REGISTER+action:name:cn.jpush.android.intent.REPORT
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:146:13-151:29
+action#cn.jpush.android.intent.REGISTER
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:147:17-75
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:147:25-72
+action#cn.jpush.android.intent.REPORT
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:148:17-73
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:148:25-70
+action#cn.jpush.android.intent.PushService
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:149:17-78
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:149:25-75
+action#cn.jpush.android.intent.PUSH_TIME
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:150:17-76
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:150:25-73
+provider#cn.jpush.android.service.DataProvider
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:154:9-158:43
+	android:process
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:158:13-40
+	android:authorities
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:156:13-64
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:157:13-37
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:155:13-65
+service#cn.jpush.android.service.DaemonService
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:162:9-171:19
+	android:enabled
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:164:13-35
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:165:13-36
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:163:13-66
+intent-filter#action:name:cn.jpush.android.intent.DaemonService+category:name:com.zt.capacity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:166:13-170:29
+action#cn.jpush.android.intent.DaemonService
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:167:17-80
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:167:25-77
+provider#cn.jpush.android.service.DownloadProvider
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:173:9-176:39
+	android:authorities
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:175:13-68
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:176:13-36
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:174:13-69
+receiver#cn.jpush.android.service.PushReceiver
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:178:9-197:20
+	android:enabled
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:180:13-35
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:181:13-37
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:179:13-65
+intent-filter#action:name:cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+category:name:com.zt.capacity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:182:13-185:29
+	android:priority
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:182:28-51
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:183:17-94
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:183:25-91
+intent-filter#action:name:android.intent.action.USER_PRESENT+action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:186:13-189:29
+action#android.intent.action.USER_PRESENT
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:187:17-77
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:187:25-74
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:188:17-79
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:188:25-76
+intent-filter#action:name:android.intent.action.PACKAGE_ADDED+action:name:android.intent.action.PACKAGE_REMOVED+data:scheme:package
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:191:13-196:29
+action#android.intent.action.PACKAGE_ADDED
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:192:17-78
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:192:25-75
+action#android.intent.action.PACKAGE_REMOVED
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:193:17-80
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:193:25-77
+data
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:195:17-50
+	android:scheme
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:195:23-47
+receiver#cn.jpush.android.service.AlarmReceiver
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:200:9-202:40
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:202:13-37
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:201:13-66
+receiver#com.zt.capacity.common.jpush.MyReceiver
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:205:9-217:20
+	android:enabled
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:207:13-35
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:208:13-37
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:206:13-67
+intent-filter#action:name:cn.jpush.android.intent.CONNECTION+action:name:cn.jpush.android.intent.MESSAGE_RECEIVED+action:name:cn.jpush.android.intent.NOTIFICATION_OPENED+action:name:cn.jpush.android.intent.NOTIFICATION_RECEIVED+action:name:cn.jpush.android.intent.REGISTRATION+category:name:com.zt.capacity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:209:13-216:29
+action#cn.jpush.android.intent.REGISTRATION
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:210:17-79
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:210:25-76
+action#cn.jpush.android.intent.MESSAGE_RECEIVED
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:211:17-83
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:211:25-80
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:212:17-88
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:212:25-85
+action#cn.jpush.android.intent.NOTIFICATION_OPENED
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:213:17-86
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:213:25-83
+action#cn.jpush.android.intent.CONNECTION
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:214:17-77
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:214:25-74
+meta-data#JPUSH_CHANNEL
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:220:9-222:49
+	android:value
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:222:13-46
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:221:13-41
+meta-data#JPUSH_APPKEY
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:223:9-225:56
+	android:value
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:225:13-53
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:224:13-40
+provider#android.support.v4.content.FileProvider
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:227:9-235:20
+	android:grantUriPermissions
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:231:13-47
+	android:authorities
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:229:13-64
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:230:13-37
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:228:13-67
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:232:13-234:54
+	android:resource
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:234:17-51
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:233:17-67
+meta-data#com.baidu.speech.APP_ID
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:238:9-240:40
+	android:value
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:240:13-37
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:239:13-51
+meta-data#com.baidu.speech.API_KEY
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:241:9-243:56
+	android:value
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:243:13-53
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:242:13-52
+meta-data#com.baidu.speech.SECRET_KEY
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:244:9-246:64
+	android:value
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:246:13-61
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:245:13-55
+service#com.baidu.speech.VoiceRecognitionService
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:248:9-250:40
+	android:exported
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:250:13-37
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:249:13-68
+activity#com.zt.capacity.common.base.PanoramaActivity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:253:9-255:52
+	android:screenOrientation
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:255:13-49
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:254:13-72
+activity#com.zt.capacity.common.base.WebViewActivity
+ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:257:9-259:52
+	android:screenOrientation
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:259:13-49
+	android:name
+		ADDED from [:lib_common] F:\androidStudio\newApp\capacity\lib_common\build\intermediates\manifests\full\debug\AndroidManifest.xml:258:13-71

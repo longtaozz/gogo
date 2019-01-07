@@ -1,0 +1,80 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zt.capacity.jinan_zwt"
+    >
+
+    <application
+        android:name="com.debug.MainApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/home"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <!--地图key-->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="kasXp36R6taIPQcNSj9s2j3kpwD4DKcp" />
+
+        <!--欢迎-->
+        <activity
+            android:name="com.debug.WelcomeActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--登录界面-->
+        <activity
+            android:name="com.debug.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+
+
+
+        <!--主界面-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--历史轨迹-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.CarHistoryActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--疑点查车-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.DoubtfulPointActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--指令下发-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.JNInstructionActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--实时位置-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--车牌识别-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.PreviewActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--语音-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.VoiceMaskActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--位置采集信息界面-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationGatherActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--位置采集-->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationGatherMapActivity"
+            android:screenOrientation="portrait"></activity>
+
+
+    </application>
+
+
+</manifest>

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_location_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/color_f6f6f6">
+
+        <LinearLayout
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/title_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:padding="@dimen/dp_8"
+                android:src="@drawable/return_icon" />
+
+            <TextView
+                android:id="@+id/left_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/back"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:singleLine="true"
+                android:text="车辆监控"
+                android:textColor="@color/color_484848"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_toRightOf="@+id/linear_title">
+
+            <AutoCompleteTextView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/jn_yunshu_sousuokuang_jn_location"
+                android:completionThreshold="1"
+                android:dropDownHeight="@dimen/dp_135"
+                android:dropDownHorizontalOffset="-18dp"
+                android:dropDownVerticalOffset="@dimen/dp_11"
+                android:dropDownWidth="@dimen/dp_157"
+                android:hint="请输入车辆车牌号"
+                android:imeOptions="actionSearch"
+                android:paddingLeft="@dimen/dp_33"
+                android:singleLine="true"
+                android:textSize="@dimen/text_14" />
+
+
+            <LinearLayout
+                android:id="@+id/search_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignLeft="@+id/search"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:src="@drawable/jn_yunshu_locaton_sou" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/real_time_bmap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" />
+
+
+        <LinearLayout
+            android:id="@+id/marker_panorama_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/RelativeLayout_center_L"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:id="@+id/marker_panorama_location_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jn_yunshu_maker_panorama_backe"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/maker_panorama_img"
+                    android:layout_width="55dp"
+                    android:layout_height="39dp"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/jn_yunshu_no"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/maker_panorama_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:text="查看全景"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_10" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_3"
+                android:src="@drawable/jn_yunshu_maker_panorama_tagging" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/option_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_11"
+            android:layout_marginTop="@dimen/dp_55"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/location_take_up_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jn_yunshu_location_take_up_right" />
+
+            <LinearLayout
+                android:id="@+id/location_right_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/legend_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_yunshu_legend_button" />
+
+                <ImageView
+                    android:id="@+id/traffic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_yunshu_traffic_button_img" />
+
+                <ImageView
+                    android:id="@+id/gather_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_yunshu_gather_button_img" />
+
+                <ImageView
+                    android:id="@+id/plate_number_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_yusnhu_plate_number_button_img" />
+
+                <ImageView
+                    android:id="@+id/panorama_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_yunshu_panorama_button_img"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panel_linear"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_49"
+            android:background="@color/color_EFEFF4"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <LinearLayout
+                        android:id="@+id/online_number_linear"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_25"
+                        android:background="@drawable/jn_zwt_history_button"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/online_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@drawable/jn_yunshu_options_text"
+                            android:textSize="@dimen/text_10" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <LinearLayout
+                        android:id="@+id/all_number_linear"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_25"
+                        android:background="@drawable/jn_zwt_history_button"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/all_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@drawable/jn_yunshu_options_text"
+                            android:textSize="@dimen/text_10" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+
+                    <LinearLayout
+                        android:id="@+id/refurbish_number_linear"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_25"
+                        android:background="@drawable/jn_zwt_history_button"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="刷新"
+                            android:textColor="@drawable/jn_yunshu_options_text"
+                            android:textSize="@dimen/text_10" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/location_bottom_linearLayout"
+            android:orientation="vertical"
+            android:visibility="gone"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location_bottom_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/colors_ebebeb"></View>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:id="@+id/location_bottom_1"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="@dimen/dp_35"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/location_text_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="基础信息"
+                                android:textColor="@drawable/jn_yunshu_location_bot_text"
+                                android:textSize="@dimen/text_16"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/location_bottom_1_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/jn_zwt_location_bottom_img" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/location_bottom_4"
+                        android:layout_width="@dimen/dp_0"
+                        android:layout_height="@dimen/dp_35"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/location_text_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="周边信息"
+                                android:textColor="@drawable/jn_yunshu_location_bot_text"
+                                android:textSize="@dimen/text_16"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/location_bottom_4_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/jn_zwt_location_bottom_img" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/RelativeLayout_center_L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"></LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

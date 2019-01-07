@@ -1,0 +1,138 @@
+package com.zt.capacity.jinan_yunshu.bean;
+
+import java.io.Serializable;
+
+/**
+ * 2.4.车辆信息
+ * Created by Administrator on 2018/4/18.
+ */
+
+public class CarBean implements Serializable {
+
+    //车辆编号
+    private Integer carId;
+    //车牌号码
+    private String numberPlate;
+    //sim卡号
+    private String simNumber;
+    //所属公司
+    private String enterpriseName;
+    //车架号
+    private String chassisNumber;
+    //发动机号
+    private String engineNumber;
+    //驾驶员
+    private String carOwnersName;
+    //联系电话
+    private String carOwnersContact;
+    //车辆类型
+    private String carType;
+    //车辆品牌类
+    private String factory;
+    //终端品牌类
+    private String equipment;
+
+    public String getEnterpriseName() {
+        return enterpriseName;
+    }
+
+    public void setEnterpriseName(String enterpriseName) {
+        this.enterpriseName = enterpriseName;
+    }
+
+    public String getEngineNumber() {
+        return engineNumber;
+    }
+
+    public void setEngineNumber(String engineNumber) {
+        this.engineNumber = engineNumber;
+    }
+
+    public Integer getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Integer carId) {
+        this.carId = carId;
+    }
+
+    public String getNumberPlate() {
+        return numberPlate;
+    }
+
+    public void setNumberPlate(String numberPlate) {
+        this.numberPlate = numberPlate;
+    }
+
+    public String getSimNumber() {
+        return simNumber;
+    }
+
+    public void setSimNumber(String simNumber) {
+        this.simNumber = simNumber;
+    }
+
+    public String getChassisNumber() {
+        return chassisNumber;
+    }
+
+    public void setChassisNumber(String chassisNumber) {
+        this.chassisNumber = chassisNumber;
+    }
+
+    public String getCarOwnersName() {
+        return carOwnersName;
+    }
+
+    public void setCarOwnersName(String carOwnersName) {
+        this.carOwnersName = carOwnersName;
+    }
+
+    public String getCarOwnersContact() {
+        return carOwnersContact;
+    }
+
+    public void setCarOwnersContact(String carOwnersContact) {
+        this.carOwnersContact = carOwnersContact;
+    }
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public void setCarType(String carType) {
+        this.carType = carType;
+    }
+
+    public String getFactory() {
+        return factory;
+    }
+
+    public void setFactory(String factory) {
+        this.factory = factory;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
+    }
+
+    public CarBean(Integer carId, String numberPlate, String simNumber, String chassisNumber, String engineNumber, String carOwnersName, String carOwnersContact, String carType, String factory, String equipment) {
+        this.carId = carId;
+        this.numberPlate = numberPlate;
+        this.simNumber = simNumber;
+        this.chassisNumber = chassisNumber;
+        this.engineNumber = engineNumber;
+        this.carOwnersName = carOwnersName;
+        this.carOwnersContact = carOwnersContact;
+        this.carType = carType;
+        this.factory = factory;
+        this.equipment = equipment;
+    }
+    public CarBean(){
+
+    }
+}

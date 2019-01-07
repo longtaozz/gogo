@@ -1,0 +1,92 @@
+
+{
+	"buildFiles" : 
+	[
+		"F:/androidStudio/newApp/capacity/lib_common/CMakeLists.txt",
+		"F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/CMakeLists.txt"
+	],
+	"cleanCommands" : 
+	[
+		"C:\\Users\\lt\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build F:\\androidStudio\\newApp\\capacity\\lib_common\\.externalNativeBuild\\cmake\\debug\\x86 --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"hyper_lpr-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "hyper_lpr",
+			"buildCommand" : "C:\\Users\\lt\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build F:\\androidStudio\\newApp\\capacity\\lib_common\\.externalNativeBuild\\cmake\\debug\\x86 --target hyper_lpr",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot  -Dhyper_lpr_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -std=c++11 -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/src/PlateDetection.cpp",
+					"workingDirectory" : "F:/androidStudio/newApp/capacity/lib_common/.externalNativeBuild/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot  -Dhyper_lpr_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -std=c++11 -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/src/FineMapping.cpp",
+					"workingDirectory" : "F:/androidStudio/newApp/capacity/lib_common/.externalNativeBuild/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot  -Dhyper_lpr_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -std=c++11 -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/src/FastDeskew.cpp",
+					"workingDirectory" : "F:/androidStudio/newApp/capacity/lib_common/.externalNativeBuild/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot  -Dhyper_lpr_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -std=c++11 -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/src/PlateSegmentation.cpp",
+					"workingDirectory" : "F:/androidStudio/newApp/capacity/lib_common/.externalNativeBuild/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot  -Dhyper_lpr_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -std=c++11 -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/src/Recognizer.cpp",
+					"workingDirectory" : "F:/androidStudio/newApp/capacity/lib_common/.externalNativeBuild/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot  -Dhyper_lpr_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -std=c++11 -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/src/CNNRecognizer.cpp",
+					"workingDirectory" : "F:/androidStudio/newApp/capacity/lib_common/.externalNativeBuild/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot  -Dhyper_lpr_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -std=c++11 -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/src/Pipeline.cpp",
+					"workingDirectory" : "F:/androidStudio/newApp/capacity/lib_common/.externalNativeBuild/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot  -Dhyper_lpr_EXPORTS -I..\\..\\..\\..\\src\\main\\cpp\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\x86\\include -isystem C:\\Users\\lt\\AppData\\Local\\Android\\android-ndk-r16-beta1\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security  -std=c++11 -frtti -fexceptions -std=c++11 -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/PlateRecognition.cpp",
+					"workingDirectory" : "F:/androidStudio/newApp/capacity/lib_common/.externalNativeBuild/cmake/debug/x86"
+				}
+			],
+			"output" : "F:/androidStudio/newApp/capacity/lib_common/build/intermediates/cmake/debug/obj/x86/libhyper_lpr.so",
+			"toolchain" : "991265237"
+		},
+		"lib_opencv-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "lib_opencv",
+			"buildType" : "debug",
+			"output" : "F:/androidStudio/newApp/capacity/lib_common/src/main/cpp/../jniLibs/x86/libopencv_java3.so",
+			"toolchain" : "991265237"
+		}
+	},
+	"toolchains" : 
+	{
+		"991265237" : 
+		{
+			"cCompilerExecutable" : "C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "C:/Users/lt/AppData/Local/Android/android-ndk-r16-beta1/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

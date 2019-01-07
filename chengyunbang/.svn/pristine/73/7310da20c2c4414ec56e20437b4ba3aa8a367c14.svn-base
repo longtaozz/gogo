@@ -1,0 +1,41 @@
+package com.zt.capacity;
+
+
+import android.app.Service;
+import android.os.Vibrator;
+
+import com.baidu.mapapi.SDKInitializer;
+import com.zt.capacity.common.base.BaseApplication;
+import com.zt.capacity.common.service.LocationService;
+import com.zt.capacity.common.util.CrashHandler;
+
+import cn.jpush.android.api.JPushInterface;
+
+
+public class MyApplication extends BaseApplication {
+
+    @Override
+    public void onCreate() {
+//        if (Utils.isAppDebug()) {
+//            //开启InstantRun之后，一定要在ARouter.init之前调用openDebug
+//            ARouter.openDebug();
+//            ARouter.openLog();
+//        }
+//        ARouter.init(this);
+
+
+
+        //极光初始化
+
+        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);            // 初始化 JPush
+
+
+        //打包时候收集报错信息
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
+
+        super.onCreate();
+    }
+
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_dddddd"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/record_list_carNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:textColor="@color/color_4a4a4a"
+                android:textSize="@dimen/text_14"
+                android:text="鲁AV8215"/>
+            <TextView
+                android:id="@+id/record_list_control"
+                android:layout_width="@dimen/dp_75"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_4a4a4a"
+                android:layout_marginLeft="@dimen/dp_30"
+                android:textSize="@dimen/text_14"
+                android:text="开启管控"/>
+            <TextView
+                android:id="@+id/record_list_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_4a4a4a"
+                android:textSize="@dimen/text_14"
+                android:text="11-12 12:12:12"
+                />
+            <View
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="@dimen/dp_1"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/record_list_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_4a4a4a"
+                android:layout_marginRight="@dimen/dp_16"
+                android:textSize="@dimen/text_14"
+                android:text="处理成功"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_dddddd"></View>
+
+    </RelativeLayout>
+</LinearLayout>

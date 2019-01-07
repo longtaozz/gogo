@@ -1,0 +1,71 @@
+if (!isGeTuiModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    defaultConfig {
+        if (isBaiduMapModule.toBoolean()) {
+            applicationId "com.zt.capacity.baidumap"
+        }
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                GETUI_APP_ID : "mpdkczuZUuAmAmhtXLdkMA",
+                GETUI_APP_KEY : "MWtZarLhX29aV5yj6EMOX7",
+                GETUI_APP_SECRET : "monkAJ0Tza90fUrQh3KSn7"
+        ]
+
+        ndk {
+            abiFilters "armeabi"
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+
+            if (isGeTuiModule.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude '**/debug/**'
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.support.compat
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation 'com.getui:sdk:2.13.0.0'
+}

@@ -1,0 +1,270 @@
+package com.zt.capacity.common.base;
+
+import android.app.Activity;
+import android.app.Application;
+import android.app.Service;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Vibrator;
+import android.support.multidex.MultiDex;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.baidu.lbsapi.BMapManager;
+import com.baidu.lbsapi.MKGeneralListener;
+import com.baidu.mapapi.SDKInitializer;
+import com.hik.mcrsdk.MCRSDK;
+import com.hik.mcrsdk.rtsp.RtspClient;
+import com.hik.mcrsdk.talk.TalkClientSDK;
+import com.hikvision.sdk.VMSNetSDK;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
+import com.zt.capacity.common.data.listener.MyLocationListener;
+import com.zt.capacity.common.service.LocationService;
+import com.zt.capacity.common.util.JurisdictionUtil;
+
+import static com.hikvision.sdk.VMSNetSDK.getApplication;
+
+
+public class BaseApplication extends Application {
+    private static BaseApplication ins;
+
+    private static BaseApplication bApplication;
+    public static Activity mActivity;
+
+
+    public static SharedPreferences sharedPreferences;
+    public static Boolean rememberState = false;//记住密码选中状态
+
+
+    public LocationService locationService;
+    public Vibrator mVibrator;
+
+    //根目录
+    public static String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+    //图片储存地址
+    public static String savePath = path + "/zwb/img/";
+
+
+    public static BaseApplication getContext() {
+        return bApplication;
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
+
+
+    //全景
+    public BMapManager mBMapManager = null;
+
+    @Override
+    public void onCreate() {
+        bApplication = this;
+
+
+
+        //是否记住密码判断
+        sharedPreferences = getSharedPreferences("userInfo",
+                Context.MODE_PRIVATE);
+        if (!TextUtils.isEmpty(sharedPreferences.getString("password", null))) {
+            rememberState = true;
+        }
+
+
+        /***
+         * 初始化定位sdk，建议在Application中创建
+         */
+        locationService = new LocationService(getApplicationContext());
+        mVibrator = (Vibrator) getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
+        SDKInitializer.initialize(getApplicationContext());
+
+        initEngineManager(this);
+
+        this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+                mActivity = activity;
+                //申请定位权限
+                JurisdictionUtil.ACCESS_FINE_LOCATION(mActivity);
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
+
+
+        //定位
+
+        locationService = locationService;
+        //获取locationservice实例，建议应用中只初始化1个location实例，然后使用，可以参考其他示例的activity，都是通过此种方式获取locationservice实例的
+        locationService.registerListener(myLocationListener);
+        //注册监听
+//        int type = getIntent().getIntExtra("from", 0);
+        locationService.setLocationOption(locationService.getDefaultLocationClientOption());
+//        if (type == 0) {
+//            locationService.setLocationOption(locationService.getDefaultLocationClientOption());
+//        } else if (type == 1) {
+//            locationService.setLocationOption(locationService.getOption());
+//        }
+        locationService.start();
+
+
+        // 如果使用了InstantRun，必须在初始化之前开启调试模式，但是上线前需要关闭，InstantRun仅用于开发阶段，
+        // 线上开启调试模式有安全风险，可以使用BuildConfig.DEBUG来区分环境
+        ARouter.openDebug();
+        //打印日志
+        ARouter.openLog();
+        ARouter.init(this); //初始化路由
+
+
+
+        //海康视频初始化
+
+        ins = this;
+        MCRSDK.init();
+        // 初始化RTSP
+        RtspClient.initLib();
+        MCRSDK.setPrint(1, null);
+        // 初始化语音对讲
+        TalkClientSDK.initLib();
+        // SDK初始化
+        VMSNetSDK.init(this);
+
+
+
+
+        //友盟统计初始化
+        /**注意: 即使您已经在AndroidManifest.xml中配置过appkey和channel值，也需要在App代码中调用初始化接口（如需要使用AndroidManifest.xml中配置好的appkey和channel值，UMConfigure.init调用中appkey和channel参数请置为null）。
+         */
+        UMConfigure.init(this, "5bc979d8f1f55646200000d1", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+        MobclickAgent.setSecret(this, "5bc979d8f1f55646200000d1");
+        // 将默认Session间隔时长改为40秒。
+        MobclickAgent.setSessionContinueMillis(1000*40);
+        MobclickAgent.openActivityDurationTrack(false);//禁止默认的页面统计功能，
+
+        super.onCreate();
+    }
+
+
+    public static BaseApplication getIns() {
+        return ins;
+    }
+
+    /**
+     * 获取登录设备mac地址
+     *
+     * @return Mac地址
+     */
+    public String getMacAddress() {
+        WifiManager wm = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiInfo connectionInfo = wm.getConnectionInfo();
+        String mac = connectionInfo.getMacAddress();
+        return mac == null ? "02:00:00:00:00:00" : mac;
+    }
+
+
+    public void initEngineManager(Context context) {
+        if (mBMapManager == null) {
+            mBMapManager = new BMapManager(context);
+        }
+
+        if (!mBMapManager.init(new MyGeneralListener())) {
+            Toast.makeText(BaseApplication.getContext().getApplicationContext(), "BMapManager  初始化错误!",
+                    Toast.LENGTH_LONG).show();
+        }
+        Log.d("ljx", "initEngineManager");
+    }
+
+
+    // 常用事件监听，用来处理通常的网络错误，授权验证错误等
+    public static class MyGeneralListener implements MKGeneralListener {
+
+        @Override
+        public void onGetPermissionState(int iError) {
+            // 非零值表示key验证未通过
+//            if (iError != 0) {
+//                // 授权Key错误：
+//                Toast.makeText(MyApplication.getContext().getApplicationContext(),
+//                        "请在AndoridManifest.xml中输入正确的授权Key,并检查您的网络连接是否正常！error: " + iError, Toast.LENGTH_LONG).show();
+//            } else {
+//                Toast.makeText(MyApplication.getContext().getApplicationContext(), "key认证成功", Toast.LENGTH_LONG)
+//                        .show();
+//            }
+        }
+    }
+
+
+
+    //进行一次定位并设为公共变量
+    private MyLocationListener myLocationListener = new MyLocationListener();//定位监听
+
+
+
+    @Override
+    public void onTerminate() {
+        // 程序终止的时候执行
+        locationService.unregisterListener(myLocationListener); //注销掉监听
+        locationService.stop(); //停止定位服务
+        super.onTerminate();
+    }
+
+    @Override
+    public void onLowMemory() {
+        // 低内存的时候执行
+        super.onLowMemory();
+    }
+
+
+
+    //安装完成并初次启动APP的时候，5.0以下某些低端机会出现ANR或者长时间卡顿不进入引导页
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            MultiDex.install(this);
+    }
+
+
+}

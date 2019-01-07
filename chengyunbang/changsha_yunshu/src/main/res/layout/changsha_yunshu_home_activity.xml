@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+    <!--头部-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_46"
+        android:paddingLeft="@dimen/dp_16"
+        android:background="@color/entirety_head"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_484848"
+                android:textSize="@dimen/text_19"
+                android:textStyle="bold"
+                android:text="@string/app_name"/>
+
+        </LinearLayout>
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_11">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/changsha_yunshu_home_message" />
+            <ImageView
+                android:id="@+id/unread_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/changsha_yunshu_hong_dian"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginBottom="@dimen/dp_18"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/myweb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

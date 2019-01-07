@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/localplay_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff">
+
+    <!-- 播放窗口 -->
+    <RelativeLayout
+        android:id="@+id/localplay_playwindow_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="270dp"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="true"
+        android:background="#00000000">
+
+        <SurfaceView
+            android:id="@+id/localplay_surfaceview"
+            android:layout_width="fill_parent"
+            android:layout_height="270dp"
+            android:background="#000000ff"
+            android:padding="1dp" />
+
+    </RelativeLayout>
+    <!-- 进度条 -->
+
+    <LinearLayout
+        android:id="@+id/localplay_progress_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/localplay_playwindow_layout"
+        android:background="#e0e5e5e5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/localplay_played_time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="0dp"
+            android:gravity="center_vertical"
+            android:textSize="13sp" />
+
+        <SeekBar
+            android:id="@+id/localplay_progress_seekbar"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:maxHeight="6dp"
+            android:minHeight="6dp"
+            android:paddingLeft="11dp"
+            android:paddingRight="11dp"
+            android:thumbOffset="11dp" />
+
+        <TextView
+            android:id="@+id/localplay_total_time_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="4dp"
+            android:gravity="center_vertical"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- 工具栏 -->
+    <LinearLayout
+        android:id="@+id/localplay_toolbar_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:baselineAligned="false"
+        android:clickable="true"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/localplay_capture_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="抓图" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/localplay_play_pause_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:button="@null"
+                android:checked="true"
+                android:padding="15dp"
+                android:text="暂停" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/localplay_sound_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:button="@null"
+                android:padding="15dp"
+                android:text="开启音频" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,67 @@
+if (!isCsYunShuModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    defaultConfig {
+        if (isYunShuModule.toBoolean()) {
+            applicationId "com.zt.capacity.changsha_yunshu"
+        }
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 5
+        versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+
+    sourceSets {
+
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (isCsYunShuModule.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude '**/debug/**'
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+dependencies {
+    configurations {
+        all*.exclude group: 'com.google.code.gson'
+    }
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation deps.support.compat
+    implementation project(':umeng')
+    implementation project(':lib_common')
+    implementation project(':lib_baidumap')
+    implementation project(':lib_jpush')
+    annotationProcessor deps.support.annotation_arouter
+
+}

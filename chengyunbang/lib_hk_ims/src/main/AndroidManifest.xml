@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hikvision.sdk" >
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <application>
+
+        <activity android:name="com.hikvision.sdk.ui.ResourceListActivity" />
+        <activity android:name="com.hikvision.sdk.ui.LiveActivity" />
+        <activity android:name="com.hikvision.sdk.ui.PlayBackActivity" />
+        <activity
+            android:name="com.hikvision.sdk.ui.UrlActivity"
+            android:keepScreenOn="true" />
+        <activity android:name="com.hikvision.sdk.ui.LocalVideoActivity"></activity>
+    </application>
+</manifest>

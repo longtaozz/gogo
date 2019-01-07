@@ -1,0 +1,339 @@
+package com.zt.capacity.jinan_zwt.activity;
+
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.frank.plate.PlateRecognition;
+import com.google.zxing.Result;
+import com.google.zxing.ResultPoint;
+import com.qrcode.camera.CameraManager;
+import com.qrcode.camera.PreviewFrameShotListener;
+import com.qrcode.camera.Size;
+import com.qrcode.decode.DecodeListener;
+import com.qrcode.decode.DecodeThread;
+import com.qrcode.decode.LuminanceSource;
+import com.qrcode.decode.PlanarYUVLuminanceSource;
+import com.qrcode.decode.RGBLuminanceSource;
+import com.qrcode.view.CaptureView;
+import com.umeng.analytics.MobclickAgent;
+import com.zt.capacity.common.data.listener.OnNewFrameListener;
+import com.zt.capacity.common.util.CustomDialog;
+import com.zt.capacity.common.util.ImageUtil;
+import com.zt.capacity.common.util.RouteUtils;
+import com.zt.capacity.common.view.PlateRecognizerView;
+import com.zt.capacity.jinan_zwt.R;
+import com.zt.capacity.jinan_zwt.thread.RecognizeThread;
+
+import org.opencv.android.OpenCVLoader;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+
+/**
+ * 车牌识别
+ */
+@Route(path = RouteUtils.JN_zwt_Preview)
+public class PreviewActivity extends AppCompatActivity implements OnNewFrameListener, SurfaceHolder.Callback, PreviewFrameShotListener, DecodeListener {
+
+    private static final String TAG = PreviewActivity.class.getSimpleName();
+    private PlateRecognition plateRecognition;
+    private RecognizeThread recognizeThread;
+    private Mat dstMat;
+
+    //可缓存线程池
+    private DecodeThread mDecodeThread;
+    private Rect previewFrameRect = null;
+    private CameraManager mCameraManager;
+
+    //扫描控件
+    private CaptureView captureView;
+    private boolean isDecoding = false;
+    private SurfaceView previewSv;
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case PlateRecognition.MSG_RESULT://recognize finish
+                    String result = (String) msg.obj;
+                    Log.e("chepaihao..", result);
+                    distinguish(result);
+                    break;
+            }
+        }
+    };
+
+    CustomDialog.Builder builder2 = null;
+
+    Integer number = 0;
+    String car = "";
+
+    //识别处理
+    public void distinguish(String carNumber) {
+//        if("".equals(car)){
+//            car=carNumber;
+//        }
+//        if(car.equals(carNumber)){
+//            number++;
+//        }else{
+//            car=carNumber;
+//            number=0;
+//        }
+//        if(number==2){
+//            Intent i=new Intent(PreviewActivity.this, MainDynamicFragment.class);
+//            i.putExtra("car",carNumber);
+//            startActivity(i);
+//        }
+
+        if (builder2 == null) {
+            builder2 = new CustomDialog.Builder(this);
+            builder2.setMessage(carNumber);
+            builder2.setTitle("车牌扫描结果");
+            builder2.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    //设置你的操作事项
+                    builder2 = null;
+                }
+            });
+
+            builder2.setNegativeButton("确定",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            builder2 = null;
+                            finish();
+                        }
+                    });
+
+            builder2.create().show();
+        }
+
+    }
+
+
+    private PlateRecognizerView recognizerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.jn_zwt_activity_preview);
+
+        init();
+        plateRecognition = new PlateRecognition(this, mHandler);
+        //init plate recognizer
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                plateRecognition.initRecognizer("pr");
+            }
+        }).start();
+
+
+        recognizerView = (PlateRecognizerView) findViewById(R.id.surface_view);
+        recognizerView.setOnNewFrameListener(this);
+        recognizeThread = new RecognizeThread(plateRecognition);
+        recognizeThread.start();
+        initOpenCV();
+    }
+
+    private void init() {
+
+        previewSv = (SurfaceView) findViewById(R.id.sv_preview);
+        captureView = findViewById(R.id.cv_capture);
+        previewSv.getHolder().addCallback(this);
+        mCameraManager = new CameraManager(this);
+        mCameraManager.setPreviewFrameShotListener(this);
+    }
+
+    private void initOpenCV() {
+        boolean result = OpenCVLoader.initDebug();
+        if (result) {
+            Log.i(TAG, "initOpenCV success...");
+            recognizerView.enableView();
+        } else {
+            Log.e(TAG, "initOpenCV fail...");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (plateRecognition != null) {
+            //release plate recognizer
+            plateRecognition.releaseRecognizer();
+        }
+        if (recognizeThread != null) {
+            recognizeThread.setRunning(false);
+            recognizeThread.interrupt();
+            recognizeThread = null;
+        }
+    }
+
+    private static final long VIBRATE_DURATION = 200L;
+
+    @Override
+    public void onNewFrame(final Mat newFrame) {
+        if (dstMat == null) {
+            dstMat = new Mat(newFrame.rows(), newFrame.cols(), CvType.CV_8UC4);
+        }
+        newFrame.copyTo(dstMat);
+
+
+        //二维码识别
+        Bitmap cameraBitmap = ImageUtil.matToBitmap(dstMat);
+        if (cameraBitmap != null) {
+            if (mDecodeThread != null) {
+                mDecodeThread.cancel();
+            }
+            int width = cameraBitmap.getWidth();
+            int height = cameraBitmap.getHeight();
+            int[] pixels = new int[width * height];
+            cameraBitmap.getPixels(pixels, 0, width, 0, 0, width, height);
+            RGBLuminanceSource luminanceSource = new RGBLuminanceSource(pixels, new Size(width, height));
+            mDecodeThread = new DecodeThread(luminanceSource, PreviewActivity.this);
+            mDecodeThread.execute();
+        }
+
+        //车牌识别
+        if (recognizeThread != null) {
+            recognizeThread.addMat(dstMat);
+        }
+    }
+
+    @Override
+    public void onDecodeSuccess(Result result, LuminanceSource source, Bitmap bitmap) {
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        vibrator.vibrate(VIBRATE_DURATION);
+        isDecoding = false;
+        if (bitmap.getWidth() > 100 || bitmap.getHeight() > 100) {
+            Matrix matrix = new Matrix();
+            matrix.postScale(100f / bitmap.getWidth(), 100f / bitmap.getHeight());
+            Bitmap resizeBmp = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            bitmap.recycle();
+            bitmap = resizeBmp;
+        }
+        Log.e("jiguo....", result.getText());
+
+
+        if (builder2 == null) {
+            builder2 = new CustomDialog.Builder(this);
+            builder2.setMessage(result.getText());
+            builder2.setTitle("二维码扫描结果");
+            builder2.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    //设置你的操作事项
+                    builder2 = null;
+                }
+            });
+
+            builder2.setNegativeButton("确定",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            builder2 = null;
+                            finish();
+                        }
+                    });
+
+            builder2.create().show();
+        }
+//        Intent resultData = new Intent();
+//        resultData.putExtra(EXTRA_RESULT, result.getText());
+//        resultData.putExtra(EXTRA_BITMAP, bitmap);
+//        setResult(RESULT_OK, resultData);
+//        finish();
+    }
+
+    @Override
+    public void onDecodeFailed(LuminanceSource source) {
+        if (source instanceof RGBLuminanceSource) {
+        }
+        isDecoding = false;
+        mCameraManager.requestPreviewFrameShot();
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        mCameraManager.initCamera(holder);
+        if (!mCameraManager.isCameraAvailable()) {
+            finish();
+            return;
+        }
+        mCameraManager.startPreview();
+        if (!isDecoding) {
+            mCameraManager.requestPreviewFrameShot();
+        }
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        mCameraManager.stopPreview();
+        if (mDecodeThread != null) {
+            mDecodeThread.cancel();
+        }
+        mCameraManager.release();
+    }
+
+    @Override
+    public void onPreviewFrame(byte[] data, Size dataSize) {
+        if (mDecodeThread != null) {
+            mDecodeThread.cancel();
+        }
+        if (previewFrameRect == null) {
+            previewFrameRect = mCameraManager.getPreviewFrameRect(captureView.getFrameRect());
+        }
+        PlanarYUVLuminanceSource luminanceSource = new PlanarYUVLuminanceSource(data, dataSize, previewFrameRect);
+        mDecodeThread = new DecodeThread(luminanceSource, PreviewActivity.this);
+        isDecoding = true;
+        mDecodeThread.execute();
+    }
+
+    @Override
+    public void foundPossibleResultPoint(ResultPoint point) {
+        captureView.addPossibleResultPoint(point);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("JNSaoMiao"); //统计页面(仅有Activity的应用中SDK自动调用，不需要单独写。"SplashScreen"为页面名称，可自定义)
+        MobclickAgent.onResume(this);          //统计时长
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("JNSaoMiao"); // （仅有Activity的应用中SDK自动调用，不需要单独写）保证 onPageEnd 在onPause 之前调用,因为 onPause 中会保存信息。"SplashScreen"为页面名称，可自定义
+        MobclickAgent.onPause(this);
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+}

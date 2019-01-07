@@ -1,0 +1,219 @@
+package com.zt.capacity.jinan_zwt.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.frank.plate.PlateRecognition;
+import com.umeng.analytics.MobclickAgent;
+import com.zt.capacity.common.base.BaseFragmentActivity;
+import com.zt.capacity.common.util.IToast;
+import com.zt.capacity.common.util.JurisdictionUtil;
+import com.zt.capacity.common.util.RouteUtils;
+import com.zt.capacity.jinan_zwt.R;
+import com.zt.capacity.jinan_zwt.data.JN_ZWT_Url;
+import com.zt.capacity.jinan_zwt.fragment.MainDynamicFragment;
+import com.zt.capacity.jinan_zwt.fragment.MainHomeFragment;
+import com.zt.capacity.jinan_zwt.fragment.MainMyFragment;
+
+@Route(path = RouteUtils.JN_zwt_Main)
+public class MainActivity extends BaseFragmentActivity implements View.OnClickListener {
+
+    //济南主页链接
+    String bHomeUrl = JN_ZWT_Url.JINANZHENGFU;
+
+    protected static ImageView[] mBottom_img;// 底部菜单图标
+    protected static TextView[] mBottom_text;// 底部菜单文字
+    protected static int position = 0;// 记录当前底部选择位置
+    protected FragmentManager mFragmentManager;// fragment管理器
+    protected FragmentTransaction mFragmentTransaction;// fragment事务管理
+    protected MainHomeFragment mHomeFragment;
+    protected MainDynamicFragment mDynamicFragment;
+    protected MainMyFragment mMyFragment;
+    protected Fragment mContent;
+
+
+    private PlateRecognition plateRecognition;
+
+    public static MainActivity mainActivity;
+    // 定义一个变量，来标识是否退出
+    private static boolean isExit = false;
+
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = false;
+        }
+    };
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.jn_zwt_activity_main);
+        mainActivity = this;
+
+        //camera权限
+        JurisdictionUtil.GETCAMERA(this);
+
+
+        plateRecognition = new PlateRecognition(this, new Handler());
+        //init plate recognizer
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                plateRecognition.initRecognizer("pr");
+            }
+        }).start();
+        //控件初始化
+        init();
+
+        //底部菜单初始化
+        bottomMenu();
+
+    }
+
+    private void bottomMenu() {
+
+
+        // 底部菜单数组初始化3
+        mBottom_img = new ImageView[3];
+        mBottom_img[0] = (ImageView) findViewById(R.id.img_letter);
+        mBottom_img[1] = (ImageView) findViewById(R.id.img_family);
+        mBottom_img[2] = (ImageView) findViewById(R.id.img_user);
+        mBottom_text = new TextView[3];
+        mBottom_text[0] = (TextView) findViewById(R.id.text_letter);
+        mBottom_text[1] = (TextView) findViewById(R.id.text_family);
+        mBottom_text[2] = (TextView) findViewById(R.id.text_user);
+
+        //济南的隐藏掉动态
+//        mBottom_img[1].setVisibility(View.GONE);
+
+        mBottom_img[position].setSelected(true);
+        mBottom_text[position].setSelected(true);
+        // 设置底部导航栏点击事件
+        findViewById(R.id.bottom_1).setOnClickListener(this);
+        findViewById(R.id.bottom_2).setOnClickListener(this);
+        findViewById(R.id.bottom_3).setOnClickListener(this);
+        // fragment管理器初始化
+        mFragmentManager = getSupportFragmentManager();
+        // 开启事务
+        mFragmentTransaction = mFragmentManager.beginTransaction();
+        // 初始化主页面
+        mHomeFragment = MainHomeFragment.newInstance(bHomeUrl);
+        mFragmentTransaction.add(R.id.main_fragment, mHomeFragment);
+        mContent = mHomeFragment;
+        mFragmentTransaction.commit();
+        changeBottom(0);
+    }
+
+    private void init() {
+    }
+
+
+    // 底部导航栏选择切换
+    public static void changeBottom(int i) {
+        for (int j = 0; j < mBottom_img.length; j++) {
+            if (j == i) {
+                mBottom_img[j].setSelected(true);
+                mBottom_text[j].setSelected(true);
+                position = i;
+            } else {
+                mBottom_img[j].setSelected(false);
+                mBottom_text[j].setSelected(false);
+            }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        if (!isExit) {
+            isExit = true;
+            IToast.show(getApplicationContext(), "再按一次退出程序");
+            // 利用handler延迟发送更改状态信息
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        } else {
+            Intent intent = new Intent("com.zt.capacity.base.BaseActivity");
+            intent.putExtra("closeAll", 1);
+            sendBroadcast(intent);//发送广播
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        mFragmentTransaction = mFragmentManager.beginTransaction();
+        int i = view.getId();
+        if (i == R.id.bottom_1) {
+            if (position == 0) {
+                return;
+            }
+            if (mHomeFragment == null) {
+                mHomeFragment = MainHomeFragment.newInstance(bHomeUrl);
+            }
+            mFragmentTransaction.replace(R.id.main_fragment, mHomeFragment);
+            mFragmentTransaction.commit();
+            Log.d("position", "0");
+            changeBottom(0);
+
+        } else if (i == R.id.bottom_2) {
+            if (position == 1) {
+                return;
+            }
+            if (mDynamicFragment == null) {
+                mDynamicFragment = new MainDynamicFragment();
+            }
+            mFragmentTransaction.replace(R.id.main_fragment, mDynamicFragment);
+            mFragmentTransaction.commit();
+            changeBottom(1);
+
+
+        } else if (i == R.id.bottom_3) {
+            if (position == 2) {
+                return;
+            }
+            if (mMyFragment == null) {
+                mMyFragment = new MainMyFragment();
+                mMyFragment.setContext(this);
+            }
+            mFragmentTransaction.replace(R.id.main_fragment, mMyFragment);
+            mFragmentTransaction.commit();
+            changeBottom(2);
+
+
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("JNShouYe"); //统计页面(仅有Activity的应用中SDK自动调用，不需要单独写。"SplashScreen"为页面名称，可自定义)
+        MobclickAgent.onResume(this);          //统计时长
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("JNShouYe"); // （仅有Activity的应用中SDK自动调用，不需要单独写）保证 onPageEnd 在onPause 之前调用,因为 onPause 中会保存信息。"SplashScreen"为页面名称，可自定义
+        MobclickAgent.onPause(this);
+    }
+}

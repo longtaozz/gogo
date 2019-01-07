@@ -1,0 +1,29 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zt.capacity.lib.speech">
+
+    <application>
+        <meta-data
+            android:name="com.baidu.speech.APP_ID"
+            android:value="11164013" />
+        <meta-data
+            android:name="com.baidu.speech.API_KEY"
+            android:value="NQmvlmBXFY6fSKVg6S4IcjnG" />
+        <meta-data
+            android:name="com.baidu.speech.SECRET_KEY"
+            android:value="41Set9KVD46Si91pkKuULRwGWAUPDGuk" />
+        <!-- 请确认集成后的包名是否正确，本demo的包名是com.baidu.speech.recognizerdemo，在build.gradle文件中查看 -->
+        <service
+            android:name="com.baidu.speech.VoiceRecognitionService"
+            android:exported="false" />
+
+        <!--语音demo-->
+        <activity
+            android:name=".activity.SpeechActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--弹出层-->
+        <activity
+            android:name=".activity.VoiceMaskActivity"
+            android:screenOrientation="portrait"></activity>
+
+    </application>
+</manifest>

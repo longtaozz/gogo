@@ -1,0 +1,46 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zt.capacity.jinan_yunshu" >
+
+<application>
+
+        <!--&lt;!&ndash;主界面&ndash;&gt;-->
+        <activity
+            android:name="com.zt.capacity.jinan_yunshu.activity.MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--&lt;!&ndash;下发指令&ndash;&gt;-->
+        <activity
+            android:name="com.zt.capacity.jinan_yunshu.activity.InstructionActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--&lt;!&ndash;通用webactivity界面&ndash;&gt;-->
+        <activity
+            android:name="com.zt.capacity.jinan_yunshu.activity.WebViewActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <!--违章信息查询-->
+        <activity
+            android:name="com.zt.capacity.jinan_yunshu.activity.InputVehicleActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--违章信息详情-->
+        <activity
+            android:name="com.zt.capacity.jinan_yunshu.activity.ViolationQueryActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <!--消息通知-->
+        <activity
+            android:name="com.zt.capacity.jinan_yunshu.activity.NotificationActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <!--消息通知详情-->
+        <activity
+            android:name="com.zt.capacity.jinan_yunshu.activity.NotificationNoticeActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <!--我的-->
+        <activity
+            android:name="com.zt.capacity.jinan_yunshu.activity.MainMyActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+</application>
+
+</manifest>

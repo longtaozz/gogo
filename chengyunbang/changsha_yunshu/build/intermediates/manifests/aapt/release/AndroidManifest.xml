@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zt.capacity.changsha_yunshu"
+    android:versionCode="5"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="23" />
+
+    <application>
+
+        <!-- &lt;!&ndash;主界面&ndash;&gt; -->
+        <activity
+            android:name="com.zt.capacity.changsha_yunshu.activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <!-- &lt;!&ndash;通用webactivity界面&ndash;&gt; -->
+        <activity
+            android:name="com.zt.capacity.changsha_yunshu.activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

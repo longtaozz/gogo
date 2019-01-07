@@ -1,0 +1,159 @@
+package com.zt.capacity.data;
+
+
+import com.zt.capacity.common.data.Web;
+
+public class ZtUrl {
+
+    //更新
+    public final static String QUERYAPPUPDATEINFO = "common/project/version/queryAppUpdateInfo";
+
+    //日志上传
+    public final static String UPLOADAPPLOG = "common/project/upload/uploadAppLog";
+
+    //所有车辆实时位置信息
+    public final static String SELECTALLMYCAR =  Web.projectJN + "carruntime/selectCarRuntime";
+    //车辆信息
+    public final static String CARS =  Web.projectJN + "car/selectCarAndAll";
+
+    //车辆信息
+    public final static String SELECTNUMBERPLATE =  Web.projectJN + "car/selectNumberPlate";
+    //登录
+    public final static String LOGIN = "common/project/user/login";
+
+    //获取权限信息
+    public final static String ROLE = "user/role";
+
+    //获取车辆历史轨迹
+    public final static String CARHISTORYS =  Web.projectJN + "history/selectCarHistory";
+
+    //疑点查车
+    public final static String CIRCULAR =  Web.projectJN + "history/circular";
+
+    //id获取工地围栏信息
+    public final static String FINDCOSAPPFENCEBYID =  Web.projectJN + "enclosure/findCosappFenceById";
+
+    //id获取消纳场围栏信息
+    public final static String FINDUNLOADINGFENCEBYID =  Web.projectJN + "enclosure/findUnloadingFenceById";
+
+    //指令下发历史信息
+    public final static String FINDACTIONLIS =  Web.projectJN + "action/findActionList";
+
+    //上传指令信息
+    public final static String SENDACTION =  Web.projectJN + "action/sendAction";
+    //车辆信息
+    public final static String STATISTICSINFOTOTAL = Web.projectJN + "carruntime/statisticsInfoTotal";
+    //工地围栏接口
+    public final static String CARRUNTIMEALL = Web.projectJN + "carruntime/carRuntimeAll";
+    //消纳场围栏接口
+    public final static String GETUNLOADINGGPSFENCE = Web.projectJN + "gpsfence/getUnloadingGpsfence";
+    //工地围栏接口
+    public final static String GETCONSAPPGPSFENCE = Web.projectJN + "gpsfence/getConsappGpsfence";
+
+    //前端页面
+    //首页
+    public final static String MAINHOME = Web.htmlIP + "/html/index.html?token=" + Web.getToken();
+    //济南渣务厅首页
+    public final static String JINANZHENGFU = Web.htmlIP + "/html/jinanzhengfu.html?token=" + Web.getToken();
+    //位置采集
+
+    public final static String LOCATIONINDEX = "http://118.190.42.124:8080/zhatu/foreign/consapp/locationIndex";
+
+    //电子联单
+    public final static String ORDER = Web.htmlIP + "/html/order.html?token=" + Web.getToken();
+
+    //济南的问题反馈
+    public final static String JINANQUESTION = Web.htmlIP + "/html/jinanquestion.html?token=" + Web.getToken();
+
+    //公用的问题反馈
+    public final static String QUESTION = Web.htmlIP + "/html/question.html?token=" + Web.getToken();
+
+
+    //运输公司渣务厅(济南)
+    public final static String COMPANYZHAWUTING = Web.htmlIP + "/html/jnzwt-company.html?token=" + Web.getToken();
+
+    //运输公司渣务厅(济南)
+    public final static String COMPANYCSZWT = Web.htmlIP + "/html/cszwt-company.html?token=" + Web.getToken();
+
+    //搬家搬过来的
+
+
+    //所有车辆实时位置信息
+    public final static String CS_SELECTALLMYCAR = Web.projectCS + "carRuntimes/selectCarRuntime";
+    //车辆实时位置
+    public final static String CARRUNTIMES = Web.projectCS + "carRuntimes/selectCarRuntime";
+    //车辆信息
+    public final static String CS_CARS = Web.projectCS + "car/selectCarByCarNumber";
+
+
+    //公司所有车辆
+    public final static String SELECTCARRUNTIME = Web.projectCS + "car/selectAllMyCar";
+
+    //办证信息（小证信息）
+    public final static String SELECTBYPARAM = Web.projectCS + "card/selectCardByTranCarids";
+
+    //违规信息
+    public final static String SELECTCARILLEGAL = Web.projectCS + "illegal/selectCarIllegal";
+
+    //添加私人车辆
+    public final static String INSERTPRIVATECAR = Web.projectCS + "privateCar/insertPrivateCar";
+
+    //查询私家车
+    public final static String THEQUERY = Web.projectCS + "privateCar/selectPrivateCarById";
+    //    public final static String CARS = "car";
+//查询私家车
+    public final static String DELETETHEQUERY = Web.projectCS + "privateCar/deletePrivateCar";
+
+
+    //查询设备异常统计
+    public final static String QUERYDEVEXCEPTIONCOUNT = Web.projectCS + "devException/queryDevExceptionCount";
+    //查询设备异常详细信息
+    public final static String QUERYDEVEXCEPTIONDETAILED = Web.projectCS + "devException/queryDevExceptionDetailed";
+
+    //查询违规地图展示信息
+    public final static String QUERYAUTOANALYSISDATAMAP = Web.projectCS + "autoAnData/queryAutoAnalysisdataMap";
+
+
+    public final static String USERS_LOGIN = Web.projectCS + "users/login";
+
+    public final static String CS_CARHISTORYS = Web.projectCS + "history/selectCarHistory";//获取车辆历史轨迹
+
+    public final static String CONSAPPS = Web.projectCS + "consapp/getConsappInfo";
+    //首页数据信息
+    public final static String VEHICLE = Web.projectCS + "totalCount/selectTotalCount";
+
+    //版本信息
+    public final static String INFORMATION = Web.projectCS + "appUpdate/queryAppUpdateInfo";
+
+    //breaner
+    public final static String NAVIGATION = Web.projectCS + "userMenu/selectUserMenuNav";
+
+    public final static String CHANGE = Web.projectCS + "users/modifyUserPwd";
+
+    //页面接口
+    //许可证查询
+    public final static String CERTIFICATES = Web.htmlIP + "changsha/html/certificates.html?token=";
+    //违规查询
+    public final static String ILLEGAL = Web.htmlIP + "changsha/html/illegalMonitoring.html?token=";
+    //油耗查询
+    public final static String OILLOSS = Web.htmlIP + "changsha/html/oilloss.html?token=";
+    //里程查询
+    public final static String KM = Web.htmlIP + "changsha/html/km.html?token=";
+    //服务指南
+    public final static String SERVICE = Web.htmlIP + "changsha/html/service.html";
+    //资讯详情
+    public final static String NEW = Web.htmlIP + "changsha/html/new.html";
+    //意见反馈
+
+    public final static String CS_QUESTION = Web.htmlIP + "changsha/html/question.html?token=";
+
+    //关于我们
+    public final static String ABOUT = Web.htmlIP + "changsha/html/about.html";
+    //申请办证
+
+    public final static String APPLICATIONCERTIFICATE = Web.htmlIP + "changsha/html/applicationCertificate.html?token=";
+
+    //经营报表
+
+    public final static String ATTENDANCE = Web.htmlIP + "changsha/html/attendance.html?token=";
+}

@@ -1,0 +1,109 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/black_one</item>
+        <item name="colorPrimary">@color/black_one</item>
+    </style>
+
+
+    <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 自定义loading dialog -->
+    <style name="loading_dialog" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
+
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+
+    <style name="time_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
+    <style name="translucent">
+        <item name="android:windowBackground">@color/translucent_background</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+    <!-- Base application theme. -->
+    <style name="Bubble.TextAppearance.Dark" parent="android:TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#ff7f7f7f</item>
+    </style>
+
+    <style name="Bubble.TextAppearance.Light" parent="Bubble.TextAppearance.Dark">
+        <item name="android:textColor">#ffeeeeee</item>
+    </style>
+
+    <style name="ClusterIcon.TextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">#ffeeeeee</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!--进度条-->
+
+    <style name="jrt_seekbar_style" parent="Base.Widget.AppCompat.SeekBar">
+        <item name="android:progressDrawable">@drawable/my_seekbar_style</item>
+        <item name="android:thumb">@drawable/seekbar_thumb</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
+
+    </style>
+
+    <style name="AnimHead" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/head_in</item>
+        <item name="android:windowExitAnimation">@anim/head_out</item>
+    </style>
+    <!-- 显示大图片 -->
+    <style name="ImageScale" parent="android:Theme.Black.NoTitleBar">
+        <item name="android:windowAnimationStyle">@style/AnimHead</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowFullscreen">true</item>
+        <!-- 设置全屏显示 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">false</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 模糊 -->
+    </style>
+
+</resources>

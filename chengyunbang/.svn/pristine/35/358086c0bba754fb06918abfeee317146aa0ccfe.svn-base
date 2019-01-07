@@ -1,0 +1,22 @@
+{
+  "buildFiles": [
+    "F:\\androidStudio\\newApp\\capacity\\lib_common\\CMakeLists.txt",
+    "F:\\androidStudio\\newApp\\capacity\\lib_common\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\lt\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build F:\\androidStudio\\newApp\\capacity\\lib_common\\.externalNativeBuild\\cmake\\release\\armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "hyper_lpr-Release-armeabi-v7a": {
+      "artifactName": "hyper_lpr",
+      "buildCommand": "C:\\Users\\lt\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build F:\\androidStudio\\newApp\\capacity\\lib_common\\.externalNativeBuild\\cmake\\release\\armeabi-v7a --target hyper_lpr",
+      "abi": "armeabi-v7a",
+      "output": "F:\\androidStudio\\newApp\\capacity\\lib_common\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libhyper_lpr.so"
+    },
+    "lib_opencv-Release-armeabi-v7a": {
+      "artifactName": "lib_opencv",
+      "abi": "armeabi-v7a",
+      "output": "F:\\androidStudio\\newApp\\capacity\\lib_common\\src\\main\\cpp\\..\\jniLibs\\armeabi-v7a\\libopencv_java3.so"
+    }
+  }
+}

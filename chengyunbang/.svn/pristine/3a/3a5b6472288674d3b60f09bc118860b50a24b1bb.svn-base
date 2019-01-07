@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginLeft="@dimen/dp_16"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_484848"
+            android:textSize="@dimen/text_14"
+            android:text="工 程 名 称："/>
+
+        <TextView
+            android:id="@+id/gather_map_proname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/color_484848"
+            android:textSize="@dimen/text_14"
+            android:layout_marginRight="@dimen/dp_16"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text=""/>
+    </LinearLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/dp_5"></com.baidu.mapapi.map.MapView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/gather_map_submit"
+            android:layout_width="@dimen/dp_75"
+            android:layout_height="wrap_content"
+            android:background="@drawable/jn_zwt_relation_button"
+            android:gravity="center"
+            android:text="确定"/>
+        <TextView
+            android:id="@+id/gather_map_back"
+            android:layout_width="@dimen/dp_75"
+            android:layout_height="wrap_content"
+            android:background="@drawable/jn_zwt_relation_button"
+            android:layout_marginLeft="@dimen/dp_26"
+            android:gravity="center"
+            android:text="返回"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

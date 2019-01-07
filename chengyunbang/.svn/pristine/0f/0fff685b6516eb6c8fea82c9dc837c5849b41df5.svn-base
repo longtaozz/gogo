@@ -1,0 +1,136 @@
+package com.zt.capacity.jinan_zwt.request.consapp;
+
+import android.util.Log;
+
+import com.baidu.mapapi.model.LatLng;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.zt.capacity.common.data.Web;
+import com.zt.capacity.common.data.listener.MyNetCall;
+import com.zt.capacity.common.data.listener.OnNetResultListener;
+import com.zt.capacity.common.util.map.TransformationUtil;
+import com.zt.capacity.jinan_zwt.bean.ConsappVoS;
+import com.zt.capacity.jinan_zwt.data.JN_ZWT_Url;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.Call;
+
+/**
+ * Created by Administrator on 2018/4/17.
+ */
+
+public class ConsappManager extends Web implements IConsappManager {
+    private static ConsappManager consappManager = null;
+    Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+
+    /**
+     * code为1链接接有参数拦截，2没有参数拦截，3不拦截
+     *
+     * @param url
+     */
+    protected ConsappManager(String url) {
+        super(url, 3);
+    }
+
+
+    public static IConsappManager getInterface(Integer state) {
+        if (state == 1) {
+            //位置采集
+            consappManager = new ConsappManager(JN_ZWT_Url.GETCONSAPPBYPOSITION);
+            return (IConsappManager) consappManager;
+        }
+        if (state == 2) {
+            //位置采集
+            consappManager = new ConsappManager(JN_ZWT_Url.SAVECONSAPPBYPOSITION);
+            return (IConsappManager) consappManager;
+        }
+        return null;
+    }
+
+
+    //JN位置采集信息查询
+    @Override
+    public void getGatherListConsapp(double redius, final OnNetResultListener listener) {
+
+        LatLng latLng=getPoint();
+        latLng= TransformationUtil.baiduToGps(latLng);
+        //分页信息
+        Map<String, Object> page = new HashMap<String, Object>();
+        page.put("current", 1);
+        page.put("size", 1000);
+//        page.put("lng", latLng.longitude);
+//        page.put("lat", latLng.latitude);
+        page.put("lng", 116.892796);
+        page.put("lat", 36.584413);
+        page.put("redius", redius);
+
+        postQueryJson(page, new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                if (code == 0) {
+                    try {
+                        ConsappVoS consappVos = gson.fromJson(jData, ConsappVoS.class);
+                        listener.onResult(code, message, consappVos.getRecords());
+                    } catch (Exception e) {
+                        Log.e("msg", "解析错误");
+                        listener.onResult(1, "解析错误", null);
+                    }
+
+
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.e("err", e.toString());
+                listener.onResult(1, "服务器错误", "");
+            }
+        });
+
+    }
+
+
+    //JN位置采集信息上传
+    @Override
+    public void inputGatherData(String cityId, String consappId, String licNumber, String posX, String PosY, final OnNetResultListener listener) {
+
+        String centerPos = posX + "," + PosY;
+        //分页信息
+        Map<String, Object> page = new HashMap<String, Object>();
+        Log.e("cityId.......",cityId);
+        page.put("cityId", cityId == null ? "" : cityId);
+        page.put("consappId", consappId);
+        page.put("centerPos", centerPos);
+        page.put("licNumber", licNumber);
+
+        postQueryJson(page, new MyNetCall() {
+            @Override
+            public void success(Integer code, Object data, String message, String token) {
+                String jData = data.toString();
+                if (code == 0) {
+                    listener.onResult(code, message, data.toString());
+                } else {
+                    Log.e("msg", jData);
+                    listener.onResult(code, message, jData);
+                }
+
+            }
+
+            @Override
+            public void failed(Call call, IOException e) {
+                Log.e("err", e.toString());
+                listener.onResult(1, "服务器错误", "");
+            }
+        });
+
+    }
+
+}

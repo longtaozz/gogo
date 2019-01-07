@@ -1,0 +1,71 @@
+package com.zt.capacity.jinan_yunshu.fragment;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+
+import com.umeng.analytics.MobclickAgent;
+import com.zt.capacity.common.base.BaseWebViewFragment;
+import com.zt.capacity.jinan_yunshu.R;
+import com.zt.capacity.jinan_yunshu.util.JavaScriptinterface;
+
+/**
+ * 主页
+ */
+public class MainHomeFragment extends BaseWebViewFragment {
+    public WebView webView;
+    private View view;
+
+    private String url;
+
+
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.base_web_view, null);
+
+        webView = view.findViewById(R.id.myweb);
+
+        init();
+
+        if(getArguments() != null){
+            url = getArguments().getString("url");
+        }
+
+//        Web.getUser().getUnloadingId()
+        webViewCreat(url, webView,new JavaScriptinterface(getActivity()));
+
+        return view;
+    }
+
+    private void init() {
+    }
+
+    public static MainHomeFragment newInstance(String url) {
+        
+        Bundle args = new Bundle();
+        args.putString("url", url);
+        MainHomeFragment fragment = new MainHomeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("ShouYe"); //统计页面，"MainScreen"为页面名称，可自定义
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("ShouYe");
+    }
+
+}

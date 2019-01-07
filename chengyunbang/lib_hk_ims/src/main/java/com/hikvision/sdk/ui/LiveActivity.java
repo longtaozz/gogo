@@ -1,0 +1,840 @@
+package com.hikvision.sdk.ui;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Toast;
+
+import com.hikvision.sdk.R;
+import com.hikvision.sdk.VMSNetSDK;
+import com.hikvision.sdk.app.Constants;
+import com.hikvision.sdk.consts.SDKConstant.LiveSDKConstant;
+import com.hikvision.sdk.consts.SDKConstant.PTZCommandConstant;
+import com.hikvision.sdk.net.bean.CustomRect;
+import com.hikvision.sdk.net.bean.SubResourceNodeBean;
+import com.hikvision.sdk.net.business.OnVMSNetSDKBusiness;
+import com.hikvision.sdk.utils.CNetSDKLog;
+import com.hikvision.sdk.utils.FileUtils;
+import com.hikvision.sdk.utils.UIUtils;
+import com.hikvision.sdk.widget.CustomSurfaceView;
+import com.hikvision.sdk.widget.CustomSurfaceView.OnZoomListener;
+
+import java.lang.ref.WeakReference;
+
+
+/**
+ * <p>实时预览Activity</p>
+ *
+ * @author zhangwei59 2017/3/10 14:30
+ * @version V1.0.0
+ */
+public class LiveActivity extends Activity implements View.OnClickListener, OnCheckedChangeListener, SurfaceHolder.Callback {
+
+    /**
+     * 获取监控点信息成功
+     */
+    private static final int GET_CAMERA_INFO_SUCCESS = 1;
+    /**
+     * 获取监控点信息失败
+     */
+    private static final int GET_CAMERA_INFO_FAILURE = 2;
+    /**
+     * 开启语音对讲失败
+     */
+    private static final int OPEN_TALK_FAILURE = 3;
+    /**
+     * 开启语音对讲成功
+     */
+    private static final int OPEN_TALK_SUCCESS = 4;
+    /**
+     * 关闭语音对讲
+     */
+    private static final int CLOSE_TALK_SUCCESS = 5;
+    /**
+     * 预览控件
+     */
+    private CustomSurfaceView mSurfaceView = null;
+    /**
+     * 预览控制菜单
+     */
+    private LinearLayout mPreviewLayout;
+    /**
+     * 录像按钮
+     */
+    private Button mRecordBtn;
+    /**
+     * 音频按钮
+     */
+    private Button mAudioBtn;
+    /**
+     * 语音对讲按钮
+     */
+    private Button mTalkBtn;
+    /**
+     * 云台控制
+     */
+    private Button mPtzBtn;
+    /**
+     * 云台控制菜单
+     */
+    private LinearLayout mPtzLayout;
+    /**
+     * 云台控制命令组one
+     */
+    private RadioGroup mPtzRadioGroup;
+    /**
+     * 云台控制命令组two
+     */
+    private RadioGroup mPtzTwoRadioGroup;
+    /**
+     * 云台控制命令组three
+     */
+    private RadioGroup mPtzThreeRadioGroup;
+    /**
+     * 云台控制命令组four
+     */
+    private RadioGroup mPtzFourRadioGroup;
+    /**
+     * 预置点输入框
+     */
+    private EditText mPresetEdit;
+    /**
+     * 电子放大控件
+     */
+    private CheckBox mZoom;
+
+    /**
+     * 是否正在云台控制
+     */
+    private boolean mIsPtzStart;
+    /**
+     * 云台控制命令
+     */
+    private int mPtzCommand;
+    /**
+     * 码流类型
+     */
+    private int mStreamType = LiveSDKConstant.MAIN_HIGH_STREAM;
+    /**
+     * 音频是否开启
+     */
+    private boolean mIsAudioOpen;
+    /**
+     * 语音对讲是否开启
+     */
+    private boolean mIsTalkOpen;
+    /**
+     * 是否正在录像
+     */
+    private boolean mIsRecord;
+    /**
+     * 监控点资源
+     */
+    private SubResourceNodeBean mCamera = null;
+    /**
+     * 视图更新处理Handler
+     */
+    private Handler mHandler = null;
+    /**
+     * 对讲通道数目
+     */
+    private int talkChannels;
+    /**
+     * 临时选择对讲通道数目
+     */
+    private String channelNoTemp;
+    /**
+     * 最终选择对讲通道数目
+     */
+    private int channelNo;
+
+    /**
+     * 播放窗口1
+     */
+    private int PLAY_WINDOW_ONE = 1;
+
+    /**
+     * 视图更新处理器
+     */
+    private static class MyHandler extends Handler {
+
+        WeakReference<LiveActivity> mActivityReference;
+
+        MyHandler(LiveActivity activity) {
+            mActivityReference = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            LiveActivity activity = mActivityReference.get();
+            if (activity != null) {
+                switch (msg.what) {
+                    case GET_CAMERA_INFO_SUCCESS:
+                        UIUtils.cancelProgressDialog();
+                        UIUtils.showToast(activity, R.string.rtsp_success);
+                        break;
+                    case GET_CAMERA_INFO_FAILURE:
+                        UIUtils.cancelProgressDialog();
+                        UIUtils.showToast(activity, R.string.rtsp_fail);
+                        break;
+                    case OPEN_TALK_FAILURE:
+                        activity.mIsTalkOpen = false;
+                        UIUtils.showToast(activity, R.string.start_Talk_fail);
+                        activity.mTalkBtn.setText(R.string.start_Talk);
+                        break;
+                    case OPEN_TALK_SUCCESS:
+                        activity.mIsTalkOpen = true;
+                        UIUtils.showToast(activity, R.string.start_Talk_success);
+                        activity.mTalkBtn.setText(R.string.stop_Talk);
+                        break;
+                    case CLOSE_TALK_SUCCESS:
+                        activity.mIsTalkOpen = false;
+                        UIUtils.showToast(activity, R.string.stop_Talk);
+                        activity.mTalkBtn.setText(R.string.start_Talk);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ac_live);
+        initData();
+        initView();
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        mCamera = (SubResourceNodeBean) getIntent().getSerializableExtra(Constants.IntentKey.CAMERA);
+        mHandler = new MyHandler(this);
+    }
+
+    /**
+     * 初始化视图
+     */
+    private void initView() {
+        mPreviewLayout = (LinearLayout) findViewById(R.id.ll_preview_control);
+        mSurfaceView = (CustomSurfaceView) findViewById(R.id.surfaceView);
+        mSurfaceView.getHolder().addCallback(this);
+
+        //开始播放按钮
+        findViewById(R.id.live_start).setOnClickListener(this);
+
+        //停止播放按钮
+        findViewById(R.id.live_stop).setOnClickListener(this);
+
+        //抓拍按钮
+        findViewById(R.id.live_capture).setOnClickListener(this);
+
+        //录像按钮
+        mRecordBtn = (Button) findViewById(R.id.liveRecordBtn);
+        mRecordBtn.setOnClickListener(this);
+        mRecordBtn.setText(R.string.start_record);
+
+        //音频按钮
+        mAudioBtn = (Button) findViewById(R.id.liveAudioBtn);
+        mAudioBtn.setOnClickListener(this);
+        mAudioBtn.setText(R.string.start_Audio);
+
+        //语音对讲按钮
+        mTalkBtn = (Button) findViewById(R.id.liveTalkBtn);
+        mTalkBtn.setOnClickListener(this);
+        mTalkBtn.setText(R.string.start_Talk);
+
+        //码流切换
+        RadioGroup mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        mRadioGroup.setOnCheckedChangeListener(this);
+        mStreamType = LiveSDKConstant.MAIN_HIGH_STREAM;
+
+        //云台控制UI
+        mPtzLayout = (LinearLayout) findViewById(R.id.ll_ptz_control);
+        findViewById(R.id.show_ptz).setOnClickListener(this);
+        findViewById(R.id.hide_ptz).setOnClickListener(this);
+        mPtzBtn = (Button) findViewById(R.id.ptz_start);
+        mPtzBtn.setOnClickListener(this);
+        mPtzRadioGroup = (RadioGroup) findViewById(R.id.radioGroup_ptz);
+        mPtzRadioGroup.setOnCheckedChangeListener(this);
+        mPtzTwoRadioGroup = (RadioGroup) findViewById(R.id.radioGroup_ptz_two);
+        mPtzTwoRadioGroup.setOnCheckedChangeListener(this);
+        mPtzThreeRadioGroup = (RadioGroup) findViewById(R.id.radioGroup_ptz_three);
+        mPtzThreeRadioGroup.setOnCheckedChangeListener(this);
+        mPtzFourRadioGroup = (RadioGroup) findViewById(R.id.radioGroup_ptz_four);
+        mPtzFourRadioGroup.setOnCheckedChangeListener(this);
+        mPresetEdit = (EditText) findViewById(R.id.et_preset);
+        mPtzCommand = PTZCommandConstant.CUSTOM_CMD_UP;
+        mPtzTwoRadioGroup.clearCheck();
+        mPtzThreeRadioGroup.clearCheck();
+        mPtzFourRadioGroup.clearCheck();
+
+        //电子放大
+        mZoom = (CheckBox) findViewById(R.id.zoom);
+        mZoom.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        int i = v.getId();
+        if (i == R.id.live_start) {//开始预览按钮点击操作
+
+            boolean b = VMSNetSDK.getInstance().checkLivePermission(mCamera);
+            Log.e("预览权限:", b + "");
+
+            if (null == mCamera) {
+                mHandler.sendEmptyMessage(GET_CAMERA_INFO_FAILURE);
+                return;
+            }
+            UIUtils.showLoadingProgressDialog(this, R.string.loading_process_tip);
+            new Thread() {
+                @Override
+                public void run() {
+                    Looper.prepare();
+                    Log.e("窗口索引", PLAY_WINDOW_ONE + "");
+                    Log.e("监控点系统编码", mCamera.getSysCode());
+                    Log.e("预览控件", mSurfaceView.toString());
+                    Log.e("预览清晰度", mStreamType + "");
+                    VMSNetSDK.getInstance().startLiveOpt(PLAY_WINDOW_ONE, mCamera.getSysCode(), mSurfaceView, mStreamType, new OnVMSNetSDKBusiness() {
+                        @Override
+                        public void onFailure() {
+                            mHandler.sendEmptyMessage(GET_CAMERA_INFO_FAILURE);
+                        }
+
+                        @Override
+                        public void onSuccess(Object obj) {
+                            mHandler.sendEmptyMessage(GET_CAMERA_INFO_SUCCESS);
+                            CNetSDKLog.info("获取监控点详情成功： " +
+                                    VMSNetSDK.getInstance().getLiveCameraInfo(PLAY_WINDOW_ONE).toString());
+                        }
+                    });
+                    Looper.loop();
+                }
+            }.start();
+
+        } else if (i == R.id.live_stop) {//停止预览按钮点击操作
+            boolean stopLiveResult = VMSNetSDK.getInstance().stopLiveOpt(1);
+            if (stopLiveResult) {
+                UIUtils.showToast(this, R.string.live_stop_success);
+            }
+
+        } else if (i == R.id.live_capture) {//抓拍按钮点击操作
+            int opt = VMSNetSDK.getInstance().captureLiveOpt(PLAY_WINDOW_ONE, FileUtils.getPictureDirPath().getAbsolutePath(), "Picture" + System.currentTimeMillis() + ".jpg");
+            switch (opt) {
+                case LiveSDKConstant.SD_CARD_UN_USABLE:
+                    UIUtils.showToast(this, R.string.sd_card_fail);
+                    break;
+                case LiveSDKConstant.SD_CARD_SIZE_NOT_ENOUGH:
+                    UIUtils.showToast(this, R.string.sd_card_not_enough);
+                    break;
+                case LiveSDKConstant.CAPTURE_FAILED:
+                    UIUtils.showToast(this, R.string.capture_fail);
+                    break;
+                case LiveSDKConstant.CAPTURE_SUCCESS:
+                    UIUtils.showToast(this, R.string.capture_success);
+                    break;
+            }
+
+        } else if (i == R.id.liveRecordBtn) {//录像按钮点击操作
+            if (!mIsRecord) {
+                int recordOpt = VMSNetSDK.getInstance().startLiveRecordOpt(PLAY_WINDOW_ONE, FileUtils.getVideoDirPath().getAbsolutePath(), "Video" + System.currentTimeMillis() + ".mp4");
+                switch (recordOpt) {
+                    case LiveSDKConstant.SD_CARD_UN_USABLE:
+                        UIUtils.showToast(this, R.string.sd_card_fail);
+                        break;
+                    case LiveSDKConstant.SD_CARD_SIZE_NOT_ENOUGH:
+                        UIUtils.showToast(this, R.string.sd_card_not_enough);
+                        break;
+                    case LiveSDKConstant.RECORD_FAILED:
+                        mIsRecord = false;
+                        UIUtils.showToast(this, R.string.start_record_fail);
+                        break;
+                    case LiveSDKConstant.RECORD_SUCCESS:
+                        mIsRecord = true;
+                        UIUtils.showToast(this, R.string.start_record_success);
+                        mRecordBtn.setText(R.string.stop_record);
+                        break;
+                }
+            } else {
+                VMSNetSDK.getInstance().stopLiveRecordOpt(PLAY_WINDOW_ONE);
+                mIsRecord = false;
+                UIUtils.showToast(this, R.string.stop_record_success);
+                mRecordBtn.setText(R.string.start_record);
+            }
+
+        } else if (i == R.id.liveAudioBtn) {//音频按钮点击操作
+            if (mIsAudioOpen) {
+                boolean audioOpt = VMSNetSDK.getInstance().stopLiveAudioOpt(PLAY_WINDOW_ONE);
+                if (audioOpt) {
+                    mIsAudioOpen = false;
+                    UIUtils.showToast(this, R.string.stop_Audio);
+                    mAudioBtn.setText(R.string.start_Audio);
+                }
+            } else {
+                boolean ret = VMSNetSDK.getInstance().startLiveAudioOpt(PLAY_WINDOW_ONE);
+                if (!ret) {
+                    mIsAudioOpen = false;
+                    UIUtils.showToast(LiveActivity.this, R.string.start_Audio_fail);
+                    mAudioBtn.setText(R.string.start_Audio);
+                } else {
+                    mIsAudioOpen = true;
+                    // 开启音频成功，并不代表一定有声音，需要设备开启声音。
+                    UIUtils.showToast(LiveActivity.this, R.string.start_Audio_success);
+                    mAudioBtn.setText(R.string.stop_Audio);
+                }
+            }
+
+        } else if (i == R.id.liveTalkBtn) {
+            if (mIsTalkOpen) {
+                VMSNetSDK.getInstance().closeLiveTalkOpt(PLAY_WINDOW_ONE);
+                mHandler.sendEmptyMessage(CLOSE_TALK_SUCCESS);
+            } else {
+                talkChannels = VMSNetSDK.getInstance().getTalkChannelsOpt(PLAY_WINDOW_ONE);
+                if (talkChannels <= 0) {
+                    UIUtils.showToast(LiveActivity.this, R.string.no_Talk_channels);
+                } else if (talkChannels > 1) {
+                    showChannelSelectDialog();
+                } else {
+                    channelNo = 1;
+                    startTalk();
+                }
+            }
+
+        } else if (i == R.id.zoom) {//电子放大选中事件
+            boolean isZoom = mZoom.isChecked();
+            if (isZoom) {
+                mSurfaceView.setOnZoomListener(new OnZoomListener() {
+                    @Override
+                    public void onZoomChange(CustomRect original, CustomRect current) {
+                        VMSNetSDK.getInstance().zoomLiveOpt(PLAY_WINDOW_ONE, true, original, current);
+                    }
+                });
+            } else {
+                mSurfaceView.setOnZoomListener(null);
+                VMSNetSDK.getInstance().zoomLiveOpt(PLAY_WINDOW_ONE, false, null, null);
+            }
+
+        } else if (i == R.id.ptz_start) {//云台控制按钮点击方法
+            ptzBtnOnClick();
+
+        } else if (i == R.id.show_ptz) {
+            optControlLayout(true);
+
+        } else if (i == R.id.hide_ptz) {
+            optControlLayout(false);
+
+        } else {
+        }
+    }
+
+    /***
+     * 云台控制按钮点击
+     */
+    private void ptzBtnOnClick() {
+        if (VMSNetSDK.getInstance().checkPtzPermission(mCamera)) {
+            if (mIsPtzStart) {
+                if (mPtzCommand != PTZCommandConstant.CUSTOM_CMD_GOTO_PRESET
+                        && mPtzCommand != PTZCommandConstant.CUSTOM_CMD_CLE_PRESET
+                        && mPtzCommand != PTZCommandConstant.CUSTOM_CMD_SET_PRESET) {
+                    //停止云台操作
+                    VMSNetSDK.getInstance().sendPTZCtrlCommand(PLAY_WINDOW_ONE, true, PTZCommandConstant.ACTION_STOP, mPtzCommand, 256, new OnVMSNetSDKBusiness() {
+                        @Override
+                        public void onFailure() {
+                            Toast.makeText(LiveActivity.this, R.string.ptz_fail, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onSuccess(Object obj) {
+                            Toast.makeText(LiveActivity.this, R.string.ptz_success, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    //停止预置点操作
+                    String point = mPresetEdit.getText().toString().trim();
+                    if (point.length() > 0) {
+                        final Integer pointNum = Integer.valueOf(point);
+                        if (pointNum > 0 && pointNum <= 256) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    VMSNetSDK.getInstance().sendPTZCtrlCommand(PLAY_WINDOW_ONE, false, PTZCommandConstant.ACTION_STOP, mPtzCommand, pointNum, new OnVMSNetSDKBusiness() {
+                                        @Override
+                                        public void onFailure() {
+                                            Toast.makeText(LiveActivity.this, R.string.ptz_fail, Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onSuccess(Object obj) {
+                                            Toast.makeText(LiveActivity.this, R.string.ptz_success, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            }).start();
+                        } else {
+                            Toast.makeText(this, R.string.preset_range, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } else {
+                        Toast.makeText(this, R.string.set_preset, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                mIsPtzStart = false;
+                mPtzBtn.setText(R.string.start_ptz);
+            } else {
+                if (mPtzCommand != PTZCommandConstant.CUSTOM_CMD_GOTO_PRESET
+                        && mPtzCommand != PTZCommandConstant.CUSTOM_CMD_CLE_PRESET
+                        && mPtzCommand != PTZCommandConstant.CUSTOM_CMD_SET_PRESET) {
+                    //开始云台操作
+                    VMSNetSDK.getInstance().sendPTZCtrlCommand(PLAY_WINDOW_ONE, true, PTZCommandConstant.ACTION_START, mPtzCommand, 256, new OnVMSNetSDKBusiness() {
+                        @Override
+                        public void onFailure() {
+                            Toast.makeText(LiveActivity.this, R.string.ptz_fail, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onSuccess(Object obj) {
+                            Toast.makeText(LiveActivity.this, R.string.ptz_success, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    //开始预置点操作
+                    String point = mPresetEdit.getText().toString().trim();
+                    if (point.length() > 0) {
+                        final Integer pointNum = Integer.valueOf(point);
+                        if (pointNum > 0 && pointNum <= 256) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    VMSNetSDK.getInstance().sendPTZCtrlCommand(PLAY_WINDOW_ONE, false, PTZCommandConstant.ACTION_START, mPtzCommand, pointNum, new OnVMSNetSDKBusiness() {
+                                        @Override
+                                        public void onFailure() {
+                                            Toast.makeText(LiveActivity.this, R.string.ptz_fail, Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onSuccess(Object obj) {
+                                            Toast.makeText(LiveActivity.this, R.string.ptz_success, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            }).start();
+                        } else {
+                            Toast.makeText(this, R.string.preset_range, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } else {
+                        Toast.makeText(this, R.string.set_preset, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                mIsPtzStart = true;
+                mPtzBtn.setText(R.string.stop_ptz);
+            }
+        } else {
+            Toast.makeText(this, R.string.no_permission, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    /***
+     * 云台控制菜单显示按钮点击事件
+     *
+     * @param isShowPTZ 是否显示云台控制菜单
+     */
+    private void optControlLayout(boolean isShowPTZ) {
+        if (isShowPTZ) {
+            mPreviewLayout.setVisibility(View.GONE);
+            mPtzLayout.setVisibility(View.VISIBLE);
+        } else {
+            mPreviewLayout.setVisibility(View.VISIBLE);
+            mPtzLayout.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 选择通道号开始语音对讲
+     *
+     * @author lvlingdi 2016-5-18 上午10:29:36
+     */
+    private void showChannelSelectDialog() {
+        // 创建对话框
+        final AlertDialog mChannelSelectDialog = new AlertDialog.Builder(this).create();
+        // 显示对话框
+        mChannelSelectDialog.show();
+        mChannelSelectDialog.setCanceledOnTouchOutside(false);
+        final Window window = mChannelSelectDialog.getWindow();
+        window.setContentView(R.layout.dialog_channle_select);
+        RadioGroup channels = (RadioGroup) window.findViewById(R.id.rg_channels);
+
+        for (int i = 1; i <= talkChannels; i++) {
+            RadioButton rb = new RadioButton(window.getContext());
+            rb.setTag(i);
+            //应ui设计要求，自定义RadioButton样式图片
+            rb.setButtonDrawable(R.drawable.selector_radiobtn);
+            String name = getResources().getString(R.string.analog_channel, i);
+            rb.setText(name);
+            rb.setPadding(0, 10, 10, 10);
+            channels.addView(rb);
+        }
+
+        channels.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup arg0, int arg1) {
+                int radioButtonId = arg0.getCheckedRadioButtonId();
+                RadioButton rb = (RadioButton) window.findViewById(radioButtonId);
+                channelNoTemp = rb.getTag().toString();
+            }
+        });
+        Button cancel_btn = (Button) window.findViewById(R.id.cancel_btn);
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                mChannelSelectDialog.cancel();
+            }
+        });
+
+        Button confirm_btn = (Button) window.findViewById(R.id.confirm_btn);
+        confirm_btn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                channelNo = Integer.valueOf(channelNoTemp);
+                startTalk();
+                mChannelSelectDialog.cancel();
+            }
+        });
+    }
+
+    /**
+     * 开启语音播放
+     */
+    private void startTalk() {
+        VMSNetSDK.getInstance().openLiveTalkOpt(PLAY_WINDOW_ONE, channelNo, new OnVMSNetSDKBusiness() {
+            @Override
+            public void onFailure() {
+                mHandler.sendEmptyMessage(OPEN_TALK_FAILURE);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                mHandler.sendEmptyMessage(OPEN_TALK_SUCCESS);
+            }
+        });
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        //页面销毁时停止预览
+        boolean stopLiveResult = VMSNetSDK.getInstance().stopLiveOpt(1);
+        if (stopLiveResult) {
+            UIUtils.showToast(this, R.string.live_stop_success);
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        int i = group.getId();
+        if (i == R.id.radioGroup) {
+            getStreamType(group);
+
+        } else if (i == R.id.radioGroup_ptz) {
+            getPtzCommand(group);
+
+        } else if (i == R.id.radioGroup_ptz_two) {
+            getPtzTwoCommand(group);
+
+        } else if (i == R.id.radioGroup_ptz_three) {
+            getPtzThreeCommand(group);
+
+        } else if (i == R.id.radioGroup_ptz_four) {
+            getPtzFourCommand(group);
+
+        } else {
+        }
+    }
+
+    /***
+     * 第一行云台命令选择
+     *
+     * @param group 第一行云台命令选择控件
+     */
+    private void getPtzCommand(RadioGroup group) {
+        mPtzTwoRadioGroup.setOnCheckedChangeListener(null);
+        mPtzTwoRadioGroup.clearCheck();
+        mPtzTwoRadioGroup.setOnCheckedChangeListener(this);
+
+        mPtzThreeRadioGroup.setOnCheckedChangeListener(null);
+        mPtzThreeRadioGroup.clearCheck();
+        mPtzThreeRadioGroup.setOnCheckedChangeListener(this);
+
+        mPtzFourRadioGroup.setOnCheckedChangeListener(null);
+        mPtzFourRadioGroup.clearCheck();
+        mPtzFourRadioGroup.setOnCheckedChangeListener(this);
+        int i = group.getCheckedRadioButtonId();
+        if (i == R.id.rb_up) {//云台向上命令
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_UP;
+
+        } else if (i == R.id.rb_down) {//云台向下命令
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_DOWN;
+
+        } else if (i == R.id.rb_left) {//云台向左命令
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_LEFT;
+
+        } else if (i == R.id.rb_right) {//云台向右命令
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_RIGHT;
+
+        } else if (i == R.id.rb_auto) {//云台自动巡航命令
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_AUTO;
+
+        } else {
+        }
+    }
+
+
+    /***
+     * 第二行云台命令选择
+     *
+     * @param group 第二行云台命令选择控件
+     */
+    private void getPtzTwoCommand(RadioGroup group) {
+        mPtzRadioGroup.setOnCheckedChangeListener(null);
+        mPtzRadioGroup.clearCheck();
+        mPtzRadioGroup.setOnCheckedChangeListener(this);
+
+        mPtzThreeRadioGroup.setOnCheckedChangeListener(null);
+        mPtzThreeRadioGroup.clearCheck();
+        mPtzThreeRadioGroup.setOnCheckedChangeListener(this);
+
+        mPtzFourRadioGroup.setOnCheckedChangeListener(null);
+        mPtzFourRadioGroup.clearCheck();
+        mPtzFourRadioGroup.setOnCheckedChangeListener(this);
+
+        int i = group.getCheckedRadioButtonId();
+        if (i == R.id.rb_focal_length_add) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_ZOOM_IN;
+
+        } else if (i == R.id.rb_focal_length_subtract) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_ZOOM_OUT;
+
+        } else if (i == R.id.rb_focus_add) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_FOCUS_NEAR;
+
+        } else if (i == R.id.rb_focus_subtract) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_FOCUS_FAR;
+
+        } else {
+        }
+    }
+
+
+    /***
+     * 第三行云台命令选择
+     *
+     * @param group 第三行云台命令选择控件
+     */
+    private void getPtzThreeCommand(RadioGroup group) {
+        mPtzRadioGroup.setOnCheckedChangeListener(null);
+        mPtzRadioGroup.clearCheck();
+        mPtzRadioGroup.setOnCheckedChangeListener(this);
+
+        mPtzTwoRadioGroup.setOnCheckedChangeListener(null);
+        mPtzTwoRadioGroup.clearCheck();
+        mPtzTwoRadioGroup.setOnCheckedChangeListener(this);
+
+        mPtzFourRadioGroup.setOnCheckedChangeListener(null);
+        mPtzFourRadioGroup.clearCheck();
+        mPtzFourRadioGroup.setOnCheckedChangeListener(this);
+
+        int i = group.getCheckedRadioButtonId();
+        if (i == R.id.rb_aperture_add) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_IRIS_UP;
+
+        } else if (i == R.id.rb_aperture_subtract) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_IRIS_DOWN;
+
+        } else {
+        }
+    }
+
+    /***
+     * 第四行云台命令选择
+     *
+     * @param group 第四行云台命令选择控件
+     */
+    private void getPtzFourCommand(RadioGroup group) {
+        mPtzRadioGroup.setOnCheckedChangeListener(null);
+        mPtzRadioGroup.clearCheck();
+        mPtzRadioGroup.setOnCheckedChangeListener(this);
+
+        mPtzTwoRadioGroup.setOnCheckedChangeListener(null);
+        mPtzTwoRadioGroup.clearCheck();
+        mPtzTwoRadioGroup.setOnCheckedChangeListener(this);
+
+        mPtzThreeRadioGroup.setOnCheckedChangeListener(null);
+        mPtzThreeRadioGroup.clearCheck();
+        mPtzThreeRadioGroup.setOnCheckedChangeListener(this);
+
+        int i = group.getCheckedRadioButtonId();
+        if (i == R.id.rb_preset_get) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_GOTO_PRESET;
+
+        } else if (i == R.id.rb_preset_set) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_SET_PRESET;
+
+        } else if (i == R.id.rb_preset_del) {
+            mPtzCommand = PTZCommandConstant.CUSTOM_CMD_CLE_PRESET;
+
+        } else {
+        }
+    }
+
+    /***
+     * 获取码流参数
+     *
+     * @param group 码流选择控件
+     */
+    private void getStreamType(RadioGroup group) {
+        int i = group.getCheckedRadioButtonId();
+        if (i == R.id.main_hing_Radio) {
+            mStreamType = LiveSDKConstant.MAIN_HIGH_STREAM;
+
+        } else if (i == R.id.main_standard_Radio) {
+            mStreamType = LiveSDKConstant.SUB_STANDARD_STREAM;
+
+        } else if (i == R.id.sub_Radio) {
+            mStreamType = LiveSDKConstant.SUB_STREAM;
+
+        } else {
+        }
+    }
+
+}

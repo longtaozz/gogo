@@ -1,0 +1,24 @@
+package com.zt.capacity.jinan_yunshu.util;
+
+import android.app.Activity;
+import android.content.Context;
+import android.webkit.JavascriptInterface;
+
+import com.zt.capacity.common.util.ActivityJumpUtil;
+import com.zt.capacity.common.util.BaseJavaScript;
+
+
+/**
+ * Created by Administrator on 2018/4/23.
+ */
+
+public class JavaScriptinterface extends BaseJavaScript {
+
+
+    public JavaScriptinterface(Context c) {
+        super(c);
+    }
+
+
+
+}

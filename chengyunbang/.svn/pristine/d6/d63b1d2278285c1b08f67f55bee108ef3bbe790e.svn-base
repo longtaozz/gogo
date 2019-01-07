@@ -1,0 +1,46 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zt.capacity.jinan_zwt" >
+
+<application>
+
+    <!--主界面-->
+    <activity
+        android:name=".activity.MainActivity"
+        android:screenOrientation="portrait"></activity>
+    <!--历史轨迹-->
+    <activity
+        android:name=".activity.CarHistoryActivity"
+        android:screenOrientation="portrait"></activity>
+    <!--疑点查车-->
+    <activity
+        android:name=".activity.DoubtfulPointActivity"
+        android:screenOrientation="portrait"></activity>
+    <!--指令下发-->
+    <activity
+        android:name=".activity.JNInstructionActivity"
+        android:screenOrientation="portrait"></activity>
+    <!--实时位置-->
+    <activity
+        android:name=".activity.LocationActivity"
+        android:screenOrientation="portrait"></activity>
+    <!--车牌识别-->
+    <activity
+        android:name=".activity.PreviewActivity"
+        android:screenOrientation="landscape"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+    <!--语音-->
+    <activity
+        android:name=".activity.VoiceMaskActivity"
+        android:screenOrientation="portrait"></activity>
+    <!--位置采集信息选择-->
+    <activity
+        android:name=".activity.LocationGatherActivity"
+        android:screenOrientation="portrait"></activity>
+    <!--位置采集-->
+    <activity
+        android:name=".activity.LocationGatherMapActivity"
+        android:screenOrientation="portrait"></activity>
+
+</application>
+
+</manifest>

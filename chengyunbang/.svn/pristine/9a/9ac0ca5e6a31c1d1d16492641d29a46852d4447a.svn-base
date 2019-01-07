@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zt.capacity.jinan_zwt"
+    android:versionCode="5"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="23" />
+
+    <permission
+        android:name="com.zt.capacity.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" /> <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="com.zt.capacity.permission.JPUSH_MESSAGE" /> <!-- 允许应用可以接收点亮屏幕或解锁广播。 -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" /> <!-- Optional for location -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 允许应用在手机屏幕关闭后后台进程仍然运行； 该权限从 JPush 3.1.5 版本开始变为可选权限，在 3.1.5 前的版本为必须权限。 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 允许应用震动。 该权限从 JPush 3.1.5 版本开始变为可选权限，在 3.1.5 前版本为必须权限。 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" /> <!-- end: baidu speech sdk  权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> <!-- 友盟统计 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 全景地图 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 传感器 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 摄像头权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="com.meilapp.meila.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 开启闪光灯权限 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 录音 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 安装 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+        android:name="com.debug.MainApplication"
+        android:allowBackup="true"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/home"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/AppTheme" >
+
+        <!-- 地图key -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="kasXp36R6taIPQcNSj9s2j3kpwD4DKcp" />
+
+        <!-- 欢迎 -->
+        <activity
+            android:name="com.debug.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 登录界面 -->
+        <activity
+            android:name="com.debug.LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 主界面 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <!-- 历史轨迹 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.CarHistoryActivity"
+            android:screenOrientation="portrait" />
+        <!-- 疑点查车 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.DoubtfulPointActivity"
+            android:screenOrientation="portrait" />
+        <!-- 指令下发 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.JNInstructionActivity"
+            android:screenOrientation="portrait" />
+        <!-- 实时位置 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationActivity"
+            android:screenOrientation="portrait" />
+        <!-- 车牌识别 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.PreviewActivity"
+            android:screenOrientation="portrait" />
+        <!-- 语音 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.VoiceMaskActivity"
+            android:screenOrientation="portrait" />
+        <!-- 位置采集信息界面 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationGatherActivity"
+            android:screenOrientation="portrait" />
+        <!-- 位置采集 -->
+        <activity
+            android:name="com.zt.capacity.jinan_zwt.activity.LocationGatherMapActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5bc979d8f1f55646200000d1" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng" /> <!-- Required SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.zt.capacity" />
+            </intent-filter>
+        </activity> <!-- Required SDK 核心功能 -->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:exported="false"
+            android:process=":pushcore" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service> <!-- since 3.0.9 Required SDK 核心功能 -->
+        <provider
+            android:name="cn.jpush.android.service.DataProvider"
+            android:authorities="com.zt.capacity.jinan_zwt.DataProvider"
+            android:exported="false"
+            android:process=":pushcore" /> <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+
+                <category android:name="com.zt.capacity" />
+            </intent-filter>
+        </service> <!-- since 3.1.0 Required SDK 核心功能 -->
+        <provider
+            android:name="cn.jpush.android.service.DownloadProvider"
+            android:authorities="com.zt.capacity.jinan_zwt.DownloadProvider"
+            android:exported="true" /> <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter android:priority="1000" >
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" /> <!-- Required  显示通知栏 -->
+                <category android:name="com.zt.capacity" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver> <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" /> <!-- User defined.  For test only  用户自定义的广播接收器 -->
+        <receiver
+            android:name="com.zt.capacity.common.jpush.MyReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /> <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.zt.capacity" />
+            </intent-filter>
+        </receiver> <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="90f2d734f4da837d469e9589" /> <!-- </>值来自开发者平台取得的AppKey -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.zt.capacity.jinan_zwt.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider> <!-- 正式发布时，请替换成您自己的appId 本demo的appId会不定时下线 -->
+        <meta-data
+            android:name="com.baidu.speech.APP_ID"
+            android:value="11164013" />
+        <meta-data
+            android:name="com.baidu.speech.API_KEY"
+            android:value="NQmvlmBXFY6fSKVg6S4IcjnG" />
+        <meta-data
+            android:name="com.baidu.speech.SECRET_KEY"
+            android:value="41Set9KVD46Si91pkKuULRwGWAUPDGuk" /> <!-- 请确认集成后的包名是否正确，本demo的包名是com.baidu.speech.recognizerdemo，在build.gradle文件中查看 -->
+        <service
+            android:name="com.baidu.speech.VoiceRecognitionService"
+            android:exported="false" /> <!-- 通用3D全景地图界面 -->
+        <activity
+            android:name="com.zt.capacity.common.base.PanoramaActivity"
+            android:screenOrientation="portrait" /> <!-- 通用web界面 -->
+        <activity
+            android:name="com.zt.capacity.common.base.WebViewActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="com.android.tools.ir.server.InstantRunContentProvider"
+            android:authorities="com.zt.capacity.jinan_zwt.com.android.tools.ir.server.InstantRunContentProvider"
+            android:multiprocess="true" />
+    </application>
+
+</manifest>

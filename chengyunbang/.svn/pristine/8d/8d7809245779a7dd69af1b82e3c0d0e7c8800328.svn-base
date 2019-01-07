@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F6F6F6</color>
+    <color name="colorPrimaryDark">#F6F6F6</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="activity_head">#51A8FF</color>
+    <color name="activity_title_bar">#4086D7</color>
+    <color name="head_color">#FFD33C</color>
+    <color name="red">#FF0000</color>
+    <color name="font">#000000</color>
+    <color name="hmoe_head">#4A90E2</color>
+    <color name="black_one">#4A4A4A</color>
+    <color name="voice_young">#50E3C2</color>
+    <color name="color_4a4a4a">#4A4A4A</color>
+    <color name="color_151515">#151515</color>
+    <color name="itme_bg">#E7E7E7</color>
+    <color name="xians">#4A90E2</color>
+    <color name="itme_font">#4a4a4a</color>
+    <color name="colors_b7b7b7">#b7b7b7b7</color>
+    <color name="colors_bbbbbb">#BBBBBB</color>
+    <color name="colors_ebebeb">#ebebeb</color>
+    <color name="colors_line">#f5f4f9</color>
+    <color name="cank">#9b9b9b</color>
+    <color name="color_454545">#454545</color>
+    <color name="color_4086d7">#4086d7</color>
+    <color name="color_1AAD19">#1AAD19</color>
+
+    <color name="background">#FFFFFF</color>
+    <color name="split_line">#11112233</color>
+    <color name="text1">#59B29C</color>
+    <color name="text2">#333333</color>
+
+    <color name="color1">#F0F0F0</color>
+    <color name="color2">#FFFFFF</color>
+    <color name="color3">#B0B0B0</color>
+    <color name="color4">#666666</color>
+    <color name="color5">#57C5E8</color>
+
+    //车速 颜色
+    <color name="car_speed_green">#A5F052</color>
+    <color name="car_speed_orange">#FFB52C</color>
+    <color name="car_speed_red">#FF684F</color>
+
+    <color name="translucent_background">#80000000</color>
+    <color name="atching_text_color">#9b9b9b</color>
+    <color name="color_9b9b9b">#9b9b9b</color>
+    <color name="color_5ea8ff">#5ea8ff</color>
+    <color name="color_484848">#484848</color>
+
+    <color name="color_16ac2f">#16ac2f</color>
+    <color name="color_f6a202">#f6a202</color>
+    <color name="color_f6f6f6">#f6f6f6</color>
+    <color name="color_101010">#101010</color>
+    <color name="color_f21f1a">#f21f1a</color>
+    <color name="color_bbbbbb">#BBBBBB</color>
+    <color name="color_dddddd">#DDDDDD</color>
+    <color name="color_767676">#767676</color>
+
+    <color name="color_dedede">#dedede</color>
+    <color name="color_1E82D2">#1E82D2</color>
+    <color name="color_ee4b0b">#EE4B0B</color>
+    <color name="color_605e5e">#605E5E</color>
+
+
+    <color name="common_title_bg">#CA2C32</color>
+</resources>
+
+
+

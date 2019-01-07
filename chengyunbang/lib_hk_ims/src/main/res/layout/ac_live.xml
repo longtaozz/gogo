@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hikvision.sdk.ui.LiveActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.hikvision.sdk.widget.CustomSurfaceView
+            android:id="@+id/surfaceView"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/ll_preview_control"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="码流选择" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/main_hing_Radio"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="高清" />
+
+                <RadioButton
+                    android:id="@+id/main_standard_Radio"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="流畅" />
+
+                <RadioButton
+                    android:id="@+id/sub_Radio"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="标清" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/live_btn_groups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/live_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/live_start_play"
+                    android:text="@string/live_start_play" />
+
+                <Button
+                    android:id="@+id/live_stop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/live_stop_play"
+                    android:text="@string/live_stop_play" />
+
+                <Button
+                    android:id="@+id/live_capture"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/live_capture"
+                    android:text="@string/live_capture" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/live_btn_groups_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/liveRecordBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="录像"
+                    android:singleLine="true"
+                    android:text="录像" />
+
+                <Button
+                    android:id="@+id/liveAudioBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="音频"
+                    android:singleLine="true"
+                    android:text="音频" />
+
+                <Button
+                    android:id="@+id/show_ptz"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/live_start_play"
+                    android:text="显示云台控制" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/live_btn_groups_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/liveTalkBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="开启语音对讲" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/zoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/live_start_play"
+                android:text="电子放大" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_ptz_control"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="云台控制" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_ptz"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_up"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="上" />
+
+                <RadioButton
+                    android:id="@+id/rb_down"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="下" />
+
+                <RadioButton
+                    android:id="@+id/rb_left"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="左" />
+
+                <RadioButton
+                    android:id="@+id/rb_right"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="右" />
+
+                <RadioButton
+                    android:id="@+id/rb_auto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="自动" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/radioGroup_ptz_two"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_focal_length_add"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="焦距+" />
+
+                <RadioButton
+                    android:id="@+id/rb_focal_length_subtract"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="焦距-" />
+
+                <RadioButton
+                    android:id="@+id/rb_focus_add"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="焦点+" />
+
+                <RadioButton
+                    android:id="@+id/rb_focus_subtract"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="焦点-" />
+
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/radioGroup_ptz_three"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_aperture_add"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="光圈+" />
+
+                <RadioButton
+                    android:id="@+id/rb_aperture_subtract"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="光圈-" />
+
+
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/radioGroup_ptz_four"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_preset_get"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="调用预置点" />
+
+                <RadioButton
+                    android:id="@+id/rb_preset_set"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="设置预置点" />
+
+                <RadioButton
+                    android:id="@+id/rb_preset_del"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="删除预置点" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/et_preset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="预置点（1~256）"
+                android:inputType="number"
+                android:maxLength="3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/ptz_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/live_start_play"
+                    android:text="云台控制开始" />
+
+                <Button
+                    android:id="@+id/hide_ptz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/live_start_play"
+                    android:text="隐藏云台控制" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

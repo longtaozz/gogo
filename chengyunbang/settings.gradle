@@ -1,0 +1,1 @@
+include ':app', ':lib_common',':jinan_yunshu',':changsha_yunshu', ':lib_baidumap', ':lib_baidu_speech', ':umeng', ':lib_jpush', ':lib_hk_ims', ':lib_getui'

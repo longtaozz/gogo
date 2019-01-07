@@ -1,0 +1,77 @@
+package com.zt.capacity.jinan_zwt.data;
+
+
+import com.zt.capacity.common.data.Web;
+
+public class JN_ZWT_Url {
+
+    //更新
+    public final static String QUERYAPPUPDATEINFO = "common/project/version/queryAppUpdateInfo";
+
+
+    //所有车辆实时位置信息
+    public final static String SELECTALLMYCAR =  Web.projectJN + "carruntime/selectCarRuntime";
+    //车辆信息
+    public final static String CARS =  Web.projectJN + "car/selectCarAndAll";
+
+    //车辆信息
+    public final static String SELECTNUMBERPLATE =  Web.projectJN + "car/selectNumberPlate";
+    //登录
+    public final static String LOGIN = "common/project/user/login";
+
+    //获取权限信息
+    public final static String ROLE = "user/role";
+
+    //获取车辆历史轨迹
+    public final static String CARHISTORYS =  Web.projectJN + "history/selectCarHistory";
+
+    //疑点查车
+    public final static String CIRCULAR =  Web.projectJN + "history/circular";
+
+    //id获取工地围栏信息
+    public final static String FINDCOSAPPFENCEBYID =  Web.projectJN + "enclosure/findCosappFenceById";
+
+    //id获取消纳场围栏信息
+    public final static String FINDUNLOADINGFENCEBYID =  Web.projectJN + "enclosure/findUnloadingFenceById";
+
+    //指令下发历史信息
+    public final static String FINDACTIONLIS =  Web.projectJN + "action/findActionList";
+
+    //上传指令信息
+    public final static String SENDACTION =  Web.projectJN + "action/sendAction";
+    //车辆信息
+    public final static String STATISTICSINFOTOTAL = Web.projectJN + "carruntime/statisticsInfoTotal";
+    //工地围栏接口
+    public final static String CARRUNTIMEALL = Web.projectJN + "carruntime/carRuntimeAll";
+    //消纳场围栏接口
+    public final static String GETUNLOADINGGPSFENCE = Web.projectJN + "gpsfence/getUnloadingGpsfence";
+    //工地围栏接口
+    public final static String GETCONSAPPGPSFENCE = Web.projectJN + "gpsfence/getConsappGpsfence";
+
+    //前端页面
+    //首页
+    public final static String MAINHOME = Web.htmlIP + "/html/index.html?token=" + Web.getToken();
+    //济南渣务厅首页
+    public final static String JINANZHENGFU = Web.htmlIP + "/html/jinanzhengfu.html?token=" + Web.getToken();
+    //位置采集
+
+    public final static String LOCATIONINDEX = "http://118.190.42.124:8080/zhatu/foreign/consapp/locationIndex";
+
+
+    //济南的问题反馈
+    public final static String JINANQUESTION = Web.htmlIP + "/html/jinanquestion.html?token=" + Web.getToken();
+
+    //公用的问题反馈
+    public final static String QUESTION = Web.htmlIP + "/html/question.html?token=" + Web.getToken();
+
+
+
+
+    //位置采集查询
+    public final static String GETCONSAPPBYPOSITION = Web.projectJN + "consapp/getConsappByPosition";
+
+    //位置采集信息上传
+    public final static String SAVECONSAPPBYPOSITION = Web.projectJN + "consapp/saveConsappByPosition";
+
+
+}

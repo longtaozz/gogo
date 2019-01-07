@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!--济南的单个车下发指令ui-->
+    <include layout="@layout/base_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45">
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车牌"
+                android:textColor="@color/color_4a4a4a"
+                android:textSize="@dimen/text_15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SIM卡号"
+                android:textColor="@color/color_4a4a4a"
+                android:textSize="@dimen/text_15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1.8"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所属公司"
+                android:textColor="@color/color_4a4a4a"
+                android:textSize="@dimen/text_15" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_dddddd"></View>
+
+    <!--车辆信息-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:adjustViewBounds="true"
+        android:maxHeight="@dimen/dp_100">
+
+        <ListView
+            android:id="@+id/jn_instruction_list_car"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_64"
+            android:cacheColorHint="#00000000"
+            android:listSelector="#00000000"
+            android:divider="#00000000"
+            android:layout_marginBottom="@dimen/dp_12"
+            ></ListView>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_dddddd"></View>
+    <!--指令-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
+        <!--第一行指令-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lock_car"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_locked_car" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="锁车"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/relieve_lock_car"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_unlock_car" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="解除锁车"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/speed_limit"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_speedlimit" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="限速"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/relieve_speed_limit"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_un_speedlimit" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="解除限速"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--第二行指令-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16">
+
+            <LinearLayout
+                android:id="@+id/limit_lift"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_restriction" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="限举"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/relieve_limit_lift"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_un_restriction" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="解除限举"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/control"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_control" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="开启管控"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/relieve_control"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_deregulation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="解除管控"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <!--第三行指令-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16">
+
+            <LinearLayout
+                android:id="@+id/relieve_fingerprint"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_remove_fingerprints" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="解除指纹"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/snap"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_snap_catch" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="下发抓拍"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/refresh"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_reload" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:text="刷新"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_13" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--指令结束.....-->
+
+    </LinearLayout>
+
+    <!--指令下发历史记录-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_12">
+
+        <ListView
+            android:id="@+id/jn_instruction_list_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="#00000000"
+            android:listSelector="#00000000"
+            android:divider="#00000000"></ListView>
+    </LinearLayout>
+</LinearLayout>

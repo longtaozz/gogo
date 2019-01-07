@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/location_fragment_close_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_13"
+            android:src="@drawable/jn_zwt_close_button_image" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_13"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_17"
+            android:layout_marginTop="@dimen/dp_22"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="城   建  号："
+                                android:textColor="@color/color_4a4a4a"
+                                android:textSize="@dimen/text_14" />
+
+                            <TextView
+                                android:id="@+id/location_fragment_carid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/color_4a4a4a"
+                                android:textSize="@dimen/text_14" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="@dimen/dp_6"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="车辆品牌："
+                                android:textColor="@color/color_4a4a4a"
+                                android:textSize="@dimen/text_14" />
+
+                            <TextView
+                                android:id="@+id/location_fragment_factory_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/color_4a4a4a"
+                                android:textSize="@dimen/text_14" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_22"
+                                android:text="@string/car_numberL"
+                                android:textColor="@color/color_4a4a4a"
+                                android:textSize="@dimen/text_14" />
+
+                            <TextView
+                                android:id="@+id/location_fragment_carnumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/color_4a4a4a"
+                                android:textSize="@dimen/text_14" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="@dimen/dp_6"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_22"
+                                android:text="设备厂商："
+                                android:textColor="@color/color_4a4a4a"
+                                android:textSize="@dimen/text_14" />
+
+                            <TextView
+                                android:id="@+id/location_fragment_car_owners_contact"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/color_4a4a4a"
+                                android:textSize="@dimen/text_14" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/company"
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/location_fragment_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_14" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/dp_6"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="实时速度："
+                            android:textColor="@color/color_4a4a4a"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:id="@+id/jn_speed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/color_4a4a4a"
+                            android:textSize="@dimen/text_14" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_22"
+                            android:text="车辆状态："
+                            android:textColor="@color/color_4a4a4a"
+                            android:textSize="@dimen/text_14" />
+
+                        <TextView
+                            android:id="@+id/location_fragment_box_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/color_4a4a4a"
+                            android:textSize="@dimen/text_14" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="检测状态："
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/testing_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_14" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设备时间："
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/equipment_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="位置信息："
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_14" />
+
+                <TextView
+                    android:id="@+id/current_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/color_4a4a4a"
+                    android:textSize="@dimen/text_14" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_6">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/history_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/jn_zwt_history_button"
+                        android:gravity="center"
+                        android:textColor="@color/color_3296FA"
+                        android:text="历史轨迹"/>
+
+                    <LinearLayout
+                        android:id="@+id/enforcement_report"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_8"
+                        android:visibility="gone"
+                        android:gravity="center"
+                        android:background="@drawable/jn_zwt_history_button">
+                        <TextView
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_20"
+                            android:textSize="@dimen/text_14"
+                            android:textColor="@color/color_1AAD19"
+                            android:text="执法上报"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_9"
+                    android:visibility="visible"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/instructions_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/jn_zwt_history_button"
+                        android:gravity="center"
+                        android:textColor="@color/color_3296FA"
+                        android:text="下发指令"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/jn_zwt_relation_button"
+                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/dp_9"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/parameter_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/jn_zwt_grant_parameter"
+                        android:text="下发参数" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_location_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:background="@color/color_dddddd"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@+id/title_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_weight="1"
+                android:src="@drawable/jn_zwt_return_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:text="实时位置"
+                android:textColor="@color/color_484848"
+                android:textSize="@dimen/text_16" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_toLeftOf="@+id/right_bt"
+            android:layout_toRightOf="@+id/back"
+            android:background="@drawable/jn_zwt_sousuokuang_jn_location">
+
+            <AutoCompleteTextView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:layout_toLeftOf="@+id/search_imageview"
+                android:background="@color/white"
+                android:completionThreshold="1"
+                android:dropDownHeight="@dimen/dp_135"
+                android:dropDownHorizontalOffset="-18dp"
+                android:dropDownVerticalOffset="@dimen/dp_11"
+                android:dropDownWidth="@dimen/dp_157"
+                android:hint="请输入车牌号"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textSize="@dimen/text_14" />
+
+
+            <LinearLayout
+                android:id="@+id/search_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_26"
+                    android:src="@drawable/jn_zwt_locaton_sou" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/real_time_bmap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:clickable="true" />
+
+
+        <!--设备状态-->
+        <LinearLayout
+            android:id="@+id/malfunction_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:id="@+id/allCar_CheckBox"
+                    android:layout_width="@dimen/dp_112"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_selection_location_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="车辆总数("
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:id="@+id/allCar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=")"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/unlicensedCar_CheckBox"
+                    android:layout_width="@dimen/dp_112"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_selection_location_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="无证("
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:id="@+id/unlicensedCar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=")"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/gpsCar_CheckBox"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_selection_location_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="定位故障("
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:id="@+id/gpsCar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=")"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--第二行-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                >
+
+                <LinearLayout
+                    android:id="@+id/stateCar_CheckBox"
+                    android:layout_width="@dimen/dp_112"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_16">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_selection_location_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="状态失联("
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:id="@+id/stateCar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=")"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/openBoxCar_CheckBox"
+                    android:layout_width="@dimen/dp_112"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_selection_location_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开厢行驶("
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:id="@+id/openBoxCar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=")"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/normalCar_CheckBox"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_5">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_selection_location_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="在线("
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:id="@+id/normalCar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=")"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--第三行-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:layout_marginLeft="@dimen/dp_16"
+                >
+
+                <LinearLayout
+                    android:id="@+id/consumption_CheckBox"
+                    android:layout_width="@dimen/dp_112"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_selection_location_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="消纳场("
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:id="@+id/consumption_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=")"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/construction_CheckBox"
+                    android:layout_width="@dimen/dp_112"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_5">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_selection_location_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工地("
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:id="@+id/construction_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=")"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pack_up_option"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_4"
+                        android:src="@drawable/jn_zwt_open_the" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收起"
+                        android:textColor="@color/color_484848"
+                        android:textSize="@dimen/text_13" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/marker_panorama_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/RelativeLayout_center_L"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:visibility="invisible"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/marker_panorama_location_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jn_zwt_maker_panorama_backe_img"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/maker_panorama_img"
+                    android:layout_width="55dp"
+                    android:layout_height="39dp"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/jn_zwt_no_img" />
+
+                <TextView
+                    android:id="@+id/maker_panorama_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:text="@string/maker_panorama_text"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_10" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_3"
+                android:src="@drawable/jn_zwt_maker_panorama_tagging" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/option_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_11"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center_horizontal"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/location_take_up_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jn_zwt_location_take_up_right" />
+
+            <LinearLayout
+                android:id="@+id/location_right_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/legend_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_legend_button" />
+
+                <ImageView
+                    android:id="@+id/traffic_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_traffic_button_img" />
+
+                <ImageView
+                    android:id="@+id/gather_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_gather_button_img" />
+
+                <ImageView
+                    android:id="@+id/plate_number_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_plate_number_button_img" />
+
+                <ImageView
+                    android:id="@+id/panorama_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_panorama_button_img" />
+
+                <ImageView
+                    android:id="@+id/statistics_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/jn_zwt_statistics" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_above="@id/location_bottom_linearLayout"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location_bottom_linearLayout"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/colors_ebebeb"></View>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <RelativeLayout
+                    android:id="@+id/location_bottom_1"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/location_text_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="基础信息"
+                            android:textColor="@drawable/jn_zwt_location_bot_text"
+                            android:textSize="@dimen/text_16"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/location_bottom_1_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/jn_zwt_location_bottom_img" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/location_bottom_4"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_weight="1"
+                    android:background="@color/white">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/location_text_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="周边信息"
+                            android:textColor="@drawable/jn_zwt_location_bot_text"
+                            android:textSize="@dimen/text_16"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/location_bottom_4_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/jn_zwt_location_bottom_img" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/RelativeLayout_center_L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"></LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
