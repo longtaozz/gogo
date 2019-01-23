@@ -24,7 +24,7 @@
         <!--地图key-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="BmZL5iewCe8WGUTUzf9NCOtu3pf8959Z" />
+            android:value="" />
 
         <!--定位服务，不加只能定一次-->
         <service
