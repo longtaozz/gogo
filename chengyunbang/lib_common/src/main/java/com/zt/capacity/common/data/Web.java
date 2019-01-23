@@ -17,8 +17,6 @@ import java.util.Map;
 public abstract class Web extends HttpUtil {
 
 
-//    private String apiIp = "http://113.247.235.86:9080/"; //正式 环境
-//    private String apiIp="http://114.116.156.44:9080/"; //测试 环境
     private String apiIp="http://192.168.0.73:9081/"; //测试 环境
 
     //济南渣务厅
@@ -27,9 +25,7 @@ public abstract class Web extends HttpUtil {
     /**
      * 前端页面端口
      */
-//    public static String htmlIP = "http://114.116.156.44:9080/cyb/html";//正式环境
     public static String htmlIP = "http://192.168.0.73:9081/cs/html";//正式环境
-//    public static String htmlIP = "http://192.168.0.6/";//测试环境
 
 
     private static String project = "";//接口位置
@@ -52,12 +48,12 @@ public abstract class Web extends HttpUtil {
     }
     //    public static String projectJN = "jinan/project/";//济南
 
-    public static String mapAk = "eR3sGWC9deXA2Mg7HLySug8qp0IXPDsx";
+    public static String mapAk = "";
 
-    public static String webAk = "eR3sGWC9deXA2Mg7HLySug8qp0IXPDsx";
+    public static String webAk = "";
 
     //聚合数据apk
-    public static String jhAk = "82be7808aee94419bcb66bb5b8855913";
+    public static String jhAk = "";
 
     //车辆数据
     public static List<Car> cars=new ArrayList<>();
